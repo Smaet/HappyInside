@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - UserCharacter
-  - Block
+  - Mouse
   layers:
   - Default
   - TransparentFX
@@ -15,14 +14,14 @@ TagManager:
   - UI
   - 
   - 
-  - BackGUI
-  - FrontGUI
-  - 
-  - 
-  - 
-  - UserCharacter
-  - MapStructure
-  - Block
+  - ActiveLines
+  - FlattenedLines
+  - Background
+  - Bins
+  - FlungTrash
+  - WorldBall
+  - Checkpoints
+  - TouchArea
   - 
   - 
   - 
@@ -42,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Trash
+    uniqueID: 2727232013
     locked: 0
