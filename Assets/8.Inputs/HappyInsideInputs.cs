@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Actions/HappyInsideInputs.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/8.Inputs/HappyInsideInputs.inputactions'
 
 using System;
 using System.Collections;

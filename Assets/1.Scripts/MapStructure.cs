@@ -30,22 +30,4 @@ public class MapStructure : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (CurStructureType == StructureType.UserEndPoint)
-        {
-            if (other.collider.CompareTag("UserCharacter"))
-            {
-                // GameOver 호출
-                GameManager.Instance.GameOver(false);
-            }
-        }
-        else if (CurStructureType == StructureType.BlockEndPoint)
-        {
-            if (other.collider.CompareTag("Block"))
-            {
-                
-            }
-        }
-    }
 }

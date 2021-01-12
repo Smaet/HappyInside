@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/ControlMaps/GamepadControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/9.ThirdParty/Input/ControlMaps/GamepadControls.inputactions'
 
 using System;
 using System.Collections;

@@ -40,7 +40,6 @@ public class SceneLoader : SimpleSingleton<SceneLoader>
 
     }
 
-
     
     public void LoadScene(string _sceneName)
     {

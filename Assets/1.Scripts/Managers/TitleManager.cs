@@ -17,6 +17,7 @@ public class TitleManager : MonoBehaviour
 
     public void LoadScene()
     {
+        Debug.Log("Load GameScene!!");
         SceneLoader.Instance.LoadScene("1.GameScene");
     }
 }

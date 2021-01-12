@@ -57,7 +57,7 @@ public class BlockGenenrator : MonoBehaviour
 
 
     #region GeneratorConstruct
-
+    /*
     /// <summary>
     /// 오브젝트 풀 생성
     /// </summary>
@@ -204,7 +204,7 @@ public class BlockGenenrator : MonoBehaviour
     }
 
 
-
+    */
     #endregion
 
 

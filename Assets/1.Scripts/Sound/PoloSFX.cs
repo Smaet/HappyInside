@@ -21,6 +21,11 @@ public class PoloSFX : SimpleSingleton<PoloSFX>
     public AudioClip popTouch;
     public AudioClip popMessage;
 
+	protected override void Awake()
+	{
+		base.Awake();
+	}
+
     public void PlayButton()
 	{
 		PoloSound.Instance.PlayOnce(button);

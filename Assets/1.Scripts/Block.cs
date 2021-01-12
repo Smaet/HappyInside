@@ -34,24 +34,7 @@ public class Block : MonoBehaviour
         Init();
     }
 
-    private void Update()
-    {
-        if (BlockMovingOn)
-        {
-            this.gameObject.transform.Translate(Vector3.up * GameManager.Instance.GetBlockSpeed());
-        }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (GetLastCheck())
-        {
-            if (other.collider.CompareTag("Character"))
-            {
-                GameManager.Instance.GameOver(true);
-            }
-        }
-    }
 
 
     public void Init()

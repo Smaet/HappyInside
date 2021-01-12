@@ -12,6 +12,7 @@ public enum FaderState
 public class MyFader : SimpleSingleton<MyFader>
 {
     public Image panel;
+    public CanvasGroup anotherCG;
     public CanvasGroup overlayUICG;
 
     float curTime = 0f;
@@ -23,7 +24,82 @@ public class MyFader : SimpleSingleton<MyFader>
     protected override void Awake()
     {
         base.Awake();
+        this.GetComponent<GraphicRaycaster>().enabled = false;
     }
+
+     public void StartAnotherCanvasFader(FaderState _state, float _fTime, float _maxValue = 1)
+    {
+        //if (this.gameObject.activeSelf == false)
+        //    this.gameObject.SetActive(true);
+
+        this.GetComponent<GraphicRaycaster>().enabled = true;
+        curFadeState = _state;
+        maxValue = _maxValue;
+        fadeTime = _fTime;
+        curTime = 0f;
+
+        if(_state == FaderState.FADEOUT)
+        {
+             anotherCG.alpha = 0;
+        }
+        else
+        {
+             anotherCG.alpha = 1;
+        }
+
+        StartCoroutine(AnotherCanvasFaderUpdate());
+    }
+   
+    IEnumerator AnotherCanvasFaderUpdate()
+    {
+     
+        float alpha;
+        while(true)
+        {
+            if (curFadeState == FaderState.NONE)
+            {
+               // if (this.gameObject.activeSelf) 
+               //     this.gameObject.SetActive(false);
+
+                yield break;
+            }
+          
+
+            switch (curFadeState)
+            {
+                case FaderState.NONE:
+                    break;
+
+                case FaderState.FADEIN:     // 검은색이 사라지고 서서히 컨텐치 내용이 나타난다.
+                   
+                    alpha = Mathf.Lerp(maxValue, 0f, curTime / fadeTime);
+                    anotherCG.alpha = alpha;
+                    if (anotherCG.alpha <= 0f)
+                    {
+                        this.GetComponent<GraphicRaycaster>().enabled = false;
+                        curFadeState = FaderState.NONE;
+                    }
+                    break;
+
+                case FaderState.FADEOUT:    // 화면이 점점 검게 변한다.
+ 
+                    alpha= Mathf.Lerp(0f, maxValue, curTime / fadeTime);
+                    anotherCG.alpha = alpha;
+
+                    if (anotherCG.alpha >= 1f)
+                    {
+                        this.GetComponent<GraphicRaycaster>().enabled = false;
+                        curFadeState = FaderState.NONE;
+                    }
+                    break;
+            }
+            curTime += Time.deltaTime;
+            yield return null;
+        }
+   
+    }
+
+
     public void StartFader(FaderState _state, float _fTime, float _maxValue = 1)
     {
         //if (this.gameObject.activeSelf == false)
@@ -33,19 +109,20 @@ public class MyFader : SimpleSingleton<MyFader>
         maxValue = _maxValue;
         fadeTime = _fTime;
         curTime = 0f;
-
+        this.GetComponent<GraphicRaycaster>().enabled = true;
+        
         if(_state == FaderState.FADEOUT)
         {
             Color c;
             c = panel.color;
-            c.a = 1;
+            c.a = 0;
             panel.color = c;
         }
         else
         {
             Color c;
             c = panel.color;
-            c.a = 0;
+            c.a = 1;
             panel.color = c;
         }
 

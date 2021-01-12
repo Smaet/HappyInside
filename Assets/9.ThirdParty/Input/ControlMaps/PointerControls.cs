@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/ControlMaps/PointerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/9.ThirdParty/Input/ControlMaps/PointerControls.inputactions'
 
 using System;
 using System.Collections;
