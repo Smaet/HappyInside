@@ -6,6 +6,7 @@ using UniRx;
 
 public class BaseFlexPlaceGame : UIView
 {
+    [SerializeField]
     private Button backButton;
 
     // Start is called before the first frame update
@@ -28,12 +29,14 @@ public class BaseFlexPlaceGame : UIView
     public virtual void OpenFlexPlaceGame()
     {
         Init();//초기화
-        this.gameObject.SetActive(true);
         //해당하는 컨텐츠 Active
+        gameObject.SetActive(true);
+        Debug.Log("Base FlexGame Call!!");
+       
     }
 
     public virtual void CloseFlexPlaceGame()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

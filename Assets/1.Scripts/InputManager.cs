@@ -17,6 +17,10 @@ public class InputManager : SimpleSingleton<InputManager>
         Debug.Log(finger.Index + " Finger Touch!!!");
     }
 
+    public void Touching(LeanFinger finger)
+    {
+        Debug.Log(finger.Index + " Finger Touch!!!");
+    }
 
     #endregion
     #region New Input System
@@ -157,6 +161,6 @@ public class InputManager : SimpleSingleton<InputManager>
          
     // }
     */
-   #endregion
+    #endregion
 
 }

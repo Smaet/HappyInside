@@ -20,7 +20,9 @@ using UnityEngine;
 
 public class User : MonoBehaviour
 {
-    public int money {private set;get;}                //현재 가지고 있는 돈
+    
+    public int startMoney { private set; get; }        //시작재산 (고정된 재산)
+    public int money {private set;get;}                //현재 가지고 있는 돈 (실제 재산)
     public int manipulatedMoney{private set;get;}      //현재 조작된 돈
     public int resultMoney{private set;get;}            //현재 잔액
     public int recentChangeMoney{private set;get;}     //최근 변화된 돈

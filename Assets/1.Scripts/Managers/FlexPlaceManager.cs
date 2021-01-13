@@ -35,8 +35,8 @@ public class FlexPlaceManager : MonoBehaviour
             flexPlaceCanvasGroup =  HomeManager.Instance.CanvasParent.transform.GetChild(2).GetComponent<CanvasGroup>();
         }
 
-        GameObject PlaceParent = canvas.transform.GetChild(1).gameObject;
-        GameObject GameParent = canvas.transform.GetChild(2).gameObject;
+        GameObject PlaceParent = canvas.transform.GetChild(2).gameObject;
+        GameObject GameParent = canvas.transform.GetChild(3).gameObject;
 
         
 
@@ -67,27 +67,19 @@ public class FlexPlaceManager : MonoBehaviour
     }
 
 
-    public void OpenFlexPlaceUI(FlexPlaceIndex _index)
+    public void OpenFlexPlaceUI(HomeMenuButtonIndex _index)
     {
         Debug.Log("플렉스 버튼 "+_index.ToString() + " 호출!!");
 
-        //Alpha 1
-        flexPlaceCanvasGroup.alpha = 1;
-
-        //Sorting Order 레이어 순서 높히기
-        canvas.sortingOrder = 500;
-
-        HomeManager.Instance.PushUIView(FlexPlaces[(int)_index]);
-
-        switch(_index)
+        switch (_index)
         {
-            case FlexPlaceIndex.DEPARTMENTSTORE:
+            case HomeMenuButtonIndex.FLEX_01:
                 //해당되는 플렉스 생활 시작
                 // DepartmentStore ds =  FlexPlaces[(int)_index] as DepartmentStore;
                 // ds.StartFlexPlace();
-
-                FlexPlaces[(int)_index].OpenFlexPlace();
-                curFlexPlace = FlexPlaces[(int)_index];
+                HomeManager.Instance.PushUIView(FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE]);
+                FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE].OpenFlexPlace();
+                curFlexPlace = FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE];
                 break;
         }
     }
@@ -96,11 +88,6 @@ public class FlexPlaceManager : MonoBehaviour
     {
         Debug.Log("플렉스 버튼 "+_index.ToString() + " 닫기!!");
 
-        //Alpha 1
-        flexPlaceCanvasGroup.alpha = 0;
-
-        //Sorting Order 레이어 순서 높히기
-        canvas.sortingOrder = 0;
 
         switch(_index)
         {
@@ -118,13 +105,9 @@ public class FlexPlaceManager : MonoBehaviour
     {
         Debug.Log("플렉스 게임 버튼 "+_index.ToString() + " 호출!!");
 
-        //Alpha 1
-        flexPlaceCanvasGroup.alpha = 1;
+   
 
-        //Sorting Order 레이어 순서 높히기
-        canvas.sortingOrder = 500;
-
-        HomeManager.Instance.PushUIView(FlexPlaces[(int)_index]);
+        HomeManager.Instance.PushUIView(FlexPlaceGames[(int)_index]);
 
         switch(_index)
         {
@@ -134,15 +117,12 @@ public class FlexPlaceManager : MonoBehaviour
                 // ds.StartFlexPlace();
 
                 FlexPlaceGames[(int)_index].OpenFlexPlaceGame();
-                curFlexPlace = FlexPlaces[(int)_index];
+                curFlexPlaceGame = FlexPlaceGames[(int)_index];
                 break;
         }
     }
 
-    IEnumerator OpenFlexPlace()
-    {
-        yield return new WaitForSeconds(0.5f);
-    }
+    
 
     public void CloseFlexPlaceGameUI(FlexPlaceIndex _index)
     {
@@ -160,7 +140,10 @@ public class FlexPlaceManager : MonoBehaviour
         }
     }
 
-
+    IEnumerator OpenFlexPlace()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
 
     public void TestButton()
     {

@@ -5,13 +5,16 @@ using UnityEngine.UI;
 using UniRx;
 
 
+
+
 public class BaseFlexPlace : UIView
-{   
+{
+    [SerializeField]
+    private FlexPlaceIndex flexIndex;
     [SerializeField]
     private Button backButton;
     [SerializeField]
     private Button gameButton;
-    private FlexPlaceManager manager;
 
     // Start is called before the first frame update
     protected virtual void Init()
@@ -31,12 +34,17 @@ public class BaseFlexPlace : UIView
         {
             gameButton = transform.GetChild(1).GetComponent<Button>();
 
-            //버튼 할당에 UniRx 사용
-                backButton.onClick
-                .AsObservable()
-                .Subscribe(_ =>{
-                    manager.OpenFlexPlaceGameUI(FlexPlaceIndex.DEPARTMENTSTORE);
-                }).AddTo(this); 
+            if(flexIndex == FlexPlaceIndex.DEPARTMENTSTORE)
+            {
+                HomeMenuButtonIndex index = HomeMenuButtonIndex.FLEXGAME_01;
+
+                //버튼 할당에 UniRx 사용
+                gameButton.onClick
+                    .AsObservable()
+                    .Subscribe(_ => {
+                        HomeManager.Instance.OnClickHomeUIButton(index);
+                    }).AddTo(this);
+            }
         }
     }
 
@@ -46,16 +54,13 @@ public class BaseFlexPlace : UIView
 
     public virtual void OpenFlexPlace()
     {
-        //manager = _manager;
-
         Init();//초기화
-       
-        this.gameObject.SetActive(true);
         //해당하는 컨텐츠 Active
+        gameObject.SetActive(true);
     }
 
     public virtual void CloseFlexPlace()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

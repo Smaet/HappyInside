@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class Shop : BasePopUp
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Init(Canvas _canvas)
     {
-        
+        base.Init(_canvas);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OpenPopUp()
     {
-        
+        base.OpenPopUp();
+        HomeManager.Instance.PushUIView(this);
+        Debug.Log("Shop Open!!");
     }
+
+    public override void ClosePopUp()
+    {
+        base.ClosePopUp();
+
+        Debug.Log("Shop Close!!");
+    }
+
+
 }

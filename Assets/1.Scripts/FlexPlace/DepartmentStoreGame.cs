@@ -6,7 +6,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 {
     public override void OpenFlexPlaceGame()
     {
-        Debug.Log("백화점 게임 호출!");
+        Debug.Log("DepartmentStore Game Call!!!");
         base.OpenFlexPlaceGame();
     }
 }

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Agit_B : BaseAgit
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Init()
     {
-        
+        base.Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OpenAgit()
     {
-        
+        Init();
+        base.OpenAgit();
     }
 }

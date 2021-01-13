@@ -27,12 +27,12 @@ public class MyFader : SimpleSingleton<MyFader>
         this.GetComponent<GraphicRaycaster>().enabled = false;
     }
 
-     public void StartAnotherCanvasFader(FaderState _state, float _fTime, float _maxValue = 1)
+     public void StartAnotherCanvasFader(CanvasGroup _cg, FaderState _state, float _fTime, float _maxValue = 1)
     {
         //if (this.gameObject.activeSelf == false)
         //    this.gameObject.SetActive(true);
-
         this.GetComponent<GraphicRaycaster>().enabled = true;
+        anotherCG = _cg;
         curFadeState = _state;
         maxValue = _maxValue;
         fadeTime = _fTime;
@@ -78,6 +78,7 @@ public class MyFader : SimpleSingleton<MyFader>
                     {
                         this.GetComponent<GraphicRaycaster>().enabled = false;
                         curFadeState = FaderState.NONE;
+                        anotherCG.gameObject.SetActive(false);
                     }
                     break;
 

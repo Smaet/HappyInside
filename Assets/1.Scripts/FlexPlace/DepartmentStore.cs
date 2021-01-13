@@ -7,7 +7,7 @@ public class DepartmentStore : BaseFlexPlace
     // Start is called before the first frame update
     public override void OpenFlexPlace()
     {
-        Debug.Log("백화점 호출!");
+        Debug.Log("DepartmentStore Call!!");
         base.OpenFlexPlace();
     }
 }
