@@ -10,8 +10,6 @@ public class BaseAgit : UIView
     [SerializeField]
     private Button backButton;
     [SerializeField]
-    private Button gameButton;
-    [SerializeField]
     private bool isInit = false;
 
     // Start is called before the first frame update
@@ -35,18 +33,7 @@ public class BaseAgit : UIView
 
                 //backButton.onClick.AddListener(HomeManager.Instance.OnClickBackButton);
             }
-            if (gameButton == null)
-            {
-                gameButton = transform.GetChild(2).GetComponent<Button>();
-
-
-                //버튼 할당에 UniRx 사용
-                gameButton.onClick
-                .AsObservable()
-                .Subscribe(_ => {
-                    HomeManager.Instance.OnClickHomeUIButton(HomeMenuButtonIndex.AGIT);
-                }).AddTo(this);
-            }
+           
         }
       
     }

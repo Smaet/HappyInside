@@ -41,7 +41,8 @@ public enum HomeMenuButtonIndex
     FLEX_01,
     FLEX_02,
     FLEX_03,
-    AGIT,
+    AGIT_A,
+    AGIT_B,
     FLEXGAME_01,
     FLEXGAME_02,
     FLEXGAME_03,
@@ -70,15 +71,22 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
 
     #region Canvas
-    [Header("Canvas")]
+    [Header("HomeCanvas")]
     public GameObject CanvasParent;
     [SerializeField]
     private Canvas [] allCanvas;
-
     [SerializeField]
-    private GameObject HomeMenuButtonParent;
+    private GameObject TopButtonsPanel;
     [SerializeField]
-    private HomeMenuButton [] homeMenuButtons;
+    private GameObject AgitPanel;
+    [SerializeField]
+    private GameObject FlexPanel;
+    [SerializeField]
+    private HomeMenuButton [] topPanelButtons;
+    [SerializeField]
+    private HomeMenuButton[] agitPanelButtons;
+    [SerializeField]
+    private HomeMenuButton[] flexPanelButtons;
     #endregion
 
     #region Managers
@@ -95,8 +103,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     private FlexPlaceManager flexPlaceManager;
     [SerializeField]
     private InputManager inputManager;
-     [SerializeField]
-    private TimeManager timeManager;
+    public TimeManager timeManager;
     #endregion
 
     #region Variables
@@ -123,7 +130,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         InitCanvas();
         InitManagers();
-        InitButtons();
+        //InitButtons();
     }
 
     void InitCanvas()
@@ -143,14 +150,22 @@ public class HomeManager : SimpleSingleton<HomeManager>
             }
         }
 
-        if(HomeMenuButtonParent == null)
+        if(TopButtonsPanel == null)
         {
-            HomeMenuButtonParent = CanvasParent.transform.GetChild(0).GetChild(1).gameObject;
+            TopButtonsPanel = CanvasParent.transform.GetChild(0).GetChild(1).GetChild(0).gameObject;
         }
 
+        if(AgitPanel == null)
+        {
+            AgitPanel = CanvasParent.transform.GetChild(0).GetChild(2).gameObject;
+        }
 
+        if (FlexPanel == null)
+        {
+            FlexPanel = CanvasParent.transform.GetChild(0).GetChild(3).gameObject;
+        }
 
-        CanvasSetting(HomeMenuButtonIndex.None, 1, 0, 500);
+        //CanvasSetting(HomeMenuButtonIndex.None, 1, 0, 500);
 
 
     }
@@ -180,7 +195,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         if(flexPlaceManager == null)
         {
             flexPlaceManager = transform.GetChild((int)MenuIndex.FLEXPLACE).GetComponent<FlexPlaceManager>();
-            flexPlaceManager.Init(allCanvas[(int)CanvasIndex.FLEXPLACE]);
+            //flexPlaceManager.Init(allCanvas[(int)CanvasIndex.FLEXPLACE]);
         }
         if(inputManager == null)
         {
@@ -195,42 +210,96 @@ public class HomeManager : SimpleSingleton<HomeManager>
     //버튼 초기화
     void InitButtons()
     {
-        int buttonCount = HomeMenuButtonParent.transform.childCount;
-        if(homeMenuButtons == null || homeMenuButtons.Length == 0)
+        //상단 패널 버튼
+        int buttonCount = TopButtonsPanel.transform.childCount;
+        if(topPanelButtons == null || topPanelButtons.Length == 0)
         {
-            homeMenuButtons = new HomeMenuButton[buttonCount];
+            topPanelButtons = new HomeMenuButton[buttonCount];
 
             for(int buttonIndex = 0; buttonIndex < buttonCount; buttonIndex++)
             {
                 int index = buttonIndex;
-                
-                homeMenuButtons[buttonIndex] = HomeMenuButtonParent.transform.GetChild(buttonIndex).GetComponent<HomeMenuButton>();
-                homeMenuButtons[buttonIndex].Init();
-                
-                //버튼 할당에 UniRx 사용
 
-                if(buttonIndex < 3)
-                {
-                    homeMenuButtons[buttonIndex].button.onClick
-                    .AsObservable()
-                    .Subscribe(_ => {
+                topPanelButtons[buttonIndex] = TopButtonsPanel.transform.GetChild(buttonIndex).GetComponent<HomeMenuButton>();
+                topPanelButtons[buttonIndex].Init();
+
+                topPanelButtons[buttonIndex].button.onClick
+                     .AsObservable()
+                     .Subscribe(_ => {
                          OnClickHomeUIPopUpButton((HomeMenuButtonIndex)index);
-                    }).AddTo(this);
-                }
-                else
-                {
-                    homeMenuButtons[buttonIndex].button.onClick
-                    .AsObservable()
-                    .Subscribe(_ => {
-                        OnClickHomeUIButton((HomeMenuButtonIndex)index);
-                    }).AddTo(this);
-                }
-
-               
+                     }).AddTo(this);
             }
         }
 
-        
+        //하단 아지트 버튼
+        ScrollRect agitScrollRect = AgitPanel.transform.GetChild(0).GetComponent<ScrollRect>();
+        int agitButtonCount = agitScrollRect.content.childCount;
+        if (agitPanelButtons == null || agitPanelButtons.Length == 0)
+        {
+            agitPanelButtons = new HomeMenuButton[agitButtonCount];
+
+            for (int agitButtonIndex = 0; agitButtonIndex < agitButtonCount; agitButtonIndex++)
+            {
+                agitPanelButtons[agitButtonIndex] = agitScrollRect.content.GetChild(agitButtonIndex).GetComponent<HomeMenuButton>();
+                agitPanelButtons[agitButtonIndex].Init();
+
+
+                if (agitButtonIndex == 0)
+                {
+                    agitPanelButtons[agitButtonIndex].button.onClick
+                   .AsObservable()
+                   .Subscribe(_ => {
+                       OnClickHomeUIButton(HomeMenuButtonIndex.AGIT_A);
+                   }).AddTo(this);
+                }
+                else if (agitButtonIndex == 1)
+                {
+                    agitPanelButtons[agitButtonIndex].button.onClick
+                   .AsObservable()
+                   .Subscribe(_ => {
+                       OnClickHomeUIButton(HomeMenuButtonIndex.AGIT_B);
+                   }).AddTo(this);
+                }
+            }
+        }
+
+        ScrollRect flexScrollRect = FlexPanel.transform.GetChild(0).GetComponent<ScrollRect>();
+        int flexButtonCount = flexScrollRect.content.childCount;
+        if (flexPanelButtons == null || flexPanelButtons.Length == 0)
+        {
+            flexPanelButtons = new HomeMenuButton[flexButtonCount];
+
+            for (int flexButtonIndex = 0; flexButtonIndex < flexButtonCount; flexButtonIndex++)
+            {
+                flexPanelButtons[flexButtonIndex] = flexScrollRect.content.GetChild(flexButtonIndex).GetComponent<HomeMenuButton>();
+                flexPanelButtons[flexButtonIndex].Init();
+
+                if (flexButtonIndex == 0)
+                {
+                    flexPanelButtons[flexButtonIndex].button.onClick
+                   .AsObservable()
+                   .Subscribe(_ => {
+                       OnClickHomeUIButton(HomeMenuButtonIndex.FLEX_01);
+                   }).AddTo(this);
+                }
+                else if (flexButtonIndex == 1)
+                {
+                    flexPanelButtons[flexButtonIndex].button.onClick
+                   .AsObservable()
+                   .Subscribe(_ => {
+                       OnClickHomeUIButton(HomeMenuButtonIndex.FLEX_02);
+                   }).AddTo(this);
+                }
+                else if (flexButtonIndex == 2)
+                {
+                    flexPanelButtons[flexButtonIndex].button.onClick
+                   .AsObservable()
+                   .Subscribe(_ => {
+                       OnClickHomeUIButton(HomeMenuButtonIndex.FLEX_03);
+                   }).AddTo(this);
+                }
+            }
+        }
     }
 
 
@@ -285,8 +354,11 @@ public class HomeManager : SimpleSingleton<HomeManager>
             case HomeMenuButtonIndex.FLEX_03:
                 flexPlaceManager.OpenFlexPlaceUI(_index);
                 break;
-            case HomeMenuButtonIndex.AGIT:
+            case HomeMenuButtonIndex.AGIT_A:
                 agitManager.Open_Agit(Agit_Index.AGIT_A);
+                break;
+            case HomeMenuButtonIndex.AGIT_B:
+                agitManager.Open_Agit(Agit_Index.AGIT_B);
                 break;
             case HomeMenuButtonIndex.FLEXGAME_01:
                 flexPlaceManager.OpenFlexPlaceGameUI(FlexPlaceIndex.DEPARTMENTSTORE);
@@ -353,7 +425,10 @@ public class HomeManager : SimpleSingleton<HomeManager>
             case HomeMenuButtonIndex.FLEX_03:
                 flexPlaceManager.CloseFlexPlaceUI(FlexPlaceIndex.DEPARTMENTSTORE);
                 break;
-            case HomeMenuButtonIndex.AGIT:
+            case HomeMenuButtonIndex.AGIT_A:
+                agitManager.Close_Agit(agitManager.curAgit);
+                break;
+            case HomeMenuButtonIndex.AGIT_B:
                 agitManager.Close_Agit(agitManager.curAgit);
                 break;
             case HomeMenuButtonIndex.FLEXGAME_01:
@@ -550,7 +625,10 @@ public class HomeManager : SimpleSingleton<HomeManager>
             case HomeMenuButtonIndex.FLEX_03:
                 canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
                 break;
-            case HomeMenuButtonIndex.AGIT:
+            case HomeMenuButtonIndex.AGIT_A:
+                canvas = allCanvas[(int)CanvasIndex.AGIT];
+                break;
+            case HomeMenuButtonIndex.AGIT_B:
                 canvas = allCanvas[(int)CanvasIndex.AGIT];
                 break;
             case HomeMenuButtonIndex.FLEXGAME_01:

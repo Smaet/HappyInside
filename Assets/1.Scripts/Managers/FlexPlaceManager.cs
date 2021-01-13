@@ -35,8 +35,8 @@ public class FlexPlaceManager : MonoBehaviour
             flexPlaceCanvasGroup =  HomeManager.Instance.CanvasParent.transform.GetChild(2).GetComponent<CanvasGroup>();
         }
 
-        GameObject PlaceParent = canvas.transform.GetChild(2).gameObject;
-        GameObject GameParent = canvas.transform.GetChild(3).gameObject;
+        GameObject PlaceParent = canvas.transform.GetChild(1).gameObject;
+        GameObject GameParent = canvas.transform.GetChild(2).gameObject;
 
         
 
