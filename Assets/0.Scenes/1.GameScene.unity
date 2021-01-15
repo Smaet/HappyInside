@@ -7237,6 +7237,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 611851590}
     m_Modifications:
+    - target: {fileID: 420992719, guid: 253d1add029855149b06f4d6f0c61898, type: 3}
+      propertyPath: m_IgnoreParentGroups
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1144197697, guid: 253d1add029855149b06f4d6f0c61898, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7414,6 +7418,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508470784844591619, guid: 253d1add029855149b06f4d6f0c61898,
+        type: 3}
+      propertyPath: totalPlayTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508470784844591619, guid: 253d1add029855149b06f4d6f0c61898,
+        type: 3}
+      propertyPath: homeMenuButtonIndex
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4508470785861813464, guid: 253d1add029855149b06f4d6f0c61898,
         type: 3}

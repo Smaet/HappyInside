@@ -7,47 +7,32 @@ using UnityEngine.UI;
 public class TimeComponent : MonoBehaviour
 {
     [SerializeField]
-    private Text text;
+    protected Text text;
     [SerializeField]
-    private bool isTimerOn = false;
+    protected bool isTimerOn = false;
     [SerializeField]
-    private int currentTime = 0;
+    protected int currentTime = 0;
     [SerializeField]
-    private int minusTime = 1;
+    protected int minusTime = 1;
 
-    public void StartCountDownTimer(int _startTime)
+    [SerializeField]
+    protected bool isPause = false;
+    public virtual void Init<T>(T _t)
     {
-        
+
+    }
+    public virtual void StartCountDownTimer(int _startTime)
+    {
         currentTime = _startTime;
-        if(isTimerOn == false)
+        if (isTimerOn == false)
         {
             isTimerOn = true;
             StartCoroutine(CountDownTimer());
         }
-    
     }
-    IEnumerator CountDownTimer()
+    protected virtual IEnumerator CountDownTimer()
     {
-        
-
-        text.text = currentTime.ToString();
-
-        while (isTimerOn)
-        {
-            if(currentTime <= 0)
-            {
-                Debug.Log("게임종료!");
-                yield break;
-            }
-
-
-            yield return new WaitForSeconds(minusTime);
-
-            currentTime -= minusTime;
-
-            text.text = currentTime.ToString();
-
-        }
+        yield return null;
     }
 
     public void StopTimer()
@@ -57,14 +42,43 @@ public class TimeComponent : MonoBehaviour
 
     public void AddTime(int _time)
     {
+       // SetPause(true);
+
         currentTime += _time;
-        text.text = currentTime.ToString();
+        if (currentTime <= 0)
+        {
+            text.text = "0";
+        }
+        else
+        {
+            text.text = currentTime.ToString();
+        }
     }
 
     public void MinusTime(int _time)
     {
+      //  SetPause(true);
+
         currentTime -= _time;
-        text.text = currentTime.ToString();
+
+        if(currentTime <= 0)
+        {
+            text.text = "0";
+        }
+        else
+        {
+            text.text = currentTime.ToString();
+        }
+        
     }
 
+    public bool TimerOn()
+    {
+        return isTimerOn;
+    }
+
+    public void SetPause(bool _pause)
+    {
+        isPause = _pause;
+    }
 }

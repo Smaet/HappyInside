@@ -165,7 +165,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
             FlexPanel = CanvasParent.transform.GetChild(0).GetChild(3).gameObject;
         }
 
-        //CanvasSetting(HomeMenuButtonIndex.None, 1, 0, 500);
+        CanvasSetting(HomeMenuButtonIndex.None, 1, 0, 500);
 
 
     }

@@ -29,30 +29,37 @@ public class CurtainPanel : MonoBehaviour
     private float closingTime = 0;      //닫히때 걸리는 시간
     [SerializeField]
     private float openingTime = 0;      //열릴때 걸리는 시간.
+    [SerializeField]
+    private float closingStandByTime = 0;   //닫히고 나서 기다리는 시간
+    [SerializeField]
+    private float openingStandByTime = 0;   //열리고 나서 기다리는 시간
 
-  
-
-    IEnumerator GameStart()
+    public void StartGameCurtain()
     {
-        yield return new WaitForSeconds(0.2f);
-
-        CloseCurtain();
-
-        yield return new WaitForSeconds(1f);
-
-        OpenCurtain();
-
+        dGame.isGamePlaying = true;
+        StartCoroutine(GameCurtain());
     }
 
-  
-
-    public void OnSkipButton()
+    IEnumerator GameCurtain()
     {
-        if(isCurtainOpen == false && isCurtainMove == false)
+        while(true)
         {
-            StartCoroutine(NextShoppingItem());
+            if(dGame.isGamePlaying == false)
+            {
+                dGame.EndGame();
+                yield break;
+            }
+
+            if (isCurtainOpen == false && isCurtainMove == false)
+            {
+                //닫히고 열리기 까지의 텀
+                yield return new WaitForSeconds(closingStandByTime);
+
+                StartCoroutine(NextShoppingItem());
+            }
+
+            yield return null;
         }
-       
     }
 
     IEnumerator NextShoppingItem()
@@ -60,16 +67,24 @@ public class CurtainPanel : MonoBehaviour
         OpenCurtain();
         while(true)
         {
-            if(isCurtainOpen == true && isCurtainMove == false)
+            if (isCurtainOpen == true && isCurtainMove == false)
             {
+                if (openingStandByTime == 0)
+                {
+                    yield return null;
+                }
+                else
+                {
+                    yield return new WaitForSecondsRealtime(openingStandByTime);
+                }
+         
+
+                CloseCurtain();
                 break;
             }
+
             yield return null;
         }
-        // 닫히고 열리기 까지의 대기 시간
-        yield return new WaitForSeconds(0.5f);
-
-        CloseCurtain();
     }
 
 
@@ -110,6 +125,11 @@ public class CurtainPanel : MonoBehaviour
         { 
             //카드리더기 가능하게 설정
             dGame.SetCardReader(true);
+            //카드리더기 가능하게 설정
+            dGame.SetFreezeButton(true);
+            //시간이 멈춰있으면 다시 시간이 가게함
+            dGame.departmentGameTimer.SetPause(false);
+            //
             curState = CurtainState.OPEN;
             isCurtainMove = true;
             StartCoroutine(CurtainMove());
@@ -196,10 +216,16 @@ public class CurtainPanel : MonoBehaviour
         isCurtainMove = false;
         //카드리더기 가능하게 설정
         dGame.SetCardReader(false);
+        //일시정기 기능 해제
+        dGame.SetFreezeButton(false);
         //진품 가품 랜덤하게 받아야함
         dGame.SetShoppingItem();
-    
 
+        //닫혔을 때 시간이 끝나있다면
+        if (dGame.departmentGameTimer.TimerOn() == false)
+        {
+            dGame.SetEndGame();
+        }
     }
 
 }
