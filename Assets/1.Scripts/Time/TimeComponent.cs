@@ -17,6 +17,7 @@ public class TimeComponent : MonoBehaviour
 
     public void StartCountDownTimer(int _startTime)
     {
+        
         currentTime = _startTime;
         if(isTimerOn == false)
         {
@@ -33,6 +34,13 @@ public class TimeComponent : MonoBehaviour
 
         while (isTimerOn)
         {
+            if(currentTime <= 0)
+            {
+                Debug.Log("게임종료!");
+                yield break;
+            }
+
+
             yield return new WaitForSeconds(minusTime);
 
             currentTime -= minusTime;

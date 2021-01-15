@@ -38,7 +38,7 @@ public class SimpleObjectPool : MonoBehaviour
     public GameObject GetObject()
     {
         GameObject spawnedGameObject;
-        Debug.Log("Stack Count : " + inactiveInstances.Count);
+        //  Debug.Log("Stack Count : " + inactiveInstances.Count);
 
         // if there is an inactive instance of the prefab ready to return, return that
         if (inactiveInstances.Count > 0)

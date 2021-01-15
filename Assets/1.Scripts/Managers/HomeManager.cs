@@ -130,7 +130,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         InitCanvas();
         InitManagers();
-        //InitButtons();
+        InitButtons();
     }
 
     void InitCanvas()
@@ -195,7 +195,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         if(flexPlaceManager == null)
         {
             flexPlaceManager = transform.GetChild((int)MenuIndex.FLEXPLACE).GetComponent<FlexPlaceManager>();
-            //flexPlaceManager.Init(allCanvas[(int)CanvasIndex.FLEXPLACE]);
+            flexPlaceManager.Init(allCanvas[(int)CanvasIndex.FLEXPLACE]);
         }
         if(inputManager == null)
         {

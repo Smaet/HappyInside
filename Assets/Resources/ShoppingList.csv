@@ -1,0 +1,11 @@
+Index,Item,Price,Curio,Fake_1,Fake_2,Fake_3,Fake_4
+1,슬리퍼,1000000,c_slipper,f_slipper_1,f_slipper_2,f_slipper_3,f_slipper_4
+2,미니백,2000000,c_miniback,f_miniback_1,f_miniback_2,f_miniback_3,f_miniback_4
+3,향수,3000000,c_perfume,f_perfume_1,f_perfume_2,f_perfume_3,f_perfume_4
+4,벨트,5000000,c_belt,f_belt_1,f_belt_2,f_belt_3,f_belt_4
+5,스카프(목도리st),8000000,c_scarf,f_scarf_1,f_scarf_2,f_scarf_3,f_scarf_4
+6,가방(핸드백),10000000,c_handbag,f_handbag_1,f_handbag_2,f_handbag_3,f_handbag_4
+7,팔찌,15000000,c_bracelet,f_bracelet_1,f_bracelet_2,f_bracelet_3,f_bracelet_4
+8,정장,20000000,c_suit,f_suit_1,f_suit_2,f_suit_3,f_suit_4
+9,시계,30000000,c_watch,f_watch_1,f_watch_2,f_watch_3,f_watch_4
+10,목걸이,50000000,c_necklace,f_necklace_1,f_necklace_2,f_necklace_3,f_necklace_4
