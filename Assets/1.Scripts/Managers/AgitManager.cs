@@ -49,11 +49,11 @@ public class AgitManager : MonoBehaviour
 
     public void Open_Agit(Agit_Index _agit)
     {   
-        if(curAgit == Agit_Index.AGIT_A)
-        {
-            curAgit = Agit_Index.AGIT_B;
-            _agit = curAgit;
-        }
+        //if(curAgit == Agit_Index.AGIT_A)
+        //{
+        //    curAgit = Agit_Index.AGIT_B;
+        //    _agit = curAgit;
+        //}
 
         switch(_agit)
         {
@@ -61,12 +61,13 @@ public class AgitManager : MonoBehaviour
                 agit_A.OpenAgit();
                 curAgit = Agit_Index.AGIT_A;
                 //Add To UINavigation
-                HomeManager.Instance.PushUIView(agit_A);
+                //HomeManager.Instance.PushUIView(agit_A);
                 break;
             case Agit_Index.AGIT_B:
                 agit_B.OpenAgit();
+                curAgit = Agit_Index.AGIT_B;
                 //Add To UINavigation
-                HomeManager.Instance.PushUIView(agit_B);
+                //HomeManager.Instance.PushUIView(agit_B);
                 break;
         }
 
@@ -92,7 +93,7 @@ public class AgitManager : MonoBehaviour
                 break;
             case Agit_Index.AGIT_B:
                 agit_B.CloseAgit();
-                curAgit = Agit_Index.AGIT_A;
+                curAgit = Agit_Index.None;
                 break;
         }
 

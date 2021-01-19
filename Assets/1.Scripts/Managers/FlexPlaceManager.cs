@@ -74,15 +74,35 @@ public class FlexPlaceManager : MonoBehaviour
         switch (_index)
         {
             case HomeMenuButtonIndex.FLEX_01:
-                //해당되는 플렉스 생활 시작
-                // DepartmentStore ds =  FlexPlaces[(int)_index] as DepartmentStore;
-                // ds.StartFlexPlace();
-                HomeManager.Instance.PushUIView(FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE]);
+              
                 FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE].OpenFlexPlace();
                 curFlexPlace = FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE];
                 break;
+            case HomeMenuButtonIndex.FLEX_02:
+              
+                FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE].OpenFlexPlace();
+                curFlexPlace = FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE];
+                break;
+            case HomeMenuButtonIndex.FLEX_03:
+              
+                FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE].OpenFlexPlace();
+                curFlexPlace = FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE];
+                break;
+
         }
     }
+
+
+
+    public void StartDepartmentMiniGame()
+    {
+        //HomeManager.Instance.PushUIView(FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE]);
+        FlexPlaceGames[(int)FlexPlaceIndex.DEPARTMENTSTORE].OpenFlexPlaceGame();
+        //curFlexPlace = FlexPlaces[(int)FlexPlaceIndex.DEPARTMENTSTORE];
+    }
+
+
+
 
     public void CloseFlexPlaceUI(FlexPlaceIndex _index)
     {
@@ -106,8 +126,6 @@ public class FlexPlaceManager : MonoBehaviour
         Debug.Log("플렉스 게임 버튼 "+_index.ToString() + " 호출!!");
 
    
-
-        HomeManager.Instance.PushUIView(FlexPlaceGames[(int)_index]);
 
         switch(_index)
         {

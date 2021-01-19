@@ -55,6 +55,7 @@ public enum CanvasIndex
     AGIT,
     FLEXPLACE,
     POPUP,
+    TOPUI,
     FADE,
 }
 
@@ -66,27 +67,12 @@ public class HomeManager : SimpleSingleton<HomeManager>
     public ScrollRect scrollRect;
     public ScrollRect scrollRect2;
 
-    [SerializeField]
-    private UINavigation uINavigation; 
-
 
     #region Canvas
     [Header("HomeCanvas")]
     public GameObject CanvasParent;
     [SerializeField]
     private Canvas [] allCanvas;
-    [SerializeField]
-    private GameObject TopButtonsPanel;
-    [SerializeField]
-    private GameObject AgitPanel;
-    [SerializeField]
-    private GameObject FlexPanel;
-    [SerializeField]
-    private HomeMenuButton [] topPanelButtons;
-    [SerializeField]
-    private HomeMenuButton[] agitPanelButtons;
-    [SerializeField]
-    private HomeMenuButton[] flexPanelButtons;
     #endregion
 
     #region Managers
@@ -116,11 +102,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         base.Awake();
 
-        if(uINavigation == null)
-        {
-            uINavigation = GetComponent<UINavigation>();
-            uINavigation.Init();
-        }
+     
 
         Init();
 
@@ -128,74 +110,37 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     void Init()
     {
-        InitCanvas();
         InitManagers();
-        InitButtons();
     }
 
-    void InitCanvas()
-    {
-        if(CanvasParent == null)
-        {
-            CanvasParent = GameObject.FindGameObjectWithTag("CanvasParent");
-
-            if(allCanvas == null || allCanvas.Length == 0)
-            {
-                allCanvas = new Canvas[CanvasParent.transform.childCount];
-            }
-
-            for(int canvasIndex = 0; canvasIndex < CanvasParent.transform.childCount; canvasIndex++)
-            {
-                allCanvas[canvasIndex] = CanvasParent.transform.GetChild(canvasIndex).GetComponent<Canvas>();
-            }
-        }
-
-        if(TopButtonsPanel == null)
-        {
-            TopButtonsPanel = CanvasParent.transform.GetChild(0).GetChild(1).GetChild(0).gameObject;
-        }
-
-        if(AgitPanel == null)
-        {
-            AgitPanel = CanvasParent.transform.GetChild(0).GetChild(2).gameObject;
-        }
-
-        if (FlexPanel == null)
-        {
-            FlexPanel = CanvasParent.transform.GetChild(0).GetChild(3).gameObject;
-        }
-
-        CanvasSetting(HomeMenuButtonIndex.None, 1, 0, 500);
-
-
-    }
+    
 
     void InitManagers()
     {
         if(shop == null)
         {
             shop = transform.GetChild((int)MenuIndex.SHOP).GetComponent<Shop>();
-            shop.Init(allCanvas[(int)CanvasIndex.POPUP]);
+            //shop.Init(allCanvas[(int)CanvasIndex.POPUP]);
         }
         if(userPage == null)
         {
             userPage = transform.GetChild((int)MenuIndex.USERPAGE).GetComponent<UserPage>();
-            userPage.Init(allCanvas[(int)CanvasIndex.POPUP]);
+            //userPage.Init(allCanvas[(int)CanvasIndex.POPUP]);
         }
         if(userAttainment == null)
         {
             userAttainment = transform.GetChild((int)MenuIndex.USERATTAINMENT).GetComponent<UserAttainment>();
-            userAttainment.Init(allCanvas[(int)CanvasIndex.POPUP]);
+            //userAttainment.Init(allCanvas[(int)CanvasIndex.POPUP]);
         }
         if(agitManager == null)
         {
             agitManager = transform.GetChild((int)MenuIndex.AGIT).GetComponent<AgitManager>();
-            agitManager.Init(allCanvas[(int)CanvasIndex.AGIT]);
+            //agitManager.Init(allCanvas[(int)CanvasIndex.AGIT]);
         }
         if(flexPlaceManager == null)
         {
             flexPlaceManager = transform.GetChild((int)MenuIndex.FLEXPLACE).GetComponent<FlexPlaceManager>();
-            flexPlaceManager.Init(allCanvas[(int)CanvasIndex.FLEXPLACE]);
+            //flexPlaceManager.Init(allCanvas[(int)CanvasIndex.FLEXPLACE]);
         }
         if(inputManager == null)
         {
@@ -207,112 +152,17 @@ public class HomeManager : SimpleSingleton<HomeManager>
         }
     }
 
-    //버튼 초기화
-    void InitButtons()
-    {
-        //상단 패널 버튼
-        int buttonCount = TopButtonsPanel.transform.childCount;
-        if(topPanelButtons == null || topPanelButtons.Length == 0)
-        {
-            topPanelButtons = new HomeMenuButton[buttonCount];
-
-            for(int buttonIndex = 0; buttonIndex < buttonCount; buttonIndex++)
-            {
-                int index = buttonIndex;
-
-                topPanelButtons[buttonIndex] = TopButtonsPanel.transform.GetChild(buttonIndex).GetComponent<HomeMenuButton>();
-                topPanelButtons[buttonIndex].Init();
-
-                topPanelButtons[buttonIndex].button.onClick
-                     .AsObservable()
-                     .Subscribe(_ => {
-                         OnClickHomeUIPopUpButton((HomeMenuButtonIndex)index);
-                     }).AddTo(this);
-            }
-        }
-
-        //하단 아지트 버튼
-        ScrollRect agitScrollRect = AgitPanel.transform.GetChild(0).GetComponent<ScrollRect>();
-        int agitButtonCount = agitScrollRect.content.childCount;
-        if (agitPanelButtons == null || agitPanelButtons.Length == 0)
-        {
-            agitPanelButtons = new HomeMenuButton[agitButtonCount];
-
-            for (int agitButtonIndex = 0; agitButtonIndex < agitButtonCount; agitButtonIndex++)
-            {
-                agitPanelButtons[agitButtonIndex] = agitScrollRect.content.GetChild(agitButtonIndex).GetComponent<HomeMenuButton>();
-                agitPanelButtons[agitButtonIndex].Init();
-
-
-                if (agitButtonIndex == 0)
-                {
-                    agitPanelButtons[agitButtonIndex].button.onClick
-                   .AsObservable()
-                   .Subscribe(_ => {
-                       OnClickHomeUIButton(HomeMenuButtonIndex.AGIT_A);
-                   }).AddTo(this);
-                }
-                else if (agitButtonIndex == 1)
-                {
-                    agitPanelButtons[agitButtonIndex].button.onClick
-                   .AsObservable()
-                   .Subscribe(_ => {
-                       OnClickHomeUIButton(HomeMenuButtonIndex.AGIT_B);
-                   }).AddTo(this);
-                }
-            }
-        }
-
-        ScrollRect flexScrollRect = FlexPanel.transform.GetChild(0).GetComponent<ScrollRect>();
-        int flexButtonCount = flexScrollRect.content.childCount;
-        if (flexPanelButtons == null || flexPanelButtons.Length == 0)
-        {
-            flexPanelButtons = new HomeMenuButton[flexButtonCount];
-
-            for (int flexButtonIndex = 0; flexButtonIndex < flexButtonCount; flexButtonIndex++)
-            {
-                flexPanelButtons[flexButtonIndex] = flexScrollRect.content.GetChild(flexButtonIndex).GetComponent<HomeMenuButton>();
-                flexPanelButtons[flexButtonIndex].Init();
-
-                if (flexButtonIndex == 0)
-                {
-                    flexPanelButtons[flexButtonIndex].button.onClick
-                   .AsObservable()
-                   .Subscribe(_ => {
-                       OnClickHomeUIButton(HomeMenuButtonIndex.FLEX_01);
-                   }).AddTo(this);
-                }
-                else if (flexButtonIndex == 1)
-                {
-                    flexPanelButtons[flexButtonIndex].button.onClick
-                   .AsObservable()
-                   .Subscribe(_ => {
-                       OnClickHomeUIButton(HomeMenuButtonIndex.FLEX_02);
-                   }).AddTo(this);
-                }
-                else if (flexButtonIndex == 2)
-                {
-                    flexPanelButtons[flexButtonIndex].button.onClick
-                   .AsObservable()
-                   .Subscribe(_ => {
-                       OnClickHomeUIButton(HomeMenuButtonIndex.FLEX_03);
-                   }).AddTo(this);
-                }
-            }
-        }
-    }
+    
 
 
     #region 홈 화면 버튼 이벤트
-    
+  
+
     //Back Button을 위한 UIView Push
-    public void PushUIView(UIView _view)
-    {
-        uINavigation.PushHistory(_view);
-    }
+   
     #region HOMEUI BUTTON
     //홈 화면에 있는 버튼들을 눌렀했을 때 실행되는 이벤트
-    public void OnClickHomeUIButton(HomeMenuButtonIndex _index)
+    public void OnClickHomeUIButton(GetEnums _index)
     {
         if(isFading == false)
         {
@@ -320,7 +170,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
             StartCoroutine(OpenHomeUI(_index));
         }
     }
-    IEnumerator OpenHomeUI(HomeMenuButtonIndex _index)               // 홈 화면에 버튼에 따른 장면 전환
+    IEnumerator OpenHomeUI(GetEnums _index)               // 홈 화면에 버튼에 따른 장면 전환
     {
         isFading = true; //화면 페이드 아웃
         MyFader.Instance.StartFader(FaderState.FADEOUT,0.5f);
@@ -330,11 +180,11 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
 
         //홈 화면 Alpha 0
-        CanvasSetting(_index, 0, 1, 0);
+        //CanvasSetting(_index, 0, 1, 0);
 
 
         //특정 버튼 장면으로 전환
-        switch (_index)
+        switch (_index._index)
         {
             case HomeMenuButtonIndex.SHOP:
                 shop.OpenPopUp();
@@ -346,19 +196,24 @@ public class HomeManager : SimpleSingleton<HomeManager>
                 userAttainment.OpenPopUp();
                 break;
             case HomeMenuButtonIndex.FLEX_01:
-                flexPlaceManager.OpenFlexPlaceUI(_index);
+                flexPlaceManager.OpenFlexPlaceUI(HomeMenuButtonIndex.FLEX_01);
+                StartButtonAutoSlide_Flex();
                 break;
             case HomeMenuButtonIndex.FLEX_02:
-                flexPlaceManager.OpenFlexPlaceUI(_index);
+                flexPlaceManager.OpenFlexPlaceUI(HomeMenuButtonIndex.FLEX_01);
+                StartButtonAutoSlide_Flex();
                 break;
             case HomeMenuButtonIndex.FLEX_03:
-                flexPlaceManager.OpenFlexPlaceUI(_index);
+                flexPlaceManager.OpenFlexPlaceUI(HomeMenuButtonIndex.FLEX_01);
+                StartButtonAutoSlide_Flex();
                 break;
             case HomeMenuButtonIndex.AGIT_A:
                 agitManager.Open_Agit(Agit_Index.AGIT_A);
+                StartButtonAutoSlide_Agit();
                 break;
             case HomeMenuButtonIndex.AGIT_B:
                 agitManager.Open_Agit(Agit_Index.AGIT_B);
+                StartButtonAutoSlide_Agit();
                 break;
             case HomeMenuButtonIndex.FLEXGAME_01:
                 flexPlaceManager.OpenFlexPlaceGameUI(FlexPlaceIndex.DEPARTMENTSTORE);
@@ -387,13 +242,12 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         if(isFading == false)
         {
-           
+
             //뒤로가기 했을 때 닫을려는 UI의 정보
-            UIView uIView = uINavigation.PopHistory();
+         
 
             //현재 페이지 Off
-            HomeMenuButtonIndex index = uIView.homeMenuButtonIndex;
-            StartCoroutine(SetHomeUI_Back(index));
+          
           
         }
     }
@@ -407,11 +261,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         yield return new WaitForSeconds(0.5f);
 
         //뒤로가기 했을 때 열려는 UI 정보
-        if (uINavigation.historyUI.Count == 0)
-        {
-            //맨 처음 Home Open
-            CanvasSetting(_index, 1, 0, 500);
-        }
+      
 
         //특정 버튼 장면으로 전환
         switch (_index)
@@ -451,6 +301,9 @@ public class HomeManager : SimpleSingleton<HomeManager>
         isFading = false;
 
     }
+
+
+
 
     #endregion
 
@@ -498,12 +351,8 @@ public class HomeManager : SimpleSingleton<HomeManager>
         if (isFading == false)
         {
 
-            //뒤로가기 했을 때 닫을려는 UI의 정보
-            UIView uIView = uINavigation.PopHistory();
-
             //현재 페이지 Off
-            HomeMenuButtonIndex index = uIView.homeMenuButtonIndex;
-            StartCoroutine(SetHomeUIPopUp_Back(index));
+          
 
         }
     }
@@ -528,12 +377,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         }
         yield return new WaitForSeconds(0.5f);
 
-        //뒤로가기 했을 때 열려는 UI 정보
-        if (uINavigation.historyUI.Count == 0)
-        {
-            //맨 처음 Home Open
-            CanvasSetting(_index, 1, 0, 500);
-        }
+     
 
         isFading = false;
 
@@ -557,6 +401,10 @@ public class HomeManager : SimpleSingleton<HomeManager>
             else
             {
                 allCanvas[(int)CanvasIndex.HOME].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
+
+                allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 700;
+                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 1;
+                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
             }
             allCanvas[(int)CanvasIndex.HOME].sortingOrder = _homeSortingOrder;
             allCanvas[(int)CanvasIndex.HOME].GetComponent<CanvasGroup>().alpha = _homeCGAlpha;
@@ -576,6 +424,26 @@ public class HomeManager : SimpleSingleton<HomeManager>
                 curCanvas.sortingOrder = 500;
                 gr.enabled = true;
             }
+
+            //TopUI 설정
+            //플렉스 이외에는 상단 UI 표시 x
+            if (_buttonIndex == HomeMenuButtonIndex.FLEX_01 || _buttonIndex == HomeMenuButtonIndex.FLEX_02 || _buttonIndex == HomeMenuButtonIndex.FLEX_03
+                || _buttonIndex == HomeMenuButtonIndex.FLEXGAME_01 || _buttonIndex == HomeMenuButtonIndex.FLEXGAME_02 || _buttonIndex == HomeMenuButtonIndex.FLEXGAME_03)
+            {
+                if (_homeCGAlpha == 0)
+                {
+                    allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 0;
+                    allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 0;
+                    allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = false;
+                }
+            }
+            else
+            {
+                allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 700;
+                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 1;
+                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
+            }
+
         }
         //초기 설정
         else
@@ -588,6 +456,10 @@ public class HomeManager : SimpleSingleton<HomeManager>
             else
             {
                 allCanvas[(int)CanvasIndex.HOME].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
+
+                allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 700;
+                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 1;
+                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
             }
             allCanvas[(int)CanvasIndex.HOME].sortingOrder = _homeSortingOrder;
             allCanvas[(int)CanvasIndex.HOME].GetComponent<CanvasGroup>().alpha = _homeCGAlpha;
@@ -652,7 +524,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     private bool isButtonSliding = false;
     private bool isButtonOnTop = false;
-    public void StartButtonAutoSlide()
+    public void StartButtonAutoSlide_Agit()
     {
         if(isButtonSliding == false)
         {
@@ -710,7 +582,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     private bool isButtonSliding2 = false;
     private bool isButtonOnTop2 = false;
-    public void StartButtonAutoSlide2()
+    public void StartButtonAutoSlide_Flex()
     {
         if (isButtonSliding2 == false)
         {

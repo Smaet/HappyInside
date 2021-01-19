@@ -7,7 +7,7 @@ using UniRx;
 
 
 
-public class BaseFlexPlace : UIView
+public class BaseFlexPlace : MyUIView
 {
     [SerializeField]
     private FlexPlaceIndex flexIndex;
@@ -38,12 +38,12 @@ public class BaseFlexPlace : UIView
             {
                 HomeMenuButtonIndex index = HomeMenuButtonIndex.FLEXGAME_01;
 
-                //버튼 할당에 UniRx 사용
-                gameButton.onClick
-                    .AsObservable()
-                    .Subscribe(_ => {
-                        HomeManager.Instance.OnClickHomeUIButton(index);
-                    }).AddTo(this);
+                ////버튼 할당에 UniRx 사용
+                //gameButton.onClick
+                //    .AsObservable()
+                //    .Subscribe(_ => {
+                //        HomeManager.Instance.OnClickHomeUIButton(index);
+                //    }).AddTo(this);
             }
         }
     }

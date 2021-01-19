@@ -12,7 +12,7 @@ public class UserPage : BasePopUp
     public override void OpenPopUp()
     {
         base.OpenPopUp();
-        HomeManager.Instance.PushUIView(this);
+        //HomeManager.Instance.PushUIView(this);
         Debug.Log("UserPage Open!!");
     }
 

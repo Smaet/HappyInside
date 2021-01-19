@@ -84,6 +84,14 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
     [SerializeField]
     private ResultPanel resultPanel;
 
+    private void OnEnable()
+    {
+        //각종 초기화
+        Init();
+        //시작 신호
+        startPanel.StartSign(this);
+    }
+
     protected override void Init()
     {
         score = 0;
@@ -111,13 +119,13 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         startPanel.StartSign(this);
     }
 
-    private void Awake()
-    {
-        //각종 초기화
-        Init();
-        //시작 신호
-        startPanel.StartSign(this);
-    }
+    //private void Awake()
+    //{
+    //    //각종 초기화
+    //    Init();
+    //    //시작 신호
+    //    startPanel.StartSign(this);
+    //}
 
     public void StartGame()
     {
@@ -143,7 +151,12 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 
     }
 
-   
+    public void EndGame(string _str)
+    {
+        Debug.Log(_str);
+    }
+
+
 
     #region ShoppingList
     public void InitShoppingList()
@@ -380,7 +393,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 
     private void InitCardReader()
     {
-        Debug.Log("CardReset!!");
+        //Debug.Log("CardReset!!");
         cardReader_Slider.interactable = false;
         cardReader_Slider.value = 0;
         isCardReaderOn = false;

@@ -12,7 +12,7 @@ public enum PopUpIndex
     USERATTAINMENT
 }
 
-public class BasePopUp : UIView
+public class BasePopUp : MyUIView
 {
     [SerializeField]
     private PopUpIndex curPopUpIndex;

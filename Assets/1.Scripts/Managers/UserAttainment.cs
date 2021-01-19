@@ -11,7 +11,7 @@ public class UserAttainment : BasePopUp
     public override void OpenPopUp()
     {
         base.OpenPopUp();
-        HomeManager.Instance.PushUIView(this);
+       
         Debug.Log("UserAttainment Open!!");
     }
 

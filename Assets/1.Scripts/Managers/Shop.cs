@@ -13,7 +13,7 @@ public class Shop : BasePopUp
     public override void OpenPopUp()
     {
         base.OpenPopUp();
-        HomeManager.Instance.PushUIView(this);
+   
         Debug.Log("Shop Open!!");
     }
 

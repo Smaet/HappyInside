@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889794c411054f7ca8e6fbdc6728c846, type: 3}
+  m_Name: _UIButtonDatabase
+  m_EditorClassIdentifier: 
+  DatabaseType: 0
+  CategoryNames:
+  - Custom
+  - General
+  - HappyRich_HomeMenu_AgitButton
+  - HappyRich_HomeMenu_FlexButton
+  - HappyRich_Flex_Department
+  - HappyRich_Agit_A
+  - Collegue
+  - HappyRich_Agit_B
+  - CollegueItem
+  - CollegueDevice
+  - Collegue_PinkChip
+  Categories:
+  - {fileID: 11400000, guid: 921503f73ba0d0d48a43ffe857508ab9, type: 2}
+  - {fileID: 11400000, guid: aededc754a576394ca0ae8581e5e5bef, type: 2}
+  - {fileID: 11400000, guid: 97df7000d8bfabc48a9c5bff91736f38, type: 2}
+  - {fileID: 11400000, guid: 1c6a562a2f479ed4f97d846955c032c3, type: 2}
+  - {fileID: 11400000, guid: e299d8fc1edcf954cb869080ca74b7da, type: 2}
+  - {fileID: 11400000, guid: cc31d1dcfad7e274bbe205cf7fead9db, type: 2}
+  - {fileID: 11400000, guid: 4c084d35e8bbd9d4eae0eb47725327f1, type: 2}
+  - {fileID: 11400000, guid: 78dc98b334e2d40489c4287db5523651, type: 2}
+  - {fileID: 11400000, guid: e6e40bda2e31c49498a40eebfd773b1d, type: 2}
+  - {fileID: 11400000, guid: a6f4e7ba415724e41b9f37a0df7c7083, type: 2}

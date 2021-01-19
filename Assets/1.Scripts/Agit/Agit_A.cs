@@ -9,4 +9,9 @@ public class Agit_A : BaseAgit
         Init();
         base.OpenAgit();
     }
+
+    public void OnUseMouse()
+    {
+        Debug.Log("대화창 클릭!");
+    }
 }

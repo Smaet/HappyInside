@@ -25,7 +25,8 @@ public class GameManager : SimpleSingleton<GameManager>
 {
 
 
-    [Header("User"), SerializeField] private User user;
+    [Header("User"), SerializeField] 
+    public User user;
 
 
 
@@ -48,17 +49,15 @@ public class GameManager : SimpleSingleton<GameManager>
         base.Awake();
 
         Init();
+
+        SetUserInfo();
     }
-
-
-
 
     void Init()
     {
         //유저 정보 초기화
-
-
     }
+
     #region GameControl
 
     public void ExitGame()
@@ -68,6 +67,48 @@ public class GameManager : SimpleSingleton<GameManager>
 
     #endregion
 
+    #region UserData
+    public void SetUserInfo()
+    {
+        user = new User();
+        User tempUserData = new User();
+        //user.SetNick("HappyRiccc22222");
+
+        tempUserData.userBaseProperties = new UserBaseProperties();
+        tempUserData.userBaseProperties.nickName = "HappyRichMan";
+        tempUserData.userBaseProperties.crystal = 9999;
+        tempUserData.userBaseProperties.startMoney = 99999999999;
+        tempUserData.userBaseProperties.money = 99999999999;
+        tempUserData.userBaseProperties.manipulatedMoney = 99999999999;
+        tempUserData.userBaseProperties.resultMoney = 99999999999;
+        tempUserData.userBaseProperties.recentChangeMoney = 99999999999;
+        tempUserData.userBaseProperties.gameTime = 0;
+        tempUserData.userBaseProperties.daysElapsed = 0;
+        tempUserData.userBaseProperties.doubt = 0;
+        tempUserData.userBaseProperties.pinkChip = 0;
+        tempUserData.userBaseProperties.accumulatedConsumption = 0;
+        tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
+        
+        for(int i=0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
+        {
+            tempUserData.userBaseProperties.collegueInfos[i] = new collegueInfo();
+            tempUserData.userBaseProperties.collegueInfos[i].Level = 0;
+            tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 0;
+            tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 0;
+        }
+
+        user.SetUserInfo(tempUserData);
+
+        //Debug.Log(localUser.nickName);
+
+        //ES3.Save<User>("localUser", user);
+
+        //User localUser = ES3.Load<User>("localUser");
+
+        //Debug.Log(localUser.nickName);
 
 
+    }
+
+    #endregion
 }

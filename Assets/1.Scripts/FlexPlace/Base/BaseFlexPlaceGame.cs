@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 
-public class BaseFlexPlaceGame : UIView
+public class BaseFlexPlaceGame : MyUIView
 {
     [SerializeField]
     private Button backButton;

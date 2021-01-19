@@ -5,19 +5,19 @@ using UnityEngine;
 public class UINavigation : MonoBehaviour
 {
     [SerializeField]
-    public Stack<UIView> historyUI;
+    public Stack<MyUIView> historyUI;
 
     public void Init()
     {
-        historyUI = new Stack<UIView>();
+        historyUI = new Stack<MyUIView>();
     }
 
-    public void PushHistory(UIView _view)
+    public void PushHistory(MyUIView _view)
     {
         historyUI.Push(_view);
     }
 
-    public UIView PopHistory()
+    public MyUIView PopHistory()
     {
         return historyUI.Pop();
     }

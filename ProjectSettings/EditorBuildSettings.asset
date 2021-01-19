@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/0.Scenes/0.TitleScene.unity
-    guid: b5026bf21e9ca134d8d784d38e2f2a26
   - enabled: 1
-    path: Assets/0.Scenes/1.GameScene.unity
-    guid: 083faf03703815649bed4753b4ec56e7
+    path: Assets/Plugins/Pixel Crushers/Dialogue System/Demo/Scenes/DemoScene1.unity
+    guid: 955abf6400389cf4f8e68ac194db83e0
+  - enabled: 1
+    path: Assets/Plugins/Pixel Crushers/Dialogue System/Demo/Scenes/DemoScene2.unity
+    guid: d94b3c97c9dfe0d4e8ff547bb0406174
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3032d9767445d254aa7cfaf4f1a90cc4,
       type: 2}
