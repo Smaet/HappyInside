@@ -666,7 +666,22 @@ MonoBehaviour:
   - Category: HappyRich
     InstantAction: 0
     Name: Flex_Department
-  m_onEnterHideViews: []
+  m_onEnterHideViews:
+  - Category: HappyRich
+    InstantAction: 0
+    Name: AgitA
+  - Category: HappyRich
+    InstantAction: 0
+    Name: AgitB
+  - Category: HappyRich
+    InstantAction: 0
+    Name: Flex_Department_Game
+  - Category: HappyRich
+    InstantAction: 0
+    Name: Home
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
   m_onExitShowViews: []
   m_onExitHideViews: []
 --- !u!114 &-1261972676431491876

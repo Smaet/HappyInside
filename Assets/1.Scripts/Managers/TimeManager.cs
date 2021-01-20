@@ -15,6 +15,11 @@ public enum TimerIndex
 public class TimeManager : MonoBehaviour
 {
 
+    [SerializeField]
+    private int curHour;
+    [SerializeField]
+    private int curDay;
+
     #region Sample
     private IConnectableObservable<int> _countDownObservable;
 
@@ -68,76 +73,10 @@ public class TimeManager : MonoBehaviour
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    #region Flex Mini Game 백화점용
-
-    private ReactiveProperty<int> _timerReactiveProperty;
-
-    CompositeDisposable disposables = new CompositeDisposable(); // field
-
-
-    private bool isFlexMiniGameTimeOn = false;
-    private IConnectableObservable<int> _countDownFlexGameDepartmentObservable;
-    public IObservable<int> CountDownFlexGameDepartmentObservable => _countDownFlexGameDepartmentObservable.AsObservable();     //실제 카운트다운 스트림
-    private IObservable<int> CreateCountDownFlexGameDepartmentObservable(int countTime) =>
-        Observable
-            .Timer(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(1))                    // 0초 이후 1초 간격으로 실행
-            .Select(x => (int)(countTime - x))                                          // x는 시작하고 나서의 시간(초)
-            .TakeWhile(x => x > 0);                                                     // 0초 초과 동안 OnNext 0이 되면 OnComplete
-
-    public void InitTimerFlexGameDepartmentDown(int _countDownTime)
+    #region 게임의 전체적인 시간
+    public void StartGameTime(int _savedHour, int _savedDay)
     {
-        isFlexMiniGameTimeOn = true;
-        _countDownFlexGameDepartmentObservable = CreateCountDownFlexGameDepartmentObservable(_countDownTime).Publish();
-        _countDownFlexGameDepartmentObservable.Connect();
-    }
 
+    }
     #endregion
-
-
-    public void StopTimer(TimerIndex _index)
-    {
-        switch (_index)
-        {
-            case TimerIndex.FLEXGAME_DEPARTMENT:
-                //isFlexMiniGameTimeOn = false;
-                disposables.Clear();
-                break;
-        }
-
-    }
-
-
-
-    public void StartTimerCountDown(TimerIndex _index, int _timer, int _specificFinTime = 0)
-    {
-        InitTimerFlexGameDepartmentDown(_timer);
-
-        switch (_index)
-        {
-            case TimerIndex.FLEXGAME_DEPARTMENT:
-                CountDownFlexGameDepartmentObservable
-                    .Where(timer => isFlexMiniGameTimeOn == true)
-                    .Subscribe(time =>
-                    //OnNext
-                    {
-                        Debug.Log(_index.ToString() + "남은 시간 : " + time);
-                    },
-                    //OnComplete
-                    () =>
-                    {
-                        Debug.Log("TimerCountDown 타이머 끝!");
-                    }).AddTo(disposables);
-                break;
-        }
-
-
-        
-    }
-
-    public void StopTimerFlexGameDepartment()
-    {
-
-    }
-
 }
