@@ -82,7 +82,7 @@ public class GameManager : SimpleSingleton<GameManager>
         tempUserData.userBaseProperties.manipulatedMoney = 99999999999;
         tempUserData.userBaseProperties.resultMoney = 99999999999;
         tempUserData.userBaseProperties.recentChangeMoney = 99999999999;
-        tempUserData.userBaseProperties.gameTime = 0;
+        tempUserData.userBaseProperties.gameHour = 0;
         tempUserData.userBaseProperties.daysElapsed = 0;
         tempUserData.userBaseProperties.doubt = 0;
         tempUserData.userBaseProperties.pinkChip = 0;

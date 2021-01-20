@@ -12,6 +12,8 @@ public enum TimerIndex
 }
 
 
+
+
 public class TimeManager : MonoBehaviour
 {
 
@@ -76,7 +78,21 @@ public class TimeManager : MonoBehaviour
     #region 게임의 전체적인 시간
     public void StartGameTime(int _savedHour, int _savedDay)
     {
+        //시간 관련 UI 갱신
+        curHour = _savedHour;
+        curDay = _savedDay;
+        StartCoroutine(GameTimer());
+    }
 
+    IEnumerator GameTimer()
+    {
+        while(true)
+        {
+            //시간 관련 UI 갱신
+            //동료들이 있다면 유저에게 있는 동료에 관한 기본능력 처리 
+            
+            yield return null;
+        }
     }
     #endregion
 }
