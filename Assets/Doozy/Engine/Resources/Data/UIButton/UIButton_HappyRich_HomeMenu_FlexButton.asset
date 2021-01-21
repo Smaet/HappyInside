@@ -16,5 +16,8 @@ MonoBehaviour:
   DatabaseType: 0
   Names:
   - Flex_Department
-  - Flex_Game
+  - Flex_GrandFatherHouse
+  - Flex_Casino
+  - Flex_Airport
+  - Flex_SpaceLab
   - Back

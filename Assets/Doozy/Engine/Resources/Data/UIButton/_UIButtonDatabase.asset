@@ -25,6 +25,7 @@ MonoBehaviour:
   - CollegueItem
   - CollegueDevice
   - Collegue_PinkChip
+  - HappyRich_HomeMenu
   Categories:
   - {fileID: 11400000, guid: 921503f73ba0d0d48a43ffe857508ab9, type: 2}
   - {fileID: 11400000, guid: aededc754a576394ca0ae8581e5e5bef, type: 2}
@@ -36,3 +37,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 78dc98b334e2d40489c4287db5523651, type: 2}
   - {fileID: 11400000, guid: e6e40bda2e31c49498a40eebfd773b1d, type: 2}
   - {fileID: 11400000, guid: a6f4e7ba415724e41b9f37a0df7c7083, type: 2}
+  - {fileID: 11400000, guid: e652d4476b365274e9cb26cf17ba393b, type: 2}

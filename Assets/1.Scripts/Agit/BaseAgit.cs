@@ -7,8 +7,7 @@ using UniRx;
 public class BaseAgit : MyUIView
 {
     public Agit_Index aigtIndex;
-    [SerializeField]
-    private Button backButton;
+
     [SerializeField]
     private bool isInit = false;
 
@@ -20,25 +19,41 @@ public class BaseAgit : MyUIView
     // Start is called before the first frame update
     protected virtual void Init()
     {
-        if(isInit== false)
+        User user = GameManager.Instance.user;
+
+        if (isInit== false)
         {
             isInit = true;
 
-            if (backButton == null)
-            {
-                backButton = transform.GetChild(1).GetComponent<Button>();
+            //if (backButton == null)
+            //{
+            //    backButton = transform.GetChild(1).GetComponent<Button>();
 
-                //버튼 할당에 UniRx 사용
-                backButton.onClick
+            //    //버튼 할당에 UniRx 사용
+            //    backButton.onClick
+            //    .AsObservable()
+            //    .Subscribe(_ =>
+            //    {
+            //        HomeManager.Instance.OnClickBackButton();
+            //    }).AddTo(this);
+
+            //    //backButton.onClick.AddListener(HomeManager.Instance.OnClickBackButton);
+            //}
+
+            //해커
+            colleagueButtons[(int)CollegueIndex.HACKER].onClick
                 .AsObservable()
                 .Subscribe(_ =>
                 {
-                    HomeManager.Instance.OnClickBackButton();
+                    HomeManager.Instance.agitManager.collegueView.OpenCollegueView(user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER]);
                 }).AddTo(this);
+            colleagueItemButtons[(int)CollegueIndex.HACKER].onClick
+              .AsObservable()
+              .Subscribe(_ =>
+              {
+                  //HomeManager.Instance.agitManager.collegueView.OpenCollegueView(user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER]);
+              }).AddTo(this);
 
-                //backButton.onClick.AddListener(HomeManager.Instance.OnClickBackButton);
-            }
-           
         }
       
     }

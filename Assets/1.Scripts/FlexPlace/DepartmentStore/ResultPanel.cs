@@ -43,7 +43,7 @@ public class ResultPanel : MonoBehaviour
     public void OnResultPanel(string _getMoney)
     {
         text.text = "현재 획득한 금액 : " + _getMoney;
-
+       
         gameObject.SetActive(true);
 
         //캐릭터 관련 정보 처리...

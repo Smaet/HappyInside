@@ -36,7 +36,7 @@ public enum ChangeableUserProperties
     NONE = 0,
     CRYSTAL = 1,
     STARTMONEY,
-    MONEY,
+    CONSUMPTION,
     MANIPULATEMONEY,
     RESULTMONEY,
     RECENTCHANGEMONEY,
@@ -44,7 +44,7 @@ public enum ChangeableUserProperties
     DAYSELASPSE,
     DOUBT,
     PINKCHIP,
-    ACCUMULATEDCONSUMPTION,
+    FLEXCONSUMPTION,
     HACKER,
 
 }
@@ -57,13 +57,13 @@ public class UserBaseProperties
     public string nickName;                 //닉네임
     public int crystal;                     //크리스탈
     public long startMoney;                 //시작재산 (고정된 재산)
-    public long money;                      //현재 가지고 있는 돈 (실제 재산)
+    public long ConsumptionMoney;           //현재 가지고 있는 돈 (실제 재산)
     public long manipulatedMoney;           //현재 조작된 돈
     public long resultMoney;                //현재 잔액
     public long recentChangeMoney;          //최근 변화된 돈
-    public long accumulatedConsumption;     //누적 소비액  --> 해당 금액에 따른 난이도 변화
-    public float gameHour;                  //게임 시간
-    public float daysElapsed;               //경과된 일수
+    public long FlexConsumption;            //누적 소비액  --> 해당 금액에 따른 난이도 변화
+    public int gameHour;                  //게임 시간
+    public int daysElapsed;               //경과된 일수
     public float doubt;                     //의심도
     public float pinkChip;                  //핑크칩?
 
@@ -83,13 +83,18 @@ public class UserBaseProperties
 [Serializable]
 public class collegueInfo
 {
+    public bool isActive;
+
     public CollegueIndex collegueIndex; //동료의 인덱스
 
     public int Level;               //동료의 레벨
     public int itemLevel;           //아이템 레벨
     public int deviceLevel;         //디바이스 레벨
+    public int levelUpTime;         
+    public int leftLevelUpTime;     
 
-
+    public collegueBasicSkill collegueBasicSkill;
+    public colleguePassiveSkill[] colleguePassiveSkills;
 }
 
 [Serializable]
@@ -97,7 +102,7 @@ public class collegueBasicSkill
 {
     public float hour;
     public int day;
-    public float money;
+    public long money;
     public float chance;
 }
 
@@ -107,7 +112,7 @@ public class colleguePassiveSkill
     public bool isActive;
     public float hour;
     public int day;
-    public float money;
+    public long money;
     public float chance;
 }
 
@@ -134,7 +139,7 @@ public class User : MonoBehaviour
         userBaseProperties.nickName = _userInfo.userBaseProperties.nickName;
         userBaseProperties.crystal = _userInfo.userBaseProperties.crystal;
         userBaseProperties.startMoney = _userInfo.userBaseProperties.startMoney;
-        userBaseProperties.money = _userInfo.userBaseProperties.money;
+        userBaseProperties.ConsumptionMoney = _userInfo.userBaseProperties.ConsumptionMoney;
         userBaseProperties.manipulatedMoney = _userInfo.userBaseProperties.manipulatedMoney;
         userBaseProperties.resultMoney = _userInfo.userBaseProperties.resultMoney;
         userBaseProperties.recentChangeMoney = _userInfo.userBaseProperties.recentChangeMoney;
@@ -142,14 +147,14 @@ public class User : MonoBehaviour
         userBaseProperties.daysElapsed = _userInfo.userBaseProperties.daysElapsed;
         userBaseProperties.doubt = _userInfo.userBaseProperties.doubt;
         userBaseProperties.pinkChip = _userInfo.userBaseProperties.pinkChip;
-        userBaseProperties.accumulatedConsumption = _userInfo.userBaseProperties.accumulatedConsumption;
+        userBaseProperties.FlexConsumption = _userInfo.userBaseProperties.FlexConsumption;
         userBaseProperties.collegueInfos = _userInfo.userBaseProperties.collegueInfos;
 
 
         Debug.Log("NickName : " + userBaseProperties.nickName);
         Debug.Log("crystal : " + userBaseProperties.crystal);
         Debug.Log("startMoney : " + userBaseProperties.startMoney);
-        Debug.Log("money : " + userBaseProperties.money);
+        Debug.Log("money : " + userBaseProperties.ConsumptionMoney);
         Debug.Log("manipulatedMoney : " + userBaseProperties.manipulatedMoney);
         Debug.Log("NickName : " + userBaseProperties.resultMoney);
         Debug.Log("resultMoney : " + userBaseProperties.nickName);
@@ -158,7 +163,7 @@ public class User : MonoBehaviour
         Debug.Log("daysElapsed : " + userBaseProperties.daysElapsed);
         Debug.Log("doubt : " + userBaseProperties.doubt);
         Debug.Log("blackCoin : " + userBaseProperties.pinkChip);
-        Debug.Log("accumulatedConsumption : " + userBaseProperties.accumulatedConsumption);
+        Debug.Log("FLEXConsumption : " + userBaseProperties.FlexConsumption);
 
         Debug.Log("<color=red>해커의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
         Debug.Log("<color=red>해커의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
@@ -191,10 +196,37 @@ public class User : MonoBehaviour
         {
             case ChangeableUserProperties.CRYSTAL:
                 userBaseProperties.crystal += _value;
+
+                HomeManager.Instance.topUIManager.SetCrystal(userBaseProperties.crystal);
                 Debug.Log("현재 크리스탈 : " + userBaseProperties.crystal);
+
+                
+                break;
+            case ChangeableUserProperties.GAMEHOUR:
+                if(_value != 0)
+                {
+                    userBaseProperties.gameHour += _value;
+                }
+                else
+                {
+                    userBaseProperties.gameHour = _value;
+                }
+              
+
+                HomeManager.Instance.topUIManager.SetHour(userBaseProperties.gameHour);
+                Debug.Log("현재 시간 : " + userBaseProperties.gameHour);
+
+                break;
+            case ChangeableUserProperties.DAYSELASPSE:
+                userBaseProperties.daysElapsed += _value;
+                HomeManager.Instance.topUIManager.SetDays(userBaseProperties.daysElapsed);
+                Debug.Log("현재 경과된 날짜  : " + userBaseProperties.daysElapsed);
+
+      
                 break;
 
         }
+
     }
 
     public void SetUserInfo(ChangeableUserProperties _changeableIndex, long _value)
@@ -204,15 +236,50 @@ public class User : MonoBehaviour
         {
             case ChangeableUserProperties.STARTMONEY:
                 userBaseProperties.startMoney += _value;
+                HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
                 Debug.Log("현재 시작금액 : " + userBaseProperties.startMoney);
                 break;
-            case ChangeableUserProperties.MONEY:
-                userBaseProperties.money += _value;
-                Debug.Log("현재 금액 : " + userBaseProperties.money);
+            case ChangeableUserProperties.CONSUMPTION:
+                userBaseProperties.ConsumptionMoney += _value;
+
+                //현재 의심도
+                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.ConsumptionMoney, userBaseProperties.manipulatedMoney);
+                Debug.Log("현재 까지 총 소비금액 : " + userBaseProperties.ConsumptionMoney);
                 break;
 
             case ChangeableUserProperties.MANIPULATEMONEY:
                 userBaseProperties.manipulatedMoney += _value;
+
+                //해커의 레벨에 따른 추가적인 계산
+                double additionalPercent = 0;
+                if(userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[0].isActive)
+                {
+                    additionalPercent = userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[0].chance;
+                }
+                if (userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[1].isActive)
+                {
+                    additionalPercent = userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[1].chance;
+                }
+                if (userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[2].isActive)
+                {
+                    additionalPercent = userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[2].chance;
+                }
+                
+                if (additionalPercent != 0)
+                {
+                    additionalPercent = additionalPercent * 0.01;
+                    userBaseProperties.manipulatedMoney = userBaseProperties.manipulatedMoney + (long)(userBaseProperties.manipulatedMoney * additionalPercent);
+                }
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                //현재 의심도
+                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.ConsumptionMoney, userBaseProperties.manipulatedMoney);
+               
+                //현재 재산 정보
+                HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userBaseProperties.manipulatedMoney);
+                
+                //현재 할아버지의 총 재산에 대한 정보
+                HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
                 Debug.Log("현재 조작된금액 : " + userBaseProperties.manipulatedMoney);
                 break;
 
@@ -224,9 +291,9 @@ public class User : MonoBehaviour
                 userBaseProperties.recentChangeMoney += _value;
                 Debug.Log("현재 최근바뀐금액 : " + userBaseProperties.recentChangeMoney);
                 break;
-            case ChangeableUserProperties.ACCUMULATEDCONSUMPTION:
-                userBaseProperties.accumulatedConsumption += _value;
-                Debug.Log("현재 누적금액 : " + userBaseProperties.accumulatedConsumption);
+            case ChangeableUserProperties.FLEXCONSUMPTION:
+                userBaseProperties.FlexConsumption += _value;
+                Debug.Log("현재 플렉스 소비 금액 : " + userBaseProperties.FlexConsumption);
                 break;
 
 
@@ -239,14 +306,7 @@ public class User : MonoBehaviour
 
         switch (_changeableIndex)
         {
-            case ChangeableUserProperties.GAMEHOUR:
-                userBaseProperties.gameHour += _value;
-                Debug.Log("현재 몇 시인지 : " + userBaseProperties.gameHour);
-                break;
-            case ChangeableUserProperties.DAYSELASPSE:
-                userBaseProperties.daysElapsed += _value;
-                Debug.Log("현재 경과된 날짜  : " + userBaseProperties.daysElapsed);
-                break;
+           
             case ChangeableUserProperties.DOUBT:
                 userBaseProperties.doubt += _value;
                 Debug.Log("현재 의심도 : " + userBaseProperties.doubt);

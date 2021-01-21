@@ -21,3 +21,5 @@ MonoBehaviour:
   - Flex_Department
   - Flex_Department_Game
   - TopUIBar
+  - AgitSlider
+  - FlexSlider

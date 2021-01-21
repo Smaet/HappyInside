@@ -26,45 +26,7 @@ public class FlexPlaceManager : MonoBehaviour
     [Header("FlexPlaceGames")]
     public BaseFlexPlaceGame[] FlexPlaceGames;
 
-    public void Init(Canvas _canvas)
-    {
-        canvas = _canvas;
-
-        if(flexPlaceCanvasGroup == null)
-        {
-            flexPlaceCanvasGroup =  HomeManager.Instance.CanvasParent.transform.GetChild(2).GetComponent<CanvasGroup>();
-        }
-
-        GameObject PlaceParent = canvas.transform.GetChild(1).gameObject;
-        GameObject GameParent = canvas.transform.GetChild(2).gameObject;
-
-        
-
-        if(FlexPlaces == null || FlexPlaces.Length == 0)
-        {
-            FlexPlaces = new BaseFlexPlace[1];
-
-            for(int i=0; i < 1; i++)
-            {
-                FlexPlaces[i] = PlaceParent.transform.GetChild(i).GetComponent<BaseFlexPlace>();
-                FlexPlaces[i].gameObject.SetActive(false);
-            }
-        }
-
-        if(FlexPlaceGames == null || FlexPlaceGames.Length == 0)
-        {
-            FlexPlaceGames = new BaseFlexPlaceGame[1];
-
-            for(int i=0; i < 1; i++)
-            {
-                FlexPlaceGames[i] = GameParent.transform.GetChild(i).GetComponent<BaseFlexPlaceGame>();
-                FlexPlaceGames[i].gameObject.SetActive(false); 
-            }
-        }
-
-
-      
-    }
+   
 
 
     public void OpenFlexPlaceUI(HomeMenuButtonIndex _index)

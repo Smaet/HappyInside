@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using Doozy;
 
 
 #region Enums
@@ -30,6 +31,7 @@ public enum MenuIndex
     FLEXPLACE,
     INPUT,
     TIME,
+    TOPUI,
 }
 
 public enum HomeMenuButtonIndex
@@ -63,17 +65,18 @@ public enum CanvasIndex
 
 public class HomeManager : SimpleSingleton<HomeManager>
 {
-    [Header("Test")]
-    public ScrollRect scrollRect;
-    public ScrollRect scrollRect2;
+   
+
+    [Header("RightBottomMenuButton")]
+    public ScrollRect scrollRect_Agit;
+    public ScrollRect scrollRect_Flex;
+
+    private bool isButtonSliding_Agit = false;
+    public bool isButtonOnTop_Agit = false;
 
 
-    #region Canvas
-    [Header("HomeCanvas")]
-    public GameObject CanvasParent;
-    [SerializeField]
-    private Canvas [] allCanvas;
-    #endregion
+    private bool isButtonSliding_Flex = false;
+    public bool isButtonOnTop_Flex = false;
 
     #region Managers
     [Header("Managers")]
@@ -83,13 +86,15 @@ public class HomeManager : SimpleSingleton<HomeManager>
     private UserPage userPage;
     [SerializeField]
     private UserAttainment userAttainment;
-    [SerializeField]
-    private AgitManager agitManager;
+    public AgitManager agitManager;
     [SerializeField]
     private FlexPlaceManager flexPlaceManager;
     [SerializeField]
     private InputManager inputManager;
     public TimeManager timeManager;
+
+    public TopUIManager topUIManager ;
+    public ComprehensivePanel comprehensivePanel;
     #endregion
 
     #region Variables
@@ -101,16 +106,13 @@ public class HomeManager : SimpleSingleton<HomeManager>
     protected override void Awake()
     {
         base.Awake();
-
-     
-
-        Init();
-
     }
 
-    void Init()
+    public void Init()
     {
-        InitManagers();
+        //InitManagers();
+        topUIManager.Init();
+        comprehensivePanel.Init();
     }
 
     
@@ -119,7 +121,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         if(shop == null)
         {
-            shop = transform.GetChild((int)MenuIndex.SHOP).GetComponent<Shop>();
+            shop = this.transform.GetChild((int)MenuIndex.SHOP).GetComponent<Shop>();
             //shop.Init(allCanvas[(int)CanvasIndex.POPUP]);
         }
         if(userPage == null)
@@ -149,6 +151,10 @@ public class HomeManager : SimpleSingleton<HomeManager>
         if(timeManager == null)
         {
             timeManager = transform.GetChild((int)MenuIndex.TIME).GetComponent<TimeManager>();
+        }
+        if (topUIManager == null)
+        {
+            topUIManager = transform.GetChild((int)MenuIndex.TOPUI).GetComponent<TopUIManager>();
         }
     }
 
@@ -322,7 +328,6 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
 
         //홈 화면 Alpha 0
-        CanvasSetting(_index, 1, 1, 0);
 
         //특정 버튼 장면으로 전환
         switch (_index)
@@ -389,146 +394,35 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     #endregion
 
-    public void CanvasSetting(HomeMenuButtonIndex _buttonIndex, float _homeCGAlpha, float _anotherCGAlpha, int _homeSortingOrder)
-    {
-        if (_buttonIndex != HomeMenuButtonIndex.None)
-        {
-            //홈 캔버스 설정
-            if (_homeCGAlpha == 0)
-            {
-                allCanvas[(int)CanvasIndex.HOME].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = false;
-            }
-            else
-            {
-                allCanvas[(int)CanvasIndex.HOME].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
-
-                allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 700;
-                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 1;
-                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
-            }
-            allCanvas[(int)CanvasIndex.HOME].sortingOrder = _homeSortingOrder;
-            allCanvas[(int)CanvasIndex.HOME].GetComponent<CanvasGroup>().alpha = _homeCGAlpha;
-
-            //다른 캔버스 설정
-            Canvas curCanvas = GetCanvas(_buttonIndex);
-            CanvasGroup cg = curCanvas.GetComponent<CanvasGroup>();
-            GraphicRaycaster gr = curCanvas.GetComponent<GraphicRaycaster>();
-            cg.alpha = _anotherCGAlpha;
-            if (_anotherCGAlpha == 0)
-            {
-                curCanvas.sortingOrder = 0;
-                gr.enabled = false;
-            }
-            else
-            {
-                curCanvas.sortingOrder = 500;
-                gr.enabled = true;
-            }
-
-            //TopUI 설정
-            //플렉스 이외에는 상단 UI 표시 x
-            if (_buttonIndex == HomeMenuButtonIndex.FLEX_01 || _buttonIndex == HomeMenuButtonIndex.FLEX_02 || _buttonIndex == HomeMenuButtonIndex.FLEX_03
-                || _buttonIndex == HomeMenuButtonIndex.FLEXGAME_01 || _buttonIndex == HomeMenuButtonIndex.FLEXGAME_02 || _buttonIndex == HomeMenuButtonIndex.FLEXGAME_03)
-            {
-                if (_homeCGAlpha == 0)
-                {
-                    allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 0;
-                    allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 0;
-                    allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = false;
-                }
-            }
-            else
-            {
-                allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 700;
-                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 1;
-                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
-            }
-
-        }
-        //초기 설정
-        else
-        { 
-            //홈 캔버스 설정
-            if (_homeCGAlpha == 0)
-            {
-                allCanvas[(int)CanvasIndex.HOME].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = false;
-            }
-            else
-            {
-                allCanvas[(int)CanvasIndex.HOME].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
-
-                allCanvas[(int)CanvasIndex.TOPUI].sortingOrder = 700;
-                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<CanvasGroup>().alpha = 1;
-                allCanvas[(int)CanvasIndex.TOPUI].GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
-            }
-            allCanvas[(int)CanvasIndex.HOME].sortingOrder = _homeSortingOrder;
-            allCanvas[(int)CanvasIndex.HOME].GetComponent<CanvasGroup>().alpha = _homeCGAlpha;
-
-            for (int i=1; i < 4; i++)
-            {
-                allCanvas[i].GetComponent<CanvasGroup>().alpha = _anotherCGAlpha;
-                allCanvas[i].GetComponent<GraphicRaycaster>().enabled = false;
-            }
-          
-        }
-        
-    }
-
-    private Canvas GetCanvas(HomeMenuButtonIndex _index)
-    {
-        Canvas canvas = null;
-        switch (_index)
-        {
-            case HomeMenuButtonIndex.SHOP:
-                canvas = allCanvas[(int)CanvasIndex.POPUP];
-                break;
-            case HomeMenuButtonIndex.USERPAGE:
-                canvas = allCanvas[(int)CanvasIndex.POPUP];
-                break;
-            case HomeMenuButtonIndex.USERATTAINMENT:
-                canvas = allCanvas[(int)CanvasIndex.POPUP];
-                break;
-            case HomeMenuButtonIndex.FLEX_01:
-                canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
-                break;
-            case HomeMenuButtonIndex.FLEX_02:
-                canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
-                break;
-            case HomeMenuButtonIndex.FLEX_03:
-                canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
-                break;
-            case HomeMenuButtonIndex.AGIT_A:
-                canvas = allCanvas[(int)CanvasIndex.AGIT];
-                break;
-            case HomeMenuButtonIndex.AGIT_B:
-                canvas = allCanvas[(int)CanvasIndex.AGIT];
-                break;
-            case HomeMenuButtonIndex.FLEXGAME_01:
-                canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
-                break;
-            case HomeMenuButtonIndex.FLEXGAME_02:
-                canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
-                break;
-            case HomeMenuButtonIndex.FLEXGAME_03:
-                canvas = allCanvas[(int)CanvasIndex.FLEXPLACE];
-                break;
-        }
-
-        return canvas;
-    }
-
+ 
 
 
     #region 임시 스크롤 렉트
 
+    public void UserPageButton()
+    {
+        Debug.Log("User Button Click!!");
+    }
+   
+    //메뉴가 열려있으면 들어가게 함
+    public void RightBottomMenuCheck()
+    {
+        if (isButtonOnTop_Agit)
+        {
+            StartButtonAutoSlide_Agit();
+        }
 
-    private bool isButtonSliding = false;
-    private bool isButtonOnTop = false;
+        if (isButtonOnTop_Flex)
+        {
+            StartButtonAutoSlide_Flex();
+        }
+    }
+
     public void StartButtonAutoSlide_Agit()
     {
-        if(isButtonSliding == false)
+        if(isButtonSliding_Agit == false)
         {
-            isButtonSliding = true;
+            isButtonSliding_Agit = true;
             StartCoroutine(ButtonAutoSlide());
         }
     
@@ -540,7 +434,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         float time = 0;
         float totalTime = 0.3f;
 
-        if(isButtonOnTop == false)
+        if(isButtonOnTop_Agit == false)
         {
             startPoint = 0;
         }
@@ -548,45 +442,43 @@ public class HomeManager : SimpleSingleton<HomeManager>
         {
             startPoint = 1;
         }
-        scrollRect.verticalNormalizedPosition = startPoint;
+        scrollRect_Agit.verticalNormalizedPosition = startPoint;
         while(true)
         {
             if(time >= totalTime)
             {
-                if (isButtonOnTop == false)
+                if (isButtonOnTop_Agit == false)
                 {
-                    isButtonOnTop = true;
+                    isButtonOnTop_Agit = true;
                 }
                 else
                 {
-                    isButtonOnTop = false;
+                    isButtonOnTop_Agit = false;
                 }
 
 
-                isButtonSliding = false;
+                isButtonSliding_Agit = false;
                 yield break;
             }
 
-            if (isButtonOnTop == false)
+            if (isButtonOnTop_Agit == false)
             {
-                scrollRect.verticalNormalizedPosition = Mathf.Lerp(1, startPoint, time / totalTime);
+                scrollRect_Agit.verticalNormalizedPosition = Mathf.Lerp(1, startPoint, time / totalTime);
             }
             else
             {
-                scrollRect.verticalNormalizedPosition = Mathf.Lerp(0, startPoint, time / totalTime);
+                scrollRect_Agit.verticalNormalizedPosition = Mathf.Lerp(0, startPoint, time / totalTime);
             }
             time += Time.deltaTime;
             yield return null;
         }
     }
 
-    private bool isButtonSliding2 = false;
-    private bool isButtonOnTop2 = false;
     public void StartButtonAutoSlide_Flex()
     {
-        if (isButtonSliding2 == false)
+        if (isButtonSliding_Flex == false)
         {
-            isButtonSliding2 = true;
+            isButtonSliding_Flex = true;
             StartCoroutine(ButtonAutoSlide2());
         }
 
@@ -600,7 +492,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         float time = 0;
         float totalTime = 0.5f;
 
-        if (isButtonOnTop2 == false)
+        if (isButtonOnTop_Flex == false)
         {
             startPoint = 0;
         }
@@ -608,32 +500,32 @@ public class HomeManager : SimpleSingleton<HomeManager>
         {
             startPoint = 1;
         }
-        scrollRect2.verticalNormalizedPosition = startPoint;
+        scrollRect_Flex.verticalNormalizedPosition = startPoint;
         while (true)
         {
             if (time >= totalTime)
             {
-                if (isButtonOnTop2 == false)
+                if (isButtonOnTop_Flex == false)
                 {
-                    isButtonOnTop2 = true;
+                    isButtonOnTop_Flex = true;
                 }
                 else
                 {
-                    isButtonOnTop2 = false;
+                    isButtonOnTop_Flex = false;
                 }
 
 
-                isButtonSliding2 = false;
+                isButtonSliding_Flex = false;
                 yield break;
             }
 
-            if (isButtonOnTop2 == false)
+            if (isButtonOnTop_Flex == false)
             {
-                scrollRect2.verticalNormalizedPosition = Mathf.Lerp(1, startPoint, time / totalTime);
+                scrollRect_Flex.verticalNormalizedPosition = Mathf.Lerp(1, startPoint, time / totalTime);
             }
             else
             {
-                scrollRect2.verticalNormalizedPosition = Mathf.Lerp(0, startPoint, time / totalTime);
+                scrollRect_Flex.verticalNormalizedPosition = Mathf.Lerp(0, startPoint, time / totalTime);
             }
             time += Time.deltaTime;
             yield return null;

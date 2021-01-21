@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UniRx;
 
 public enum Agit_Index
 {
@@ -13,38 +14,48 @@ public enum Agit_Index
 
 public class AgitManager : MonoBehaviour
 {
+    [SerializeField]
+    private bool isInit = false;
     public Agit_Index curAgit = Agit_Index.None;
 
-    [Header("Canvas")]
-    [SerializeField]
-    private CanvasGroup agitCanvasGroup;
-    [SerializeField]
-    private Canvas canvas;
+   
     [Header("Agits")]
     [SerializeField]
     private Agit_A agit_A;
     [SerializeField]
     private Agit_B agit_B;
 
-    public void Init(Canvas _canvas)
+    [SerializeField]
+    private Button agitA_Button;
+    [SerializeField]
+    private Button agitB_Button;
+
+
+    public CollegueView collegueView;
+    public CollegueItemView collegueItemView;
+    public CollegueDeviceView collegueDeviceView;
+
+    public void OnEnable()
     {
-        canvas = _canvas;
+        if(isInit == false)
+        {
+            isInit = true;
+            //버튼 셋팅
+            //아지트 A
+            agitA_Button.onClick
+               .AsObservable()
+               .Subscribe(_ =>
+               {
+                   Open_Agit(Agit_Index.AGIT_A);
+               }).AddTo(this);
 
-        if (agitCanvasGroup == null)
-        {
-            agitCanvasGroup = canvas.GetComponent<CanvasGroup>();
+            //agitA_Button.onClick
+            // .AsObservable()
+            // .Subscribe(_ =>
+            // {
+            //     Open_Agit(Agit_Index.AGIT_B);
+            // }).AddTo(this);
         }
-        if(agit_A == null)
-        {
-            agit_A = canvas.transform.GetChild((int)Agit_Index.AGIT_A).GetComponent<Agit_A>();
-            agit_A.CloseAgit();
-        }
-        if (agit_B == null)
-        {
-            agit_B = canvas.transform.GetChild((int)Agit_Index.AGIT_B).GetComponent<Agit_B>();
-            agit_B.CloseAgit();
-        }
-
     }
 
     public void Open_Agit(Agit_Index _agit)
@@ -79,9 +90,9 @@ public class AgitManager : MonoBehaviour
     {
         Debug.Log("Close " + _agit.ToString() + " !!");
         //Alpha 0
-        agitCanvasGroup.alpha = 1;
-        //Sort to 0
-        canvas.sortingOrder = 0;
+        //agitCanvasGroup.alpha = 1;
+        ////Sort to 0
+        //canvas.sortingOrder = 0;
 
         
 
@@ -102,5 +113,10 @@ public class AgitManager : MonoBehaviour
     public void TestButton()
     {
         Debug.Log("아지트 내에 있는 버튼 호출!");
+    }
+
+    public void OpenColleguePanel()
+    {
+
     }
 }

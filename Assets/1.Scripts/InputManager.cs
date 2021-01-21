@@ -15,6 +15,9 @@ public class InputManager : SimpleSingleton<InputManager>
     public void Touch(LeanFinger finger)
     {
         Debug.Log(finger.Index + " Finger Touch!!!");
+
+        HomeManager.Instance.RightBottomMenuCheck();
+
     }
 
     public void Touching(LeanFinger finger)

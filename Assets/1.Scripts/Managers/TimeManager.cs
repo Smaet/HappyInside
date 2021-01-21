@@ -16,6 +16,8 @@ public enum TimerIndex
 
 public class TimeManager : MonoBehaviour
 {
+    float HourUpdateCycle = 5;      //시간이 업데이트 되는 주기 (5초)
+    float DaysUpdateCycle = 24;      //날짜가 업데이트 되는 주기 (24시간)
 
     [SerializeField]
     private int curHour;
@@ -86,11 +88,70 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator GameTimer()
     {
+        float time = 0;
+
         while(true)
         {
             //시간 관련 UI 갱신
             //동료들이 있다면 유저에게 있는 동료에 관한 기본능력 처리 
-            
+            //시간 갱신
+            User user = GameManager.Instance.user;
+
+
+            if (time >= HourUpdateCycle)
+            {
+                time = 0;
+                user.SetUserInfo(ChangeableUserProperties.GAMEHOUR, 1);
+            }
+
+            //날짜 갱신
+            else if(user.userBaseProperties.gameHour >  DaysUpdateCycle - 1)
+            {
+                
+                user.SetUserInfo(ChangeableUserProperties.GAMEHOUR, 0);
+                user.SetUserInfo(ChangeableUserProperties.DAYSELASPSE, 1);
+
+                yield return null;
+            }
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public void StartRunHacker()
+    {
+        Debug.Log("<color=red>Hacker 활성화!</color>");
+        StartCoroutine(RunHacker());
+    }
+
+    IEnumerator RunHacker()
+    {
+        float time = 0;
+        float hourCount = 0;
+
+        while (true)
+        {
+            //시간 관련 UI 갱신
+            //동료들이 있다면 유저에게 있는 동료에 관한 기본능력 처리 
+            //시간 갱신
+            collegueInfo hacker = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER];
+
+
+            if (time >= HourUpdateCycle)        //시간이 바뀔때.
+            {
+                time = 0;
+                hourCount++;
+            }
+
+            else if(hourCount >= hacker.collegueBasicSkill.hour)
+            {
+                hourCount = 0;
+                Debug.Log("<color=red>Hacker 의 능력으로 조작된 돈 추가  </color> : " + hacker.collegueBasicSkill.money);
+                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, hacker.collegueBasicSkill.money);
+            }
+
+            time += Time.deltaTime;
             yield return null;
         }
     }
