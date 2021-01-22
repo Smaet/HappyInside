@@ -148,6 +148,11 @@ public class GameManager : SimpleSingleton<GameManager>
                 tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
                 tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
                 tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
+
+                tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new collegueItem();
+                tempUserData.userBaseProperties.collegueInfos[i].collegueItem.isActive = true;
+                tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 10;
+
             }
             else
             {

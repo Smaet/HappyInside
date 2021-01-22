@@ -28,7 +28,7 @@ public class CollegueView : MonoBehaviour
         switch (index)
         {
             case CollegueIndex.HACKER:
-                SetName("Hacker");
+                SetName("X-다레");
                 SetLevel(_info.Level);
                 SetSkillContext(_info.collegueBasicSkill);
                 SetLevelCost();

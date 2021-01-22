@@ -95,6 +95,8 @@ public class collegueInfo
 
     public collegueBasicSkill collegueBasicSkill;
     public colleguePassiveSkill[] colleguePassiveSkills;
+    public collegueItem collegueItem;
+    public collegueDevice collegueDevice;
 }
 
 [Serializable]
@@ -116,6 +118,19 @@ public class colleguePassiveSkill
     public float chance;
 }
 
+[Serializable]
+public class collegueItem
+{
+    public bool isActive;
+    public float chance;
+}
+
+
+[Serializable]
+public class collegueDevice
+{
+    public bool isActive;
+}
 
 
 public class User : MonoBehaviour
@@ -268,6 +283,7 @@ public class User : MonoBehaviour
                 if (additionalPercent != 0)
                 {
                     additionalPercent = additionalPercent * 0.01;
+                    //기존의 조작된 머니 + 
                     userBaseProperties.manipulatedMoney = userBaseProperties.manipulatedMoney + (long)(userBaseProperties.manipulatedMoney * additionalPercent);
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////

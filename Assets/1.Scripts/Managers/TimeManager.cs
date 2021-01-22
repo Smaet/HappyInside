@@ -148,7 +148,15 @@ public class TimeManager : MonoBehaviour
             {
                 hourCount = 0;
                 Debug.Log("<color=red>Hacker 의 능력으로 조작된 돈 추가  </color> : " + hacker.collegueBasicSkill.money);
-                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, hacker.collegueBasicSkill.money);
+
+                //해커의 아이템으로 추가되는 능력 더하기
+
+                Debug.Log("<color=purple>Hacker 의 아이템으로 증가된 수치 </color> : " + hacker.collegueItem.chance);
+
+                double itemChance = hacker.collegueItem.chance * 0.01;
+                long result = hacker.collegueBasicSkill.money + (long)(hacker.collegueBasicSkill.money * itemChance);
+
+                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
             }
 
             time += Time.deltaTime;

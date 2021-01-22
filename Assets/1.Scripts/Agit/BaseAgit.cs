@@ -51,7 +51,7 @@ public class BaseAgit : MyUIView
               .AsObservable()
               .Subscribe(_ =>
               {
-                  //HomeManager.Instance.agitManager.collegueView.OpenCollegueView(user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER]);
+                  HomeManager.Instance.agitManager.collegueItemView.OpenCollegueItemView(user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER]);
               }).AddTo(this);
 
         }

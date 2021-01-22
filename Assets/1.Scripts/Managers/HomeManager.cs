@@ -450,10 +450,12 @@ public class HomeManager : SimpleSingleton<HomeManager>
                 if (isButtonOnTop_Agit == false)
                 {
                     isButtonOnTop_Agit = true;
+                    scrollRect_Agit.verticalNormalizedPosition = 0;
                 }
                 else
                 {
                     isButtonOnTop_Agit = false;
+                    scrollRect_Agit.verticalNormalizedPosition = 1;
                 }
 
 
@@ -508,10 +510,12 @@ public class HomeManager : SimpleSingleton<HomeManager>
                 if (isButtonOnTop_Flex == false)
                 {
                     isButtonOnTop_Flex = true;
+                    scrollRect_Flex.verticalNormalizedPosition = 0;
                 }
                 else
                 {
                     isButtonOnTop_Flex = false;
+                    scrollRect_Flex.verticalNormalizedPosition = 1;
                 }
 
 

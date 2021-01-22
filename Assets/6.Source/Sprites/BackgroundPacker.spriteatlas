@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BackgroundPacker
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 65
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
+    totalSpriteSurfaceArea: 9119133
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 453de112b67afd749b46dc5373d3dd34, type: 3}
+  - {fileID: 21300000, guid: 8fededf273a9eac4ebb1bd7d11078a23, type: 3}
+  - {fileID: 21300000, guid: f2ff7033f9ba38546a2b64c9a79998f7, type: 3}
+  - {fileID: 21300000, guid: 121def948fa5edf468041e25da198537, type: 3}
+  - {fileID: 21300000, guid: 61fa5d466f96c6a45b07e1dbbb9e7257, type: 3}
+  - {fileID: 21300000, guid: 1f1e234866ec05b418bb25ad9c06015c, type: 3}
+  - {fileID: 21300000, guid: 53f4044ade0965540a00c5fe6edb7b3c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - flex1_003
+  - Im_H_Background
+  - m_door_R
+  - minigame_background
+  - flex3_002
+  - m_curtain 2
+  - m_door_L
+  m_Tag: BackgroundPacker
+  m_IsVariant: 0
