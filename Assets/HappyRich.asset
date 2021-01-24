@@ -459,6 +459,9 @@ MonoBehaviour:
   - Category: HappyRich
     InstantAction: 0
     Name: Flex_Department
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
   m_onExitShowViews: []
   m_onExitHideViews:
   - Category: HappyRich
@@ -665,6 +668,9 @@ MonoBehaviour:
   - Category: HappyRich
     InstantAction: 0
     Name: Flex_Department
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
   m_onEnterHideViews:
   - Category: HappyRich
     InstantAction: 0
@@ -838,7 +844,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 91.63636
+    m_y: 90.85715
     m_id: c1ab29e6-b741-4563-9a71-e32723c2a56b
     m_nodeId: 3c3e6a46-226b-4b27-96fd-9f14e5610c65
     m_socketName: InputSocket_0
@@ -864,7 +870,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 259.2727
+    m_y: 257.7143
     m_id: 9e760646-a946-43a3-a088-d2317336737e
     m_nodeId: 3c3e6a46-226b-4b27-96fd-9f14e5610c65
     m_socketName: InputSocket_1
@@ -890,7 +896,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 349.2727
+    m_y: 347.7143
     m_id: 190deb4f-1dd0-4e53-973d-bd539ddc58f4
     m_nodeId: 3c3e6a46-226b-4b27-96fd-9f14e5610c65
     m_socketName: InputSocket_2
@@ -917,7 +923,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 115.63636
+    m_y: 114.85715
     m_id: 611e37d0-af34-41f6-872c-37e0667609b2
     m_nodeId: 3c3e6a46-226b-4b27-96fd-9f14e5610c65
     m_socketName: OutputSocket_0
@@ -943,7 +949,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 283.2727
+    m_y: 281.7143
     m_id: e1b10a54-df42-4005-9cc4-8cdb3db98977
     m_nodeId: 3c3e6a46-226b-4b27-96fd-9f14e5610c65
     m_socketName: OutputSocket_1
@@ -969,7 +975,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 373.2727
+    m_y: 371.7143
     m_id: fa19f31c-7467-4ed3-9fa0-eb5a53ede0a8
     m_nodeId: 3c3e6a46-226b-4b27-96fd-9f14e5610c65
     m_socketName: OutputSocket_2
@@ -984,7 +990,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 443.2727
+  m_height: 441.7143
   m_width: 216
   m_x: -756
   m_y: 204
@@ -1596,10 +1602,7 @@ MonoBehaviour:
     Name: TopUIBar
   m_onEnterHideViews: []
   m_onExitShowViews: []
-  m_onExitHideViews:
-  - Category: HappyRich
-    InstantAction: 0
-    Name: TopUIBar
+  m_onExitHideViews: []
 --- !u!114 &2169467104528852794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2142,7 +2145,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 91.63636
+    m_y: 90.85715
     m_id: d86b4120-f4f5-425a-9750-3f0c8d84c63c
     m_nodeId: 9d79812c-eaa8-44ff-9286-c1c937a7c726
     m_socketName: InputSocket_0
@@ -2168,7 +2171,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 259.2727
+    m_y: 257.7143
     m_id: c3f471d2-0635-466d-a311-1173f210339f
     m_nodeId: 9d79812c-eaa8-44ff-9286-c1c937a7c726
     m_socketName: InputSocket_1
@@ -2194,7 +2197,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 349.2727
+    m_y: 347.7143
     m_id: cbadabc7-9bea-4508-8cf4-06f2cd8dfda1
     m_nodeId: 9d79812c-eaa8-44ff-9286-c1c937a7c726
     m_socketName: InputSocket_2
@@ -2221,7 +2224,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 115.63636
+    m_y: 114.85715
     m_id: 68dad32d-25f3-4121-a2b9-943fee15d0ab
     m_nodeId: 9d79812c-eaa8-44ff-9286-c1c937a7c726
     m_socketName: OutputSocket_0
@@ -2247,7 +2250,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 283.2727
+    m_y: 281.7143
     m_id: be23c72f-09b8-416b-a243-13741b6069bb
     m_nodeId: 9d79812c-eaa8-44ff-9286-c1c937a7c726
     m_socketName: OutputSocket_1
@@ -2273,7 +2276,7 @@ MonoBehaviour:
     m_height: 24
     m_width: 216
     m_x: 0
-    m_y: 373.2727
+    m_y: 371.7143
     m_id: d8c22d2d-b3f0-43b6-963a-fc1f4634a07a
     m_nodeId: 9d79812c-eaa8-44ff-9286-c1c937a7c726
     m_socketName: OutputSocket_2
@@ -2288,7 +2291,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 443.2727
+  m_height: 441.7143
   m_width: 216
   m_x: -1020
   m_y: 480

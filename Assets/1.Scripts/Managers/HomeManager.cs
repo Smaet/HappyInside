@@ -65,6 +65,10 @@ public enum CanvasIndex
 
 public class HomeManager : SimpleSingleton<HomeManager>
 {
+    [Header("GrandFatherPanel")]
+    public ScrollRect scrollRect_GrandFather;
+    private bool isButtonSliding_GrandFather;
+    private bool isButtonOn_GrandFather;
    
 
     [Header("RightBottomMenuButton")]
@@ -397,7 +401,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
  
 
 
-    #region 임시 스크롤 렉트
+    #region 오른쪽 하단 버튼
 
     public void UserPageButton()
     {
@@ -541,5 +545,70 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     #endregion
 
+
+    #region 할아버지 그림 버튼
+    public void DebugScrollRect(Vector2 _vector2)
+    {
+        Debug.Log(scrollRect_GrandFather.horizontalNormalizedPosition);
+    }
+
+    public void StartButtonAutoSlide_GrandFather()
+    {
+        if (isButtonSliding_GrandFather == false)
+        {
+            isButtonSliding_GrandFather = true;
+            StartCoroutine(ButtonAutoSlide_GradnFather());
+        }
+
+    }
+
+    IEnumerator ButtonAutoSlide_GradnFather()
+    {
+        float startPoint = 0;
+        float time = 0;
+        float totalTime = 0.3f;
+
+        if (isButtonOn_GrandFather == false)
+        {
+            startPoint = 0;
+        }
+        else
+        {
+            startPoint = 1;
+        }
+        scrollRect_GrandFather.horizontalNormalizedPosition = startPoint;
+        while (true)
+        {
+            if (time >= totalTime)
+            {
+                if (isButtonOn_GrandFather == false)
+                {
+                    isButtonOn_GrandFather = true;
+                    scrollRect_GrandFather.horizontalNormalizedPosition = 0;
+                }
+                else
+                {
+                    isButtonOn_GrandFather = false;
+                    scrollRect_GrandFather.horizontalNormalizedPosition = 1;
+                }
+
+
+                isButtonSliding_GrandFather = false;
+                yield break;
+            }
+
+            if (isButtonOn_GrandFather == false)
+            {
+                scrollRect_GrandFather.horizontalNormalizedPosition = Mathf.Lerp(1, startPoint, time / totalTime);
+            }
+            else
+            {
+                scrollRect_GrandFather.horizontalNormalizedPosition = Mathf.Lerp(0, startPoint, time / totalTime);
+            }
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+    #endregion
 
 }

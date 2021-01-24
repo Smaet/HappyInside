@@ -135,6 +135,8 @@ public class collegueDevice
 
 public class User : MonoBehaviour
 {
+    public bool isFirst;
+
     public UserBaseProperties userBaseProperties;
 
 
@@ -242,6 +244,7 @@ public class User : MonoBehaviour
 
         }
 
+        GameManager.Instance.SaveUserData();
     }
 
     public void SetUserInfo(ChangeableUserProperties _changeableIndex, long _value)
@@ -315,6 +318,8 @@ public class User : MonoBehaviour
 
 
         }
+
+        GameManager.Instance.SaveUserData();
     }
 
     public void SetUserInfo(ChangeableUserProperties _changeableIndex, float _value)
@@ -333,6 +338,8 @@ public class User : MonoBehaviour
                 break;
 
         }
+
+        GameManager.Instance.SaveUserData();
     }
 
     public void SetUserInfo(CollegueIndex _collegueIndex, collegueInfo _info)
@@ -346,10 +353,13 @@ public class User : MonoBehaviour
         Debug.Log(_info.collegueIndex.ToString() +  " Level : " + userBaseProperties.collegueInfos[(int)_collegueIndex].Level);
         Debug.Log(_info.collegueIndex.ToString() + " ItemLevel : " + userBaseProperties.collegueInfos[(int)_collegueIndex].itemLevel);
         Debug.Log(_info.collegueIndex.ToString() + " DeviceLevel : " + userBaseProperties.collegueInfos[(int)_collegueIndex].deviceLevel);
-        
+
         //유저의 정보에 따라 UI 갱신 
+
+        GameManager.Instance.SaveUserData();
     }
 
     #endregion
+
 
 }

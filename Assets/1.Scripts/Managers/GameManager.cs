@@ -28,6 +28,7 @@ public class GameManager : SimpleSingleton<GameManager>
     [Header("User"), SerializeField] 
     public User user;
 
+    public bool isSave = false;
 
 
     // Score
@@ -50,12 +51,15 @@ public class GameManager : SimpleSingleton<GameManager>
 
         Init();
 
+       //ClearUserData();
+
         SetUserInfo();
 
      }
 
     private void Start()
     {
+       
         //각종 초기화
         HomeManager.Instance.Init();
 
@@ -103,95 +107,103 @@ public class GameManager : SimpleSingleton<GameManager>
     #region UserData
     public void SetUserInfo()
     {
-       
-        User tempUserData = new User();
-        //user.SetNick("HappyRiccc22222");
-
-        tempUserData.userBaseProperties = new UserBaseProperties();
-        tempUserData.userBaseProperties.nickName = "플렉스";
-        tempUserData.userBaseProperties.crystal = 9999;
-        tempUserData.userBaseProperties.startMoney = 50000000000;
-        tempUserData.userBaseProperties.ConsumptionMoney = 0;
-        tempUserData.userBaseProperties.manipulatedMoney = 5000000000;
-        tempUserData.userBaseProperties.resultMoney = 0;
-        tempUserData.userBaseProperties.recentChangeMoney = 0;
-        tempUserData.userBaseProperties.gameHour = 0;
-        tempUserData.userBaseProperties.daysElapsed = 1;
-        tempUserData.userBaseProperties.doubt = 0;
-        tempUserData.userBaseProperties.pinkChip = 100000;
-        tempUserData.userBaseProperties.FlexConsumption = 0;
-        tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
         
-        for(int i=0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
+
+        if(LoadUserData() == false)
         {
-            tempUserData.userBaseProperties.collegueInfos[i] = new collegueInfo();
-            if(i == (int)CollegueIndex.HACKER)
+            Debug.Log("저장된 데이터 호출!!");
+            User tempUserData = new User();
+            //user.SetNick("HappyRiccc22222");
+
+            tempUserData.isFirst = true;
+
+            tempUserData.userBaseProperties = new UserBaseProperties();
+            tempUserData.userBaseProperties.nickName = "플렉스";
+            tempUserData.userBaseProperties.crystal = 9999;
+            tempUserData.userBaseProperties.startMoney = 50000000000;
+            tempUserData.userBaseProperties.ConsumptionMoney = 0;
+            tempUserData.userBaseProperties.manipulatedMoney = 5000000000;
+            tempUserData.userBaseProperties.resultMoney = 0;
+            tempUserData.userBaseProperties.recentChangeMoney = 0;
+            tempUserData.userBaseProperties.gameHour = 0;
+            tempUserData.userBaseProperties.daysElapsed = 1;
+            tempUserData.userBaseProperties.doubt = 0;
+            tempUserData.userBaseProperties.pinkChip = 100000;
+            tempUserData.userBaseProperties.FlexConsumption = 0;
+            tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
+
+            for (int i = 0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
             {
-                tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
-
-                tempUserData.userBaseProperties.collegueInfos[i].Level = 1;
-                tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 1;
-                tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 1;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new collegueBasicSkill();
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
-
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new colleguePassiveSkill[3];
-
-                for(int j = 0; j < 3; j++)
+                tempUserData.userBaseProperties.collegueInfos[i] = new collegueInfo();
+                if (i == (int)CollegueIndex.HACKER)
                 {
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new colleguePassiveSkill();
+                    tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
+
+                    tempUserData.userBaseProperties.collegueInfos[i].Level = 1;
+                    tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 1;
+                    tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 1;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new collegueBasicSkill();
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
+
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new colleguePassiveSkill[3];
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new colleguePassiveSkill();
+                    }
+
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
+
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new collegueItem();
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.isActive = true;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 10;
+
+                }
+                else
+                {
+                    tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
+
+                    tempUserData.userBaseProperties.collegueInfos[i].Level = 0;
+                    tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 0;
+                    tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 0;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new collegueBasicSkill();
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
+
+
+
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new colleguePassiveSkill[3];
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new colleguePassiveSkill();
+                    }
+
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
                 }
 
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
-
-                tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new collegueItem();
-                tempUserData.userBaseProperties.collegueInfos[i].collegueItem.isActive = true;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 10;
-
             }
-            else
-            {
-                tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
-
-                tempUserData.userBaseProperties.collegueInfos[i].Level = 0;
-                tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 0;
-                tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 0;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new collegueBasicSkill();
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
-                tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
 
 
-
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new colleguePassiveSkill[3];
-
-                for (int j = 0; j < 3; j++)
-                {
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new colleguePassiveSkill();
-                }
-
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
-                tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
-            }
-         
+            user.SetUserInfo(tempUserData);
+        }
+        else
+        {
+            Debug.Log("초기 데이터로 시작!");
         }
 
-        user.SetUserInfo(tempUserData);
-
         //Debug.Log(localUser.nickName);
 
-        //ES3.Save<User>("localUser", user);
-
-        //User localUser = ES3.Load<User>("localUser");
-
-        //Debug.Log(localUser.nickName);
+        
 
 
     }
@@ -263,5 +275,55 @@ public class GameManager : SimpleSingleton<GameManager>
 
         return result;
     }
+    #endregion
+
+
+    #region LocalSave
+
+    public void SaveUserData()
+    {
+        ES3.Save("localUser",user);
+
+        if (ES3.KeyExists("localUser"))
+        {
+            Debug.Log("저장 완료");
+        }
+        else
+        {
+            Debug.Log("저장 실패");
+        }
+
+    }
+
+    public bool LoadUserData()
+    {
+        if(ES3.KeyExists("localUser"))
+        {
+            user = ES3.Load<User>("localUser");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        
+
+       
+    }
+
+    public void ClearUserData()
+    {
+        if(ES3.KeyExists("localUser"))
+        {
+            ES3.DeleteKey("localUser");
+        }
+        else
+        {
+            Debug.Log("저장된 데이터가 존재하지 않음");
+        }
+      
+    }
+
     #endregion
 }
