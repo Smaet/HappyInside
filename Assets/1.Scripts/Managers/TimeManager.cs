@@ -197,12 +197,17 @@ public class TimeManager : MonoBehaviour
                 grandFather.isRunning = false;
                 if(grandFather.isPlus)
                 {
-                    GameManager.Instance.user.userBaseProperties.doubt -= grandFather.effect_Doubt;
+                    grandFather.isPlus = false;
+                    GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, -grandFather.effect_Doubt);
                 }
                 else
                 {
-                    GameManager.Instance.user.userBaseProperties.doubt += grandFather.effect_Doubt;
+                    grandFather.isPlus = false;
+                    GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, +grandFather.effect_Doubt);
                 }
+
+                GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
+
                 yield break;
             }
 

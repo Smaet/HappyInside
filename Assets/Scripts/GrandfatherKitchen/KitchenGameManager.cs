@@ -230,23 +230,33 @@ public class KitchenGameManager : MonoBehaviour
             uiView_ResultScreen.gameObject.GetComponentInChildren<Text>().text = "성공";
 
        
+            if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
+            {
+                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive = true;
+                //GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime
 
-            GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive = true;
-            //GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime
+                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isPlus = true;
 
-            GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isPlus = true;
+                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt);
 
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt);
-
+                //현재 의심도 슬라이더에 반영
+                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(GameManager.Instance.user.userBaseProperties.doubt);
+            }
+            
         }
         else
         {
             uiView_ResultScreen.gameObject.GetComponentInChildren<Text>().text = "실패";
-            GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive = true;
-            //GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime
-            GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isPlus = false;
+            if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
+            {
+                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive = true;
+                //GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime
+                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isPlus = false;
 
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, -GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt);
+                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, -GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt);
+
+            }
+
 
 
         }

@@ -51,7 +51,7 @@ public class GameManager : SimpleSingleton<GameManager>
 
         Init();
 
-        ClearUserData();
+        //ClearUserData();
 
         SetUserInfo();
 
@@ -59,7 +59,7 @@ public class GameManager : SimpleSingleton<GameManager>
 
     private void Start()
     {
-       
+
         //각종 초기화
         HomeManager.Instance.Init();
 
@@ -82,9 +82,15 @@ public class GameManager : SimpleSingleton<GameManager>
         HomeManager.Instance.timeManager.StartGameTime(user.userBaseProperties.gameHour, user.userBaseProperties.daysElapsed);
 
         //활성화 되어있는 동료들 활성화
-        if(userProperties.collegueInfos[(int)CollegueIndex.HACKER].isActive)
+        if (userProperties.collegueInfos[(int)CollegueIndex.HACKER].isActive)
         {
             HomeManager.Instance.timeManager.StartRunHacker();
+        }
+
+        //활성화 되어있는 버프들 활성화
+        if (userProperties.buffs[0].isActive)
+        {
+            HomeManager.Instance.timeManager.StartGrandFatherBuff();
         }
 
 
@@ -137,7 +143,7 @@ public class GameManager : SimpleSingleton<GameManager>
             tempUserData.userBaseProperties.buffs[0] = new Buff();
             tempUserData.userBaseProperties.buffs[0].isActive = false;
             tempUserData.userBaseProperties.buffs[0].isRunning = false;
-            tempUserData.userBaseProperties.buffs[0].continueTime = 12;
+            tempUserData.userBaseProperties.buffs[0].continueTime = 3;
             tempUserData.userBaseProperties.buffs[0].effect_Doubt = 5;
 
             for (int i = 0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)

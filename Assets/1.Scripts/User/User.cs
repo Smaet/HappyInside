@@ -361,9 +361,7 @@ public class User : MonoBehaviour
             case ChangeableUserProperties.DOUBT:
                 userBaseProperties.doubt += _value;
                 Debug.Log("현재 의심도 : " + userBaseProperties.doubt);
-                //현재 의심도
-                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(_value);
-
+            
                 //각종 의심도 관련된 버프 On/off;
                 if (userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive && userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isRunning == false)
                 {
@@ -397,6 +395,15 @@ public class User : MonoBehaviour
         Debug.Log(_info.collegueIndex.ToString() + " DeviceLevel : " + userBaseProperties.collegueInfos[(int)_collegueIndex].deviceLevel);
 
         //유저의 정보에 따라 UI 갱신 
+
+        GameManager.Instance.SaveUserData();
+    }
+
+    public void SetUserInfo(BuffIndex _buffIndex, Buff _info)
+    {
+
+        userBaseProperties.buffs[(int)_buffIndex] = _info;
+
 
         GameManager.Instance.SaveUserData();
     }

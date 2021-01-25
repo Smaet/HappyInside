@@ -39,7 +39,7 @@ public class ComprehensivePanel : MonoBehaviour
     public void SetCurrentDoubtStatus_Slider(float _doubt)
     {
 
-        CurrentDoubtStatus_Slider.value += _doubt;
+        CurrentDoubtStatus_Slider.value += _doubt * 0.01f;
         Debug.Log("현재 의심도 : " + _doubt + "%");
         GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, _doubt);
     }
