@@ -21,9 +21,9 @@ public class AgitManager : MonoBehaviour
    
     [Header("Agits")]
     [SerializeField]
-    private Agit_A agit_A;
+    public Agit_A agit_A;
     [SerializeField]
-    private Agit_B agit_B;
+    public Agit_B agit_B;
 
     [SerializeField]
     private Button agitA_Button;
@@ -69,6 +69,11 @@ public class AgitManager : MonoBehaviour
         switch(_agit)
         {
             case Agit_Index.AGIT_A:
+                //레벨에 따른 UI 셋팅
+
+
+
+
                 agit_A.OpenAgit();
                 curAgit = Agit_Index.AGIT_A;
                 //Add To UINavigation

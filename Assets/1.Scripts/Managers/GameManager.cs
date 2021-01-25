@@ -51,7 +51,7 @@ public class GameManager : SimpleSingleton<GameManager>
 
         Init();
 
-       //ClearUserData();
+        ClearUserData();
 
         SetUserInfo();
 
@@ -73,7 +73,7 @@ public class GameManager : SimpleSingleton<GameManager>
 
         //상단 패널 셋팅
         HomeManager.Instance.topUIManager.SetCrystal(userProperties.crystal);
-        HomeManager.Instance.topUIManager.SetNotice("4일 19시간후 할아버지의 의심도 오를 확률이 큼!!");
+        HomeManager.Instance.topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
         HomeManager.Instance.topUIManager.SetPinkChip(userProperties.pinkChip);
         HomeManager.Instance.topUIManager.SetHour(userProperties.gameHour);
         HomeManager.Instance.topUIManager.SetDays(userProperties.daysElapsed);
@@ -119,18 +119,26 @@ public class GameManager : SimpleSingleton<GameManager>
 
             tempUserData.userBaseProperties = new UserBaseProperties();
             tempUserData.userBaseProperties.nickName = "플렉스";
-            tempUserData.userBaseProperties.crystal = 9999;
+            tempUserData.userBaseProperties.crystal = 99;
             tempUserData.userBaseProperties.startMoney = 50000000000;
             tempUserData.userBaseProperties.ConsumptionMoney = 0;
             tempUserData.userBaseProperties.manipulatedMoney = 5000000000;
             tempUserData.userBaseProperties.resultMoney = 0;
             tempUserData.userBaseProperties.recentChangeMoney = 0;
+            tempUserData.userBaseProperties.donateMoney = 1000000000;
             tempUserData.userBaseProperties.gameHour = 0;
             tempUserData.userBaseProperties.daysElapsed = 1;
             tempUserData.userBaseProperties.doubt = 0;
-            tempUserData.userBaseProperties.pinkChip = 100000;
+            tempUserData.userBaseProperties.pinkChip = 1000;
             tempUserData.userBaseProperties.FlexConsumption = 0;
             tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
+
+            tempUserData.userBaseProperties.buffs = new Buff[1];
+            tempUserData.userBaseProperties.buffs[0] = new Buff();
+            tempUserData.userBaseProperties.buffs[0].isActive = false;
+            tempUserData.userBaseProperties.buffs[0].isRunning = false;
+            tempUserData.userBaseProperties.buffs[0].continueTime = 12;
+            tempUserData.userBaseProperties.buffs[0].effect_Doubt = 5;
 
             for (int i = 0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
             {

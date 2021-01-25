@@ -99,6 +99,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     public TopUIManager topUIManager ;
     public ComprehensivePanel comprehensivePanel;
+    public GrandFatherHouseManager grandFatherHouseManager;
     #endregion
 
     #region Variables
@@ -570,7 +571,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
         if (isButtonOn_GrandFather == false)
         {
-            startPoint = 0;
+            startPoint = 0.03f;
         }
         else
         {
@@ -584,7 +585,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
                 if (isButtonOn_GrandFather == false)
                 {
                     isButtonOn_GrandFather = true;
-                    scrollRect_GrandFather.horizontalNormalizedPosition = 0;
+                    scrollRect_GrandFather.horizontalNormalizedPosition = 0.03f;
                 }
                 else
                 {

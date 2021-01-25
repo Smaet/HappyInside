@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using Polo;
+using TMPro;
 
 public class DepartmentStoreGame : BaseFlexPlaceGame
 {
@@ -46,7 +47,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 
     [Header("Score")]
     [SerializeField]
-    private Text score_Text;                    
+    private TextMeshProUGUI score_Text;                    
     [SerializeField]
     private long score;                        //점수(결제 금액 +)
     private bool isScoreDouble;
@@ -466,6 +467,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
             
             if(timeToZero >= cardResetToZeroTime)
             {
+                cardReader_Slider.value = 0;
                 isCardReset = true;
                 yield break;
             }

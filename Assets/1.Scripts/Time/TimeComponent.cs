@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimeComponent : MonoBehaviour
 {
     [SerializeField]
-    protected Text text;
+    protected TextMeshProUGUI text;
     [SerializeField]
     protected bool isTimerOn = false;
     [SerializeField]

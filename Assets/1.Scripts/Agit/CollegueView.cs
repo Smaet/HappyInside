@@ -97,14 +97,30 @@ public class CollegueView : MonoBehaviour
             if (info.Level == 10)
             {
                 info.colleguePassiveSkills[0].isActive = true;
+                //아지트 마다 레벨에 따른 UI 갱신
+                if(curCollegue == CollegueIndex.HACKER)
+                {
+                    HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
+                }
+           
             }
             else if (info.Level == 20)
             {
                 info.colleguePassiveSkills[1].isActive = true;
+                //아지트 마다 레벨에 따른 UI 갱신
+                if (curCollegue == CollegueIndex.HACKER)
+                {
+                    HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
+                }
             }
             else if (info.Level == 30)
             {
                 info.colleguePassiveSkills[2].isActive = true;
+                //아지트 마다 레벨에 따른 UI 갱신
+                if (curCollegue == CollegueIndex.HACKER)
+                {
+                    HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
+                }
             }
   
             //유저 정보에 반영

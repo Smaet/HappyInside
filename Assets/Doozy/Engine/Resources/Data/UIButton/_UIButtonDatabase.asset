@@ -26,6 +26,9 @@ MonoBehaviour:
   - CollegueDevice
   - Collegue_PinkChip
   - HappyRich_HomeMenu
+  - HappyRich_Flex_GrandFatherHouse
+  - HappyRich_Flex_GrandFatherHouse_Kitchen
+  - HappyRich_Flex_SpaceLab
   Categories:
   - {fileID: 11400000, guid: 921503f73ba0d0d48a43ffe857508ab9, type: 2}
   - {fileID: 11400000, guid: aededc754a576394ca0ae8581e5e5bef, type: 2}
@@ -38,3 +41,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6e40bda2e31c49498a40eebfd773b1d, type: 2}
   - {fileID: 11400000, guid: a6f4e7ba415724e41b9f37a0df7c7083, type: 2}
   - {fileID: 11400000, guid: e652d4476b365274e9cb26cf17ba393b, type: 2}
+  - {fileID: 11400000, guid: 996680b0afd865544b20bc146d799725, type: 2}
+  - {fileID: 11400000, guid: 428abac2e1d743b4e8f9f7d0a74f5d15, type: 2}
+  - {fileID: 11400000, guid: 10401f784c5e96a4e9c86c4b2fd3f4f8, type: 2}

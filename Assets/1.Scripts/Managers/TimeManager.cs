@@ -118,7 +118,7 @@ public class TimeManager : MonoBehaviour
             yield return null;
         }
     }
-
+    #region 해커의 시간 관련
     public void StartRunHacker()
     {
         Debug.Log("<color=red>Hacker 활성화!</color>");
@@ -163,5 +163,53 @@ public class TimeManager : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
+
+    #region 할아버지 버프
+    public void StartGrandFatherBuff()
+    {
+        Debug.Log("<color=red>할아버지 버프 활성화!</color>");
+        StartCoroutine(GrandFatherBuff());
+    }
+
+    IEnumerator GrandFatherBuff()
+    {
+        float time = 0;
+        float hourCount = 0;
+
+        Buff grandFather = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER];
+
+        while (true)
+        {
+
+            if (time >= HourUpdateCycle)        //시간이 바뀔때.
+            {
+                time = 0;
+                hourCount++;
+                Debug.Log("<color=green>할아버지 버프 남은 시간.  </color> : " + (grandFather.continueTime - hourCount));
+            }
+
+            else if (hourCount >= grandFather.continueTime)
+            {
+                hourCount = 0;
+                Debug.Log("<color=red>할아버지 버프 종료  </color>");
+                grandFather.isActive = false;
+                grandFather.isRunning = false;
+                if(grandFather.isPlus)
+                {
+                    GameManager.Instance.user.userBaseProperties.doubt -= grandFather.effect_Doubt;
+                }
+                else
+                {
+                    GameManager.Instance.user.userBaseProperties.doubt += grandFather.effect_Doubt;
+                }
+                yield break;
+            }
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+    #endregion
     #endregion
 }

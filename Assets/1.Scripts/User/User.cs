@@ -28,6 +28,12 @@ public enum CollegueIndex
     TRADER,
 }
 
+public enum BuffIndex
+{
+    NONE = -1,
+    GRANDFATHER = 0,
+}
+
 
 
 
@@ -46,6 +52,8 @@ public enum ChangeableUserProperties
     PINKCHIP,
     FLEXCONSUMPTION,
     HACKER,
+    BUFF,
+
 
 }
 
@@ -62,6 +70,7 @@ public class UserBaseProperties
     public long resultMoney;                //현재 잔액
     public long recentChangeMoney;          //최근 변화된 돈
     public long FlexConsumption;            //누적 소비액  --> 해당 금액에 따른 난이도 변화
+    public long donateMoney;                 //기부하는 돈
     public int gameHour;                  //게임 시간
     public int daysElapsed;               //경과된 일수
     public float doubt;                     //의심도
@@ -77,8 +86,28 @@ public class UserBaseProperties
         {
             collegueInfos[i] = new collegueInfo();
         }
+
+        buffs = new Buff[1];
+        buffs[0] = new Buff();
+
     }
+
+    public Buff[] buffs;
+   
+
 }
+
+[Serializable]
+public class Buff
+{
+    public bool isActive;           //활성화 인지 아닌지
+    public bool isRunning;          //활성화 인지 아닌지
+    public bool isPlus;             //플러스 효과인지 마이너스 효과인지
+    public int continueTime;        //지속시간
+    public float effect_Doubt;      //의심에 사용되는 효과 수치
+}
+
+
 
 [Serializable]
 public class collegueInfo
@@ -166,6 +195,7 @@ public class User : MonoBehaviour
         userBaseProperties.pinkChip = _userInfo.userBaseProperties.pinkChip;
         userBaseProperties.FlexConsumption = _userInfo.userBaseProperties.FlexConsumption;
         userBaseProperties.collegueInfos = _userInfo.userBaseProperties.collegueInfos;
+        userBaseProperties.buffs = _userInfo.userBaseProperties.buffs;
 
 
         Debug.Log("NickName : " + userBaseProperties.nickName);
@@ -331,6 +361,18 @@ public class User : MonoBehaviour
             case ChangeableUserProperties.DOUBT:
                 userBaseProperties.doubt += _value;
                 Debug.Log("현재 의심도 : " + userBaseProperties.doubt);
+                //현재 의심도
+                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(_value);
+
+                //각종 의심도 관련된 버프 On/off;
+                if (userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive && userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isRunning == false)
+                {
+                    userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isRunning = true;
+                    HomeManager.Instance.timeManager.StartGrandFatherBuff();
+                }
+
+
+
                 break;
             case ChangeableUserProperties.PINKCHIP:
                 userBaseProperties.pinkChip += _value;

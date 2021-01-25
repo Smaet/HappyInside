@@ -1534,6 +1534,10 @@ namespace Febucci.UI
                 tmproText.rectTransform.rect != sourceRect ||
                 tmproText.color != sourceColor)
             {
+                if(tmproText != null)
+                {
+                   
+                }
                 tmproText.ForceMeshUpdate();
                 CopyMeshSources();
             }

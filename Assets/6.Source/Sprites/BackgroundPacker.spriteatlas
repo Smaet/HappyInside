@@ -55,24 +55,126 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
-    totalSpriteSurfaceArea: 9119133
+    totalSpriteSurfaceArea: 26206925
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 2331fe500cfe91b48a86bc53348b93a9, type: 3}
+  - {fileID: 21300000, guid: bba670a1b06971e458eb4ca93ccbbaf5, type: 3}
+  - {fileID: 21300000, guid: 02f75cb1be72bb348a636956d7de89fe, type: 3}
+  - {fileID: 21300000, guid: e219d1f136e5edd4493c2f5a735c50ae, type: 3}
   - {fileID: 21300000, guid: 453de112b67afd749b46dc5373d3dd34, type: 3}
+  - {fileID: 21300000, guid: 74d86b12625ffdd48b3e27d930e02323, type: 3}
+  - {fileID: 21300000, guid: 1ee740d25a5343d4abfd21399e7e6e75, type: 3}
   - {fileID: 21300000, guid: 8fededf273a9eac4ebb1bd7d11078a23, type: 3}
+  - {fileID: 21300000, guid: 9aae71234365f9e42b36385ade16a1b4, type: 3}
   - {fileID: 21300000, guid: f2ff7033f9ba38546a2b64c9a79998f7, type: 3}
+  - {fileID: 21300000, guid: 3a5d166364e1e4848b9b662ecde33e00, type: 3}
+  - {fileID: 21300000, guid: 6014af93f9748f14a8e331ea79f5c94e, type: 3}
+  - {fileID: 21300000, guid: 474f71643cdd3c84792fb2e2ae00ee4c, type: 3}
+  - {fileID: 21300000, guid: a37a88942c5e14449b5d31003c77438d, type: 3}
   - {fileID: 21300000, guid: 121def948fa5edf468041e25da198537, type: 3}
+  - {fileID: 21300000, guid: a2e283c414df00f4683d7b969b3d3d82, type: 3}
+  - {fileID: 21300000, guid: 6c2904e48e3d41246be4b53e7f012582, type: 3}
+  - {fileID: 21300000, guid: 8c20ba05b98ffdc4baec594b4af7b8be, type: 3}
+  - {fileID: 21300000, guid: a91534158c884354fbd9ad378bda735d, type: 3}
+  - {fileID: 2633349906043280298, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: -2693328608880304861, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: -2109053095975145537, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: -4488202513118378987, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: -7980269704064506164, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: 7997536130913397317, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: 18512840858349126, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: -2613359734092417689, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: 2676681569513424242, guid: 16918c358c44bb549959d3ed8cd5df9d, type: 3}
+  - {fileID: 21300000, guid: 44bf3975413065f4195481d154f878ca, type: 3}
   - {fileID: 21300000, guid: 61fa5d466f96c6a45b07e1dbbb9e7257, type: 3}
+  - {fileID: 21300000, guid: 43ae45372f91ec94692c8b994c72c438, type: 3}
+  - {fileID: 21300000, guid: 6bbbca47905925c4c880c18cbace1f62, type: 3}
+  - {fileID: 21300000, guid: 14a7dd67fce671041a26a2f4da5b4bde, type: 3}
+  - {fileID: 21300000, guid: b6980db714b7af94ab465ee1aff471fa, type: 3}
+  - {fileID: 21300000, guid: 32b3b4d7d363cbb42b0efae2bddcdec6, type: 3}
+  - {fileID: 21300000, guid: 92d056d72ed7f2b489e29799a7348ae3, type: 3}
   - {fileID: 21300000, guid: 1f1e234866ec05b418bb25ad9c06015c, type: 3}
+  - {fileID: 21300000, guid: fc193e680e5b78343b07dac6539e1b7e, type: 3}
+  - {fileID: 21300000, guid: 9dd330c8dad7c3c4b937c5be5a60e246, type: 3}
+  - {fileID: 21300000, guid: 00af6c499fa55be4da829b7ae29a6149, type: 3}
+  - {fileID: 21300000, guid: 1b883b89ecadc5f41b875e4af94a7915, type: 3}
+  - {fileID: 21300000, guid: 306ec80a18a613646b1e5e5070e3be3d, type: 3}
   - {fileID: 21300000, guid: 53f4044ade0965540a00c5fe6edb7b3c, type: 3}
+  - {fileID: 21300000, guid: 2f6f23cb740cf7542bcb25b40341a5dd, type: 3}
+  - {fileID: 21300000, guid: ef59391c0d921974eb985746cc13f641, type: 3}
+  - {fileID: 21300000, guid: 874a263c3d0b1c84bb5452a40614e1fc, type: 3}
+  - {fileID: 21300000, guid: d432bfdc805ba8f4a92711771af2bb68, type: 3}
+  - {fileID: 21300000, guid: cacaec0d042e70e41a232bcc64d2d204, type: 3}
+  - {fileID: 21300000, guid: 8bfbdb5d1dfedfa45a3110ccffe6d43e, type: 3}
+  - {fileID: 21300000, guid: 7ef2e88dea6aacc4895ebf1854af6a5a, type: 3}
+  - {fileID: 21300000, guid: eb8284cd8872283448ae4a4d8dfefa9e, type: 3}
+  - {fileID: 21300000, guid: 709d7bedecb9f4344893c342cb07ed42, type: 3}
+  - {fileID: 21300000, guid: fb78fd0ea5393204dad9a2f95c29c5cc, type: 3}
+  - {fileID: 21300000, guid: e8a5c72eedc82d142b315828d9a0049b, type: 3}
+  - {fileID: 21300000, guid: 349f3deeeecd46941b25eb383af5347e, type: 3}
+  - {fileID: 21300000, guid: 17c27d2fda44bc84ba880534b29d31d8, type: 3}
+  - {fileID: 21300000, guid: 567cf3afe27bb4f45b7a33f95d6f01af, type: 3}
+  - {fileID: 21300000, guid: 1c26f3ef42a0bf745800c1b5c371280a, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Im_H_Azit_A
+  - ttt
+  - Im_H_I_HambergerBar_Button
+  - Im_H_I_HambergerBar_Popup3
   - flex1_003
+  - Im_H_I_BlackCoinFrame
   - Im_H_Background
+  - Im_H_Background
+  - Im_H_MoveAzit_Background
   - m_door_R
+  - Im_H_I_HambergerBar_Popup2
+  - Im_H_Airport
+  - Im_H_I_NickFrame
+  - flex_grandpa_temp
   - minigame_background
+  - Im_H_MoveAzit_Flex_Background_Cheak
+  - Im_H_Azit_B
+  - Im_H_MoveAzit_Button
+  - homeSample
+  - Im_H_I_ConciousGage_Me_4
+  - Im_H_I_ConciousGage_Me_5
+  - Im_H_I_ConciousGage_Me_6
+  - Im_H_I_ConciousGage_Me_7
+  - Im_H_I_ConciousGage_Me_0
+  - Im_H_I_ConciousGage_Me_1
+  - Im_H_I_ConciousGage_Me_2
+  - Im_H_I_ConciousGage_Me_3
+  - Im_H_I_ConciousGage_Me_8
+  - Im_H_I_Blackcoin_PlusButton
   - flex3_002
+  - Im_H_I_CrystalFrame
+  - Im_H_I_Touch_Button
+  - Im_H_I_Notice
+  - Im_H_I_Concious_Button
+  - Im_H_GF_House
+  - Im_H_I_CrystalFrame_PlusButton
   - m_curtain 2
+  - agita_background
+  - Im_H_I_Close_Button
+  - Im_H_I_TopBar
+  - Im_H_I_HambergerBar_Popup5
+  - Im_H_I_Concious_Background
   - m_door_L
+  - Im_H_I_ConciousGage_Grandfather
+  - Im_H_I_NickRank_Bronze
+  - Im_H_I_HambergerBar_Popup
+  - Im_H_I_HambergerBar_Popup6
+  - Im_H_I_HambergerBar_Popup4
+  - Im_H_MoveFlex_Button
+  - Im_H_Store
+  - Im_H_I_GameTimeFrame
+  - Im_H_Casino
+  - Im_H_I_Concious_Arrow
+  - Im_H_Spacelab
+  - Im_H_MoveFlex_Background
+  - Im_H_I_Concious_Background2
+  - Im_H_I_Concious_Background2_text
+  - Im_H_I_Concious_Button2
   m_Tag: BackgroundPacker
   m_IsVariant: 0

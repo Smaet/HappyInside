@@ -7,7 +7,12 @@ public class Agit_A : BaseAgit
     public override void OpenAgit()
     {
         Init();
+        SetCollegueUI(CollegueIndex.HACKER);
+
+
     }
+
+    public ColleguePanel[] colleguePanels;
 
 
     public void OnUseMouse()
@@ -19,5 +24,16 @@ public class Agit_A : BaseAgit
     public void OnCollegueButtonClick()
     {
 
+    }
+
+    public void SetCollegueUI(CollegueIndex _index)
+    {
+        switch(_index)
+        {
+            case CollegueIndex.HACKER:
+                colleguePanels[0].SetUI(GameManager.Instance.user.userBaseProperties.collegueInfos[(int)_index]);
+
+                break;
+        }
     }
 }
