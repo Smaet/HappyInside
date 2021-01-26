@@ -20,6 +20,8 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 
     [Header("ShoppingList")]
     [SerializeField]
+    private GameObject ShoppingListObject;
+    [SerializeField]
     private int shoppingCounts = 0;
     [SerializeField]
     private Image ShoppingItem;
@@ -109,6 +111,8 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         resultPanel.Init();
 
         SetCardReader(false);
+
+        ShoppingListObject.SetActive(false);
     }
 
     public override void OpenFlexPlaceGame()
@@ -131,6 +135,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 
     public void StartGame()
     {
+        ShoppingListObject.SetActive(true);
         isGamePlaying = true;
         StartTimer();
         curtainPanel.StartGameCurtain();

@@ -14,19 +14,24 @@ public class ColleguePanel : MonoBehaviour
 
     public void SetUI(collegueInfo _info)
     {
-        if (_info.Level < 10)
+        if(_info.Level < 10)
         {
-            Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/hacker_lv01");
+            Sprite sprite = Resources.Load<Sprite>("Agit/Transparency");
             collegueItem_Image.sprite = sprite;
         }
-        else if (_info.Level < 20)
+        else if (_info.Level < 19)
         {
-            Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/hacker_lv02");
+            Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/agitA_h_lv02");
+            collegueItem_Image.sprite = sprite;
+        }
+        else if (_info.Level < 29)
+        {
+            Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/agitA_h_lv03");
             collegueItem_Image.sprite = sprite;
         }
         else if (_info.Level < 30)
         {
-            Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/hacker_lv03");
+            Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/agitA_h_lv04");
             collegueItem_Image.sprite = sprite;
         }
     }

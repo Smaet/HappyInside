@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
-    totalSpriteSurfaceArea: 29722822
+    totalSpriteSurfaceArea: 29984966
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -132,6 +132,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 709d7bedecb9f4344893c342cb07ed42, type: 3}
   - {fileID: 21300000, guid: fb78fd0ea5393204dad9a2f95c29c5cc, type: 3}
   - {fileID: 21300000, guid: e8a5c72eedc82d142b315828d9a0049b, type: 3}
+  - {fileID: 21300000, guid: bb99fa3e3d3f13e43994e0f32f9c3636, type: 3}
   - {fileID: 21300000, guid: 3117636ec7ab2504fbabc42262fa3bf6, type: 3}
   - {fileID: 21300000, guid: 73a7a46ebdd2a1d4088ce0c967b79e65, type: 3}
   - {fileID: 21300000, guid: 349f3deeeecd46941b25eb383af5347e, type: 3}
@@ -227,6 +228,7 @@ SpriteAtlas:
   - Im_H_Casino
   - Im_H_I_Concious_Arrow
   - Im_H_Spacelab
+  - Transparency
   - Im_H_MoveFlex_Home2
   - Azit_3_Character_Vovely
   - Im_H_MoveFlex_Background
