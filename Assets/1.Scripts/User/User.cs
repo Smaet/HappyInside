@@ -19,6 +19,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DoubtIndex
+{
+    BASIC = 0,
+    GRANDFATHER,
+}
+
+
 public enum CollegueIndex
 {
     HACKER = 0,
@@ -73,7 +80,7 @@ public class UserBaseProperties
     public long donateMoney;                 //기부하는 돈
     public int gameHour;                  //게임 시간
     public int daysElapsed;               //경과된 일수
-    public float doubt;                     //의심도
+    public Doubt doubt;                     //의심도
     public float pinkChip;                  //핑크칩?
 
 
@@ -96,15 +103,37 @@ public class UserBaseProperties
    
 
 }
+[Serializable]
+public class Doubt
+{
+    public double curDoubt;                 //현재 의심도
+    public double basicDoubt;               //기본적인 의심 공식에 의한 값
+    public double GrandFatherDoubt;         //할아버지 집에 갔을때 영향을 받은 값.
+
+
+    public void UpdateDoubt()
+    {
+        curDoubt = basicDoubt + GrandFatherDoubt;
+        if(curDoubt <= 0)
+        {
+            curDoubt = 0;
+        }
+    }
+}
+
 
 [Serializable]
 public class Buff
 {
-    public bool isActive;           //활성화 인지 아닌지
-    public bool isRunning;          //활성화 인지 아닌지
-    public bool isPlus;             //플러스 효과인지 마이너스 효과인지
-    public int continueTime;        //지속시간
-    public float effect_Doubt;      //의심에 사용되는 효과 수치
+    public bool isActive;                   //활성화 인지 아닌지
+    public bool isRunning;                  //버프가 돌아가는 중 인지 아닌지
+    public bool isGood;                     //버프가 이로운 효과 인지 아닌지
+    public bool isBuffed;
+    public bool isReset;                    //리셋을 하는지 아닌지
+    public int continueTime;                //지속시간
+    public int remainTime;                  //남은시간
+    public float effect_Doubt_Plus;         //의심에 사용되는 효과 수치 (이로운 수치)
+    public float effect_Doubt_Minus;        //의심에 사용되는 효과 수치 (이롭지 않은 수치)
 }
 
 
@@ -196,7 +225,7 @@ public class User : MonoBehaviour
         userBaseProperties.FlexConsumption = _userInfo.userBaseProperties.FlexConsumption;
         userBaseProperties.collegueInfos = _userInfo.userBaseProperties.collegueInfos;
         userBaseProperties.buffs = _userInfo.userBaseProperties.buffs;
-
+        userBaseProperties.donateMoney = _userInfo.userBaseProperties.donateMoney;
 
         Debug.Log("NickName : " + userBaseProperties.nickName);
         Debug.Log("crystal : " + userBaseProperties.crystal);
@@ -289,10 +318,15 @@ public class User : MonoBehaviour
                 break;
             case ChangeableUserProperties.CONSUMPTION:
                 userBaseProperties.ConsumptionMoney += _value;
+                Debug.Log("현재 까지 총 소비금액 : " + userBaseProperties.ConsumptionMoney);
+
 
                 //현재 의심도
-                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.ConsumptionMoney, userBaseProperties.manipulatedMoney);
-                Debug.Log("현재 까지 총 소비금액 : " + userBaseProperties.ConsumptionMoney);
+                //조작된 돈으로 인한 기본적인 의심도
+                double doubt_Consumtion = (double)(userBaseProperties.ConsumptionMoney / (double)userBaseProperties.manipulatedMoney) * 100;
+                Debug.Log("조작된 돈으로 인한 의심도 : " + doubt_Consumtion + "%");
+                SetUserInfo(DoubtIndex.BASIC, doubt_Consumtion);
+   
                 break;
 
             case ChangeableUserProperties.MANIPULATEMONEY:
@@ -321,15 +355,21 @@ public class User : MonoBehaviour
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                //현재 의심도
-                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.ConsumptionMoney, userBaseProperties.manipulatedMoney);
-               
-                //현재 재산 정보
+                //조작된 돈으로 인한 기본적인 의심도
+                double doubt_Mani = (double)(userBaseProperties.ConsumptionMoney / userBaseProperties.manipulatedMoney) * 100;
+                Debug.Log("조작된 돈으로 인한 의심도 : " + doubt_Mani + "%");
+                SetUserInfo(DoubtIndex.BASIC, doubt_Mani);
+
+
+                //현재 재산 정보 UI 업데이트
                 HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userBaseProperties.manipulatedMoney);
                 
                 //현재 할아버지의 총 재산에 대한 정보
                 HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
                 Debug.Log("현재 조작된금액 : " + userBaseProperties.manipulatedMoney);
+
+                //해커 동료창에도 UI 갱신
+
                 break;
 
             case ChangeableUserProperties.RESULTMONEY:
@@ -343,7 +383,14 @@ public class User : MonoBehaviour
             case ChangeableUserProperties.FLEXCONSUMPTION:
                 userBaseProperties.FlexConsumption += _value;
                 Debug.Log("현재 플렉스 소비 금액 : " + userBaseProperties.FlexConsumption);
+
+                //현재 의심도
+                //조작된 돈으로 인한 기본적인 의심도
+                //double doubt_FlexConsumtion = (userBaseProperties.ConsumptionMoney / userBaseProperties.manipulatedMoney) * 100;
+                //Debug.Log("조작된 돈으로 인한 의심도 : " + doubt_FlexConsumtion + "%");
+                //SetUserInfo(DoubtIndex.BASIC, doubt_FlexConsumtion);
                 break;
+              
 
 
 
@@ -352,29 +399,58 @@ public class User : MonoBehaviour
         GameManager.Instance.SaveUserData();
     }
 
+    public void SetUserInfo(DoubtIndex _doubtIndex, double _value)
+    {
+        switch (_doubtIndex)
+        {
+
+            case DoubtIndex.BASIC:
+
+                //기본 공식 적용
+                userBaseProperties.doubt.basicDoubt = _value;
+                Debug.Log("현재 조작된 의심도 수치 :  " + userBaseProperties.doubt.basicDoubt + "%");
+
+                //의심도 갱신
+                userBaseProperties.doubt.UpdateDoubt();
+
+                //UI 갱신
+                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.doubt.curDoubt);
+
+                break;
+
+            case DoubtIndex.GRANDFATHER:
+
+                
+                userBaseProperties.doubt.GrandFatherDoubt = _value;
+
+                Debug.Log("할아버지 버프 의심도 수치 : " + userBaseProperties.doubt.GrandFatherDoubt);
+
+                //의심도 갱신
+                userBaseProperties.doubt.UpdateDoubt();
+
+                //UI 갱신
+                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.doubt.curDoubt);
+
+
+                break;
+        }
+
+
+
+    }
+
+
     public void SetUserInfo(ChangeableUserProperties _changeableIndex, float _value)
     {
 
         switch (_changeableIndex)
         {
            
-            case ChangeableUserProperties.DOUBT:
-                userBaseProperties.doubt += _value;
-                Debug.Log("현재 의심도 : " + userBaseProperties.doubt);
-            
-                //각종 의심도 관련된 버프 On/off;
-                if (userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive && userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isRunning == false)
-                {
-                    userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isRunning = true;
-                    HomeManager.Instance.timeManager.StartGrandFatherBuff();
-                }
-
-
-
-                break;
             case ChangeableUserProperties.PINKCHIP:
                 userBaseProperties.pinkChip += _value;
                 Debug.Log("현재 핑크 칩 : " + userBaseProperties.pinkChip);
+                //UI 갱신
+                HomeManager.Instance.topUIManager.SetPinkChip(userBaseProperties.pinkChip);
                 break;
 
         }
@@ -401,11 +477,44 @@ public class User : MonoBehaviour
 
     public void SetUserInfo(BuffIndex _buffIndex, Buff _info)
     {
-
         userBaseProperties.buffs[(int)_buffIndex] = _info;
 
 
-        GameManager.Instance.SaveUserData();
+        switch (_buffIndex)
+        {
+            case BuffIndex.GRANDFATHER:
+
+                if (userBaseProperties.buffs[(int)_buffIndex].isReset == false)
+                {
+                    if (userBaseProperties.buffs[(int)_buffIndex].isBuffed == false)
+                    {
+                        if (userBaseProperties.buffs[(int)_buffIndex].isGood)
+                        {
+                            SetUserInfo(DoubtIndex.GRANDFATHER, userBaseProperties.buffs[(int)_buffIndex].effect_Doubt_Plus);
+                        }
+                        else
+                        {
+                            SetUserInfo(DoubtIndex.GRANDFATHER, userBaseProperties.buffs[(int)_buffIndex].effect_Doubt_Minus);
+                        }
+
+                        userBaseProperties.buffs[(int)_buffIndex].isBuffed = true;
+                    }
+                }
+                else
+                {
+                    SetUserInfo(DoubtIndex.GRANDFATHER, 0);
+                }
+
+             
+
+            
+       
+                GameManager.Instance.SaveUserData();
+
+                break;
+        }
+        
+       
     }
 
     #endregion

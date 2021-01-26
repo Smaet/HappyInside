@@ -14,9 +14,13 @@ public class CollegueView : MonoBehaviour
     public TextMeshProUGUI name_TMP;
     public TextMeshProUGUI level_TMP;
     public TextMeshProUGUI SkillContext_TMP;
+    public TextMeshProUGUI manipulateMoney_TMP;
 
     public TextMeshProUGUI collegueProfile_TMP;
     public TextMeshProUGUI levelUpCost_TMP;
+    public Image[] passiveSkills;
+    public Sprite[] abilityDisableSprites;
+    public Sprite[] abilityEnableSprites;
 
     public Button levelUp_button;
 
@@ -32,6 +36,8 @@ public class CollegueView : MonoBehaviour
                 SetLevel(_info.Level);
                 SetSkillContext(_info.collegueBasicSkill);
                 SetLevelCost();
+                SetManipulateMoney();
+                Init_SetPassiveSkill();
                 break;
             case CollegueIndex.MECHANIC:
                 break;
@@ -50,7 +56,7 @@ public class CollegueView : MonoBehaviour
     }
     public void SetLevel(int _Level)
     {
-        level_TMP.text = string.Format("{0}", _Level) ;
+        level_TMP.text = string.Format("Lv. {0}", _Level) ;
     }
 
     public void SetSkillContext(collegueBasicSkill _skill)
@@ -71,10 +77,60 @@ public class CollegueView : MonoBehaviour
         }
     }
 
+    public void Init_SetPassiveSkill()
+    {
+        collegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
+        if (info.Level < 30)
+        {
+            //스킬레벨업에 따른 패시브 스킬 확인
+            if (info.Level >= 10)
+            {
+                //패시브 스킬 창 갱신
+                SetPassiveSkill(true, 0);
+
+            }
+            if (info.Level >= 20)
+            {
+                //패시브 스킬 창 갱신
+                SetPassiveSkill(true, 1);
+            }
+            if (info.Level >= 30)
+            {
+                //패시브 스킬 창 갱신
+                SetPassiveSkill(true, 2);
+            }
+        }
+
+       
+    }
+
+    public void SetPassiveSkill(bool _isActive, int _index)
+    {
+
+        if (_isActive)
+        {
+            passiveSkills[_index].sprite = abilityEnableSprites[_index];
+        }
+        else
+        {
+            passiveSkills[_index].sprite = abilityDisableSprites[_index];
+        }
+
+    }
+
     public void SetLevelCost()
     {
         collegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         levelUpCost_TMP.text = info.Level + "개 필요";
+
+        if (GameManager.Instance.user.userBaseProperties.pinkChip >= info.Level)
+        {
+            levelUp_button.interactable = true;
+        }
+        else
+        {
+            levelUp_button.interactable = false;
+        }
     }
 
     public void OnButtonLevelUpClick()
@@ -83,61 +139,80 @@ public class CollegueView : MonoBehaviour
         //스킬업 가능 조건 레벨보다 핑크칩의 갯수가 크거나 같으면
         if (GameManager.Instance.user.userBaseProperties.pinkChip >= info.Level)
         {
-            //핑크칩 갯수 다운
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.PINKCHIP, -info.Level);
-
-            //스킬 레벨 업
-            info.Level++;
-
-            //스킬 레벨 업에 따른 조작된 재산 증가량 증가
-            info.collegueBasicSkill.money += 5000000;
-
-
-            //스킬레벨업에 따른 패시브 스킬 확인
-            if (info.Level == 10)
+          
+            if(info.Level < 30)
             {
-                info.colleguePassiveSkills[0].isActive = true;
-                //아지트 마다 레벨에 따른 UI 갱신
-                if(curCollegue == CollegueIndex.HACKER)
-                {
-                    HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
-                }
-           
-            }
-            else if (info.Level == 20)
-            {
-                info.colleguePassiveSkills[1].isActive = true;
-                //아지트 마다 레벨에 따른 UI 갱신
-                if (curCollegue == CollegueIndex.HACKER)
-                {
-                    HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
-                }
-            }
-            else if (info.Level == 30)
-            {
-                info.colleguePassiveSkills[2].isActive = true;
-                //아지트 마다 레벨에 따른 UI 갱신
-                if (curCollegue == CollegueIndex.HACKER)
-                {
-                    HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
-                }
-            }
-  
-            //유저 정보에 반영
-            GameManager.Instance.user.SetUserInfo(curCollegue, info);
+                //핑크칩 갯수 다운
+                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.PINKCHIP, (float)-info.Level);
 
-            Debug.Log("현재 해커의 능력으로 추가되는 돈의 증가량 : " + info.collegueBasicSkill.money);
+                //스킬 레벨 업
+                info.Level++;
 
-            //UI 반영
-            SetLevel(info.Level);
-            SetSkillContext(info.collegueBasicSkill);
-            SetLevelCost();
+                //스킬 레벨 업에 따른 조작된 재산 증가량 증가
+                info.collegueBasicSkill.money += 5000000;
+
+
+                //스킬레벨업에 따른 패시브 스킬 확인
+                if (info.Level == 10)
+                {
+                    info.colleguePassiveSkills[0].isActive = true;
+                    //패시브 스킬 창 갱신
+                    SetPassiveSkill(true, 0);
+                    //아지트 마다 레벨에 따른 UI 갱신
+                    if (curCollegue == CollegueIndex.HACKER)
+                    {
+                        HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
+                     
+                    }
+
+                }
+                else if (info.Level == 20)
+                {
+                    info.colleguePassiveSkills[1].isActive = true;
+                    //패시브 스킬 창 갱신
+                    SetPassiveSkill(true, 1);
+                    //아지트 마다 레벨에 따른 UI 갱신
+                    if (curCollegue == CollegueIndex.HACKER)
+                    {
+                        HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
+                      
+                    }
+                }
+                else if (info.Level == 30)
+                {
+                    info.colleguePassiveSkills[2].isActive = true;
+                    //패시브 스킬 창 갱신
+                    SetPassiveSkill(true, 2);
+                    //아지트 마다 레벨에 따른 UI 갱신
+                    if (curCollegue == CollegueIndex.HACKER)
+                    {
+                        HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
+                    }
+                }
+
+                //유저 정보에 반영
+                GameManager.Instance.user.SetUserInfo(curCollegue, info);
+
+                Debug.Log("현재 해커의 능력으로 추가되는 돈의 증가량 : " + info.collegueBasicSkill.money);
+
+                //UI 반영
+                SetLevel(info.Level);
+                SetSkillContext(info.collegueBasicSkill);
+                SetLevelCost();
+            }
         }
         else
         {
+            levelUp_button.interactable = false;
             Debug.Log("핑크칩의 개수가 부족합니다.");
         }
        
     }
 
+
+
+    public void SetManipulateMoney()
+    {
+        manipulateMoney_TMP.text = GameManager.Instance.GetMoneyFormat(GameManager.Instance.user.userBaseProperties.manipulatedMoney);
+    }
 }

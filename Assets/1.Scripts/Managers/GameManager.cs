@@ -51,7 +51,7 @@ public class GameManager : SimpleSingleton<GameManager>
 
         Init();
 
-        //ClearUserData();
+        ClearUserData();
 
         SetUserInfo();
 
@@ -134,23 +134,34 @@ public class GameManager : SimpleSingleton<GameManager>
             tempUserData.userBaseProperties.donateMoney = 1000000000;
             tempUserData.userBaseProperties.gameHour = 0;
             tempUserData.userBaseProperties.daysElapsed = 1;
-            tempUserData.userBaseProperties.doubt = 0;
+
+            tempUserData.userBaseProperties.doubt  = new Doubt();
+            tempUserData.userBaseProperties.doubt.curDoubt = 0;
+            tempUserData.userBaseProperties.doubt.basicDoubt = 0;
+            tempUserData.userBaseProperties.doubt.GrandFatherDoubt = 0;
+
             tempUserData.userBaseProperties.pinkChip = 1000;
             tempUserData.userBaseProperties.FlexConsumption = 0;
+
             tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
 
             tempUserData.userBaseProperties.buffs = new Buff[1];
             tempUserData.userBaseProperties.buffs[0] = new Buff();
             tempUserData.userBaseProperties.buffs[0].isActive = false;
             tempUserData.userBaseProperties.buffs[0].isRunning = false;
-            tempUserData.userBaseProperties.buffs[0].continueTime = 3;
-            tempUserData.userBaseProperties.buffs[0].effect_Doubt = 5;
+            tempUserData.userBaseProperties.buffs[0].isGood = false;
+            tempUserData.userBaseProperties.buffs[0].isBuffed = false;
+
+            tempUserData.userBaseProperties.buffs[0].continueTime = 12;
+            tempUserData.userBaseProperties.buffs[0].remainTime = 0;
+            tempUserData.userBaseProperties.buffs[0].effect_Doubt_Plus = -5;
+            tempUserData.userBaseProperties.buffs[0].effect_Doubt_Minus = 5;
 
             for (int i = 0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
             {
                 tempUserData.userBaseProperties.collegueInfos[i] = new collegueInfo();
                 if (i == (int)CollegueIndex.HACKER)
-                {
+                {   
                     tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
 
                     tempUserData.userBaseProperties.collegueInfos[i].Level = 1;

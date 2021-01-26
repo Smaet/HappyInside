@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------------
+Azit_1
+말풍선안 글씨 : 최대 4줄 나눔스퀘어라운드OTF bold 33pt
+
+Azit _A2
+말풍선안 글씨: 나눔스퀘어라운드OTF Extrabold 30pt
+홈으로 돌아가기: 나눔스퀘어라운드OTF Extrabold 45pt
+
+Azit _3
+요리사 보블리: 나눔스퀘어라운드OTF Extrabold 55pt
+요리 대성공!! : Extrabold 70pt
+고유능력경험치: Extrabold 35pt
+완성시간:1일17시간 : Extrabold 35pt
+능력1활성화~3 : Extrabold 30pt
+보블리는~ : bold 23pt
+x-보블리: Extrabold 37pt
+Lv.10 : Extrabold 45pt
++30 : Extrabold 40pt
+
+Azit _4
+해커다레:나눔스퀘어라운드OTF Extrabold 55pt
+X-다레:Extrabold 37pt
+다레는~급하다:bold 23pt
+2억/6시간:Extrabold 65pt
+고유능력경험치:Extrabold 35pt
+250,000,000원:Extrabold 40pt
+
+Azit _5
+트레이더 쏘쏘: Extrabold 55pt
+X-쏘쏘: Extrabold 37pt
+쏘쏘는~식물: bold 23pt
+현재승률45%: Extrabold 60pt
+통산기록/통산승률45%/통산손익30개: Extrabold 25pt
+완성시간:1일20시간: Extrabold 35pt
+X,O :Extrabold 108pt
+
+

@@ -232,15 +232,20 @@ public class KitchenGameManager : MonoBehaviour
        
             if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
             {
-                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive = true;
-                //GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime
+                Buff GrandFather = new Buff();
+                GrandFather.isActive = true;
+                GrandFather.isGood = true;
+                GrandFather.isRunning = true;
+                GrandFather.isBuffed = false;
+                GrandFather.remainTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
+                GrandFather.continueTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
+                GrandFather.effect_Doubt_Plus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Plus;
+                GrandFather.effect_Doubt_Minus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Minus;
 
-                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isPlus = true;
+                GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, GrandFather);
+             
+                HomeManager.Instance.timeManager.StartGrandFatherBuff();
 
-                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt);
-
-                //현재 의심도 슬라이더에 반영
-                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(GameManager.Instance.user.userBaseProperties.doubt);
             }
             
         }
@@ -249,12 +254,19 @@ public class KitchenGameManager : MonoBehaviour
             uiView_ResultScreen.gameObject.GetComponentInChildren<Text>().text = "실패";
             if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
             {
-                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive = true;
-                //GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime
-                GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isPlus = false;
+                Buff GrandFather = new Buff();
+                GrandFather.isActive = true;
+                GrandFather.isGood = false;
+                GrandFather.isRunning = true;
+                GrandFather.isBuffed = false;
+                GrandFather.remainTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
+                GrandFather.continueTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
+                GrandFather.effect_Doubt_Plus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Plus;
+                GrandFather.effect_Doubt_Minus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Minus;
 
-                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, -GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt);
-
+                GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, GrandFather);
+                
+                HomeManager.Instance.timeManager.StartGrandFatherBuff();
             }
 
 

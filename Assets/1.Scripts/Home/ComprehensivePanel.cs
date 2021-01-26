@@ -33,7 +33,7 @@ public class ComprehensivePanel : MonoBehaviour
         double doubt = (double)_consumption / (double)_manipulateMoney;
         CurrentDoubtStatus_Slider.value = (float)doubt;
         Debug.Log("현재 의심도 : " + doubt * 100 + "%");
-        GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, (float)doubt);
+        //GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, (float)doubt);
     }
 
     public void SetCurrentDoubtStatus_Slider(float _doubt)
@@ -41,7 +41,15 @@ public class ComprehensivePanel : MonoBehaviour
 
         CurrentDoubtStatus_Slider.value += _doubt * 0.01f;
         Debug.Log("현재 의심도 : " + _doubt + "%");
-        GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, _doubt);
+       // GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, _doubt);
+    }
+
+    public void SetCurrentDoubtStatus_Slider(double _doubt)
+    {
+
+        CurrentDoubtStatus_Slider.value = (float)_doubt * 0.01f;
+        Debug.Log("현재 의심도 : " + _doubt + "%");
+        // GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, _doubt);
     }
 
     public void SetGarndFaterAssetInfo(long _startMoney, long _manipulatedMoney)

@@ -157,6 +157,7 @@ public class TimeManager : MonoBehaviour
                 long result = hacker.collegueBasicSkill.money + (long)(hacker.collegueBasicSkill.money * itemChance);
 
                 GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
+                HomeManager.Instance.agitManager.collegueView.SetManipulateMoney();
             }
 
             time += Time.deltaTime;
@@ -177,39 +178,51 @@ public class TimeManager : MonoBehaviour
         float time = 0;
         float hourCount = 0;
 
-        Buff grandFather = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER];
-
+      
         while (true)
         {
+            Buff grandFather = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER];
 
-            if (time >= HourUpdateCycle)        //시간이 바뀔때.
+
+            if (grandFather.remainTime > 0)
             {
-                time = 0;
-                hourCount++;
-                Debug.Log("<color=green>할아버지 버프 남은 시간.  </color> : " + (grandFather.continueTime - hourCount));
-            }
+                if (time >= HourUpdateCycle)        //시간이 바뀔때.
+                {
+                    time = 0;
+                    hourCount++;
+                    Debug.Log("<color=green>할아버지 버프 남은 시간.  </color> : " + (grandFather.remainTime - 1));
 
-            else if (hourCount >= grandFather.continueTime)
+                    grandFather.remainTime -= 1;
+                    GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
+                }
+            }
+            else
             {
                 hourCount = 0;
                 Debug.Log("<color=red>할아버지 버프 종료  </color>");
                 grandFather.isActive = false;
                 grandFather.isRunning = false;
-                if(grandFather.isPlus)
+                grandFather.isBuffed = false;
+                grandFather.remainTime = 0;
+                grandFather.isReset = true;
+                if (grandFather.isGood)
                 {
-                    grandFather.isPlus = false;
-                    GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, -grandFather.effect_Doubt);
+                    grandFather.isGood = false;
+
+                    GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
                 }
                 else
                 {
-                    grandFather.isPlus = false;
-                    GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, +grandFather.effect_Doubt);
+                    grandFather.isGood = false;
+                    GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
                 }
 
                 GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
 
                 yield break;
+
             }
+          
 
             time += Time.deltaTime;
             yield return null;
