@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BaseCombo : MonoBehaviour
 {
     private Animator animator;
-    private Text combo_Text;
+    private TextMeshProUGUI combo_Text;
     
     
     public virtual void Awake()
@@ -17,7 +18,7 @@ public class BaseCombo : MonoBehaviour
         }
         if(combo_Text == null)
         {
-            combo_Text = gameObject.GetComponent<Text>(); 
+            combo_Text = gameObject.GetComponent<TextMeshProUGUI>(); 
         }
 
         float alpha = combo_Text.color.a;

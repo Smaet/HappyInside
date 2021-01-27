@@ -1,4 +1,14 @@
-﻿using System.Collections;
+﻿
+/*
+  2021.01.05 Created 
+  FlexPlaceManager.cs   
+  
+  
+  기능
+  
+
+*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

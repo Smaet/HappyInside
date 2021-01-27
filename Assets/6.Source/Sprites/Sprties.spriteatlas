@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
-    totalSpriteSurfaceArea: 29984966
+    totalSpriteSurfaceArea: 32058566
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -108,6 +108,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 926549c95ecb72e498628809ffafb3ef, type: 3}
   - {fileID: 21300000, guid: f05f05f9a500d52418d0eea24180853e, type: 3}
   - {fileID: 21300000, guid: 306ec80a18a613646b1e5e5070e3be3d, type: 3}
+  - {fileID: 21300000, guid: 1701653a0072be54dad090dab404f19f, type: 3}
   - {fileID: 21300000, guid: 53f4044ade0965540a00c5fe6edb7b3c, type: 3}
   - {fileID: 21300000, guid: 1958c58a92825bf49a62350be7293536, type: 3}
   - {fileID: 21300000, guid: 5aff92ca9961a2444af135cc1b92e07f, type: 3}
@@ -204,6 +205,7 @@ SpriteAtlas:
   - Azit_A_home_button
   - Im_H_MoveAzit_azitA2
   - Im_H_I_Concious_Background
+  - flex_space_temp 2
   - m_door_L
   - Azit_3_Character_ability_2
   - Azit_5_Character_Soso

@@ -158,6 +158,8 @@ public class TimeManager : MonoBehaviour
 
                 GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
                 HomeManager.Instance.agitManager.collegueView.SetManipulateMoney();
+                HomeManager.Instance.agitManager.agit_A.colleguePanels[0].StartSampleEffect();
+
             }
 
             time += Time.deltaTime;
