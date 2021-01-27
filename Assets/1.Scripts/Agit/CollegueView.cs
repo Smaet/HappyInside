@@ -126,6 +126,11 @@ public class CollegueView : MonoBehaviour
         if (GameManager.Instance.user.userBaseProperties.pinkChip >= info.Level)
         {
             levelUp_button.interactable = true;
+
+            if(info.Level >= 30)
+            {
+                levelUp_button.interactable = false;
+            }
         }
         else
         {
@@ -188,6 +193,8 @@ public class CollegueView : MonoBehaviour
                     {
                         HomeManager.Instance.agitManager.agit_A.colleguePanels[0].SetUI(info);
                     }
+
+                    levelUp_button.interactable = false;
                 }
 
                 //유저 정보에 반영

@@ -573,7 +573,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
             addScore = _score.ToString();
         }
         //화면에 보여지는 스코어
-        score_Text.text = GameManager.Instance.GetMoneyFormat(score);
+        score_Text.text = addScore.ToString();// GameManager.Instance.GetMoneyFormat(score);
        
 
         GameObject moneyObject = getMoneyText_ObjectPool.GetObject();

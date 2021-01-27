@@ -48,11 +48,11 @@ public class TimeComponent : MonoBehaviour
         currentTime += _time;
         if (currentTime <= 0)
         {
-            text.text = "0";
+            text.text = "0" + "초";
         }
         else
         {
-            text.text = currentTime.ToString();
+            text.text = currentTime.ToString() + "초";
         }
     }
 
@@ -64,11 +64,11 @@ public class TimeComponent : MonoBehaviour
 
         if(currentTime <= 0)
         {
-            text.text = "0";
+            text.text = "0" + "초";
         }
         else
         {
-            text.text = currentTime.ToString();
+            text.text = currentTime.ToString() + "초";
         }
         
     }
