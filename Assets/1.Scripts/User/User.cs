@@ -227,39 +227,39 @@ public class User : MonoBehaviour
         userBaseProperties.buffs = _userInfo.userBaseProperties.buffs;
         userBaseProperties.donateMoney = _userInfo.userBaseProperties.donateMoney;
 
-        Debug.Log("NickName : " + userBaseProperties.nickName);
-        Debug.Log("crystal : " + userBaseProperties.crystal);
-        Debug.Log("startMoney : " + userBaseProperties.startMoney);
-        Debug.Log("money : " + userBaseProperties.ConsumptionMoney);
-        Debug.Log("manipulatedMoney : " + userBaseProperties.manipulatedMoney);
-        Debug.Log("NickName : " + userBaseProperties.resultMoney);
-        Debug.Log("resultMoney : " + userBaseProperties.nickName);
-        Debug.Log("recentChangeMoney : " + userBaseProperties.recentChangeMoney);
-        Debug.Log("gameHour : " + userBaseProperties.gameHour);
-        Debug.Log("daysElapsed : " + userBaseProperties.daysElapsed);
-        Debug.Log("doubt : " + userBaseProperties.doubt);
-        Debug.Log("blackCoin : " + userBaseProperties.pinkChip);
-        Debug.Log("FLEXConsumption : " + userBaseProperties.FlexConsumption);
+        //Debug.Log("NickName : " + userBaseProperties.nickName);
+        //Debug.Log("crystal : " + userBaseProperties.crystal);
+        //Debug.Log("startMoney : " + userBaseProperties.startMoney);
+        //Debug.Log("money : " + userBaseProperties.ConsumptionMoney);
+        //Debug.Log("manipulatedMoney : " + userBaseProperties.manipulatedMoney);
+        //Debug.Log("NickName : " + userBaseProperties.resultMoney);
+        //Debug.Log("resultMoney : " + userBaseProperties.nickName);
+        //Debug.Log("recentChangeMoney : " + userBaseProperties.recentChangeMoney);
+        //Debug.Log("gameHour : " + userBaseProperties.gameHour);
+        //Debug.Log("daysElapsed : " + userBaseProperties.daysElapsed);
+        //Debug.Log("doubt : " + userBaseProperties.doubt);
+        //Debug.Log("blackCoin : " + userBaseProperties.pinkChip);
+        //Debug.Log("FLEXConsumption : " + userBaseProperties.FlexConsumption);
 
-        Debug.Log("<color=red>해커의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
-        Debug.Log("<color=red>해커의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
-        Debug.Log("<color=red>해커의 현재 디바이스 레벨 </color> " + userBaseProperties.collegueInfos[0].deviceLevel);
+        //Debug.Log("<color=red>해커의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
+        //Debug.Log("<color=red>해커의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
+        //Debug.Log("<color=red>해커의 현재 디바이스 레벨 </color> " + userBaseProperties.collegueInfos[0].deviceLevel);
 
-        Debug.Log("<color=blue>기계공학자의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
-        Debug.Log("<color=blue>기계공학자의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
-        Debug.Log("<color=blue>기계공학자의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
+        //Debug.Log("<color=blue>기계공학자의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
+        //Debug.Log("<color=blue>기계공학자의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
+        //Debug.Log("<color=blue>기계공학자의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
 
-        Debug.Log("<color=yellow>화학자의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
-        Debug.Log("<color=yellow>화학자의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
-        Debug.Log("<color=yellow>화학자의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
+        //Debug.Log("<color=yellow>화학자의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
+        //Debug.Log("<color=yellow>화학자의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
+        //Debug.Log("<color=yellow>화학자의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
 
-        Debug.Log("<color=purple>요리사의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
-        Debug.Log("<color=purple>요리사의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
-        Debug.Log("<color=purple>요리사의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
+        //Debug.Log("<color=purple>요리사의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
+        //Debug.Log("<color=purple>요리사의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
+        //Debug.Log("<color=purple>요리사의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
 
-        Debug.Log("<color=green>트레이더의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
-        Debug.Log("<color=green>트레이더의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
-        Debug.Log("<color=green>트레이더의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
+        //Debug.Log("<color=green>트레이더의 현재 레벨 : </color>" + userBaseProperties.collegueInfos[0].Level);
+        //Debug.Log("<color=green>트레이더의 현재 아이템 레벨 : </color>" + userBaseProperties.collegueInfos[0].itemLevel);
+        //Debug.Log("<color=green>트레이더의 현재 디바이스 레벨 : </color>" + userBaseProperties.collegueInfos[0].deviceLevel);
 
     }
 
@@ -290,7 +290,7 @@ public class User : MonoBehaviour
               
 
                 HomeManager.Instance.topUIManager.SetHour(userBaseProperties.gameHour);
-                Debug.Log("현재 시간 : " + userBaseProperties.gameHour);
+                //Debug.Log("현재 시간 : " + userBaseProperties.gameHour);
 
                 break;
             case ChangeableUserProperties.DAYSELASPSE:
@@ -366,7 +366,7 @@ public class User : MonoBehaviour
                 
                 //현재 할아버지의 총 재산에 대한 정보
                 HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
-                Debug.Log("현재 조작된금액 : " + userBaseProperties.manipulatedMoney);
+                //Debug.Log("현재 조작된금액 : " + userBaseProperties.manipulatedMoney);
 
                 //해커 동료창에도 UI 갱신
 

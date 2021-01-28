@@ -118,6 +118,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         //InitManagers();
         topUIManager.Init();
         comprehensivePanel.Init();
+
     }
 
     

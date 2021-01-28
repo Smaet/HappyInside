@@ -94,6 +94,7 @@ public class GameManager : SimpleSingleton<GameManager>
         }
 
 
+        PoloSFX.Instance.PlayHomeBGM();
     }
 
     void Init()
@@ -254,14 +255,14 @@ public class GameManager : SimpleSingleton<GameManager>
         }
         if (Billion >= 10000)
         {
-            TenThousand_str = string.Format("{0}천만원", (Billion % 100000000) / 10000);
+            TenThousand_str = string.Format("{0}천", (Billion % 100000000) / 10000000);
         }
 
         if (Bill != 0)
         {
             result +=  Billion_str;  
         }
-        else if(Thou != 0)
+        if(Thou != 0)
         {
             result +=  " " + TenThousand_str;
         }

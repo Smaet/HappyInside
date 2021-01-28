@@ -26,14 +26,17 @@ public class KitchenGameManager : MonoBehaviour
 
     [SerializeField] private KitchenButton[] FoodButtons;
     [SerializeField] private Sprite[] FoodSprites;
+    [SerializeField] private string[] FoodNames;
     [SerializeField] private int FoodCount;
 
 
     // UIView,,,
     [SerializeField] private UIView uiView_Grandfather;
+    [SerializeField] private UIView uiView_GrandfatherSpeech;
     [SerializeField] private UIView uiView_GameStart;
     [SerializeField] private UIView uiView_FoodSelectButton;
-    [SerializeField] private UIView uiView_ResultScreen;
+    [SerializeField] private UIView uiView_ResultScreen_Success;
+    [SerializeField] private UIView uiView_ResultScreen_Fail;
 
     // TextAnimator
     public TextAnimatorPlayer textAnimatorPlayer;
@@ -46,8 +49,6 @@ public class KitchenGameManager : MonoBehaviour
     [TextArea(3, 50), SerializeField] private string scr_Menu_03;
     [TextArea(3, 50), SerializeField] private string scr_Menu_04;
     [TextArea(3, 50), SerializeField] private string scr_Menu_05;
-    [TextArea(3, 50), SerializeField] private string scr_Result_Good;
-    [TextArea(3, 50), SerializeField] private string scr_Result_Bad;
 
 
 
@@ -70,17 +71,10 @@ public class KitchenGameManager : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    kitchenState = State.None;
-      
-
-    //    // -1 is None 
-    //    CorrectMenu = -1;
-
-    //    Initialize();
-    //}
+    private void OnEnable()
+    {
+        StartSpeech();
+    }
 
 
     //  ->  State.None
@@ -102,18 +96,32 @@ public class KitchenGameManager : MonoBehaviour
             FilteredMenu[i] = -1;
         }
 
-
-        uiView_GameStart.Show();
         uiView_Grandfather.Show();
+        uiView_GrandfatherSpeech.Show();
+        uiView_GameStart.Hide();
         uiView_FoodSelectButton.Hide();
-        uiView_ResultScreen.Hide();
+        uiView_ResultScreen_Success.Hide();
+        uiView_ResultScreen_Fail.Hide();
 
-
-        // 할아버지 멘트 ㄱㄱ  
-        GrandfatherSaid(scr_Welcome);
     }
 
-    // 할아버지의 연설   -> State.Request
+    public void StartSpeech()
+    {
+        // 할아버지 멘트 ㄱㄱ  
+        GrandfatherSaid(scr_Welcome);
+
+        StartCoroutine(DelayActionCallback(4.0f, SitdownPlz));
+    }
+
+
+    void SitdownPlz()
+    {
+        uiView_GrandfatherSpeech.Hide();
+        uiView_GameStart.Show();
+    }
+
+
+    // 할아버지의 연설   -> State.Request     착석 버튼 누르면 발동
     public void GrandfaRequest()
     {
         if (kitchenState == State.None)
@@ -166,18 +174,18 @@ public class KitchenGameManager : MonoBehaviour
             // 버튼에 메뉴 세팅
             for (int i = 0; i < FilteredMenuCount; i++)
             {
-                FoodButtons[i].SetFoodToButton(FilteredMenu[i], FoodSprites[FilteredMenu[i]]);
+                FoodButtons[i].SetFoodToButton(FilteredMenu[i], FoodSprites[FilteredMenu[i]], FoodNames[FilteredMenu[i]]);
             }
 
 
             // UiView On
             uiView_GameStart.Hide();
-            uiView_Grandfather.Show();
+            uiView_GrandfatherSpeech.Show();
 
             // 할아버지 멘트 ㄱㄱ  
             GrandfatherSaid(GetFoodScript(CorrectMenu));
 
-            StartCoroutine(DelayNextStep(2.0f));
+            StartCoroutine(DelayActionCallback(4.0f, SelectFood));
         }
     }
 
@@ -186,6 +194,7 @@ public class KitchenGameManager : MonoBehaviour
     // 메뉴 선택의 시간(멘트 끝날 때 이벤트 발동)   -> State.Answer
     public void SelectFood()
     {
+        uiView_GrandfatherSpeech.Hide();
         kitchenState = State.Answer;
 
         // 버튼 Show
@@ -219,15 +228,15 @@ public class KitchenGameManager : MonoBehaviour
         kitchenState = State.Result;
 
 
-        // 결과멘트 ㄱ
-        if(Success) GrandfatherSaid(scr_Result_Good);
-        else GrandfatherSaid(scr_Result_Bad);
+        //// 결과멘트 ㄱ
+        //if(Success) GrandfatherSaid(scr_Result_Good);
+        //else GrandfatherSaid(scr_Result_Bad);
 
 
         // 결과 창 세팅
         if (Success)
         {
-            uiView_ResultScreen.gameObject.GetComponentInChildren<Text>().text = "성공";
+            uiView_ResultScreen_Success.Show();
 
        
             if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
@@ -251,7 +260,8 @@ public class KitchenGameManager : MonoBehaviour
         }
         else
         {
-            uiView_ResultScreen.gameObject.GetComponentInChildren<Text>().text = "실패";
+            uiView_ResultScreen_Fail.Show();
+
             if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
             {
                 Buff GrandFather = new Buff();
@@ -268,19 +278,7 @@ public class KitchenGameManager : MonoBehaviour
                 
                 HomeManager.Instance.timeManager.StartGrandFatherBuff();
             }
-
-
-
         }
-
-
-
-
-
-        // UIView On
-        uiView_ResultScreen.Show();
-
-
     }
 
 
@@ -323,13 +321,16 @@ public class KitchenGameManager : MonoBehaviour
         return val;
     }
 
-    // 텍스트애니메이터 에셋 이벤트 핸들링 아직 모르겠음 , 급하게 쓰는 용도
-    IEnumerator DelayNextStep(float delay)
-    {
-        yield return new WaitForSecondsRealtime(delay);
-        SelectFood();
-    }
 
+    IEnumerator DelayActionCallback(float delay, Action callAction)
+    {
+        Debug.Log("Callback1");
+
+        yield return new WaitForSecondsRealtime(delay);
+
+        Debug.Log("Callback2");
+        callAction();
+    }
 
     #endregion
 

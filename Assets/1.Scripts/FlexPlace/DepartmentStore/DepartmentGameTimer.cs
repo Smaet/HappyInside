@@ -19,13 +19,13 @@ public class DepartmentGameTimer : TimeComponent
     protected override IEnumerator CountDownTimer()
     {
         float time = currentTime;
-        text.text = currentTime.ToString();
+        text.text = currentTime.ToString()+ "초";
 
         while (isTimerOn)
         {
             if (currentTime <= 0)
             {
-                text.text = currentTime.ToString();
+                text.text = "0초";
                 isTimerOn = false;
                 yield break;
             }
@@ -40,7 +40,7 @@ public class DepartmentGameTimer : TimeComponent
 
 
             
-            text.text = currentTime.ToString();
+            text.text = currentTime.ToString() + "초";
 
             yield return null;
         }

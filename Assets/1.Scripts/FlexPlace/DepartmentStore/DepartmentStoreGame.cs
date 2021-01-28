@@ -156,8 +156,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.FLEXCONSUMPTION, score);
         GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.PINKCHIP, (float)UnityEngine.Random.Range(5,10)); 
         //팝업창 생성 밑 확인 버튼으로 되돌아 가기.
-        resultPanel.OnResultPanel(score.ToString());
-
+        resultPanel.OnResultPanel(string.Format("{0:#,0}원", score));
     }
 
     public void EndGame(string _str)
@@ -188,7 +187,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         {
             int RandomIndex = UnityEngine.Random.Range(0, Count);
 
-            shoppingItems[i].SetItem(shoppingList[RandomIndex]["Price"].ToString(), shoppingList[RandomIndex]["Curio"].ToString());
+            shoppingItems[i].SetItem(string.Format("{0:#,0}원",shoppingList[RandomIndex]["Price"]), shoppingList[RandomIndex]["Curio"].ToString());
             //Debug.Log(shoppingList[RandomIndex]["Item"].ToString());
             int index = int.Parse(shoppingList[RandomIndex]["Index"].ToString());
 
@@ -344,6 +343,8 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
             SetCardReader(false);
             departmentGameTimer.SetPause(true);
 
+            PoloSFX.Instance.Play_Miss();
+
             //가품인지 진품인지 판단 
             //진품
             if (isCurio)
@@ -387,7 +388,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         {
             //시간 일시정기 버튼도 넣음
             freezeButton.interactable = true;
-            freezeButton.image.color = cardReaderOnColor;
+            //freezeButton.image.color = cardReaderOnColor;
             isPauseTimerOn = true;
         }
         //불가능
@@ -395,7 +396,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         {
       
             freezeButton.interactable = false;
-            freezeButton.image.color = cardReaderOffColor;
+            //freezeButton.image.color = cardReaderOffColor;
             isPauseTimerOn = false;
         }
     }
@@ -415,6 +416,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
     {
         if(isCardReaderOn && isCardReset)
         {
+            PoloSFX.Instance.Play_CardSlice();
             if (_value >= 0.1f) //20% 이상일때
             {
                 //입력 불가
@@ -573,7 +575,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
             addScore = _score.ToString();
         }
         //화면에 보여지는 스코어
-        score_Text.text = addScore.ToString();// GameManager.Instance.GetMoneyFormat(score);
+        score_Text.text = string.Format("{0:#,0}원" , score);// GameManager.Instance.GetMoneyFormat(score);
        
 
         GameObject moneyObject = getMoneyText_ObjectPool.GetObject();

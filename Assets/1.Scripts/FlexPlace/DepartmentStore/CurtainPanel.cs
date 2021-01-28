@@ -133,6 +133,7 @@ public class CurtainPanel : MonoBehaviour
             curState = CurtainState.OPEN;
             isCurtainMove = true;
             StartCoroutine(CurtainMove());
+
         }
     }
 
@@ -156,6 +157,8 @@ public class CurtainPanel : MonoBehaviour
                 destRightCurtainPosX  = 0;
                 destLeftCurtainPosX   = 0;
 
+                PoloSFX.Instance.Play_CurtainOpen();
+
                 break;
 
             case CurtainState.OPEN:
@@ -165,6 +168,8 @@ public class CurtainPanel : MonoBehaviour
 
                 destRightCurtainPosX = curtainRight.rect.width;
                 destLeftCurtainPosX = -curtainLeft.rect.width;
+
+                PoloSFX.Instance.Play_CurtainOpen();
 
                 break;
         }

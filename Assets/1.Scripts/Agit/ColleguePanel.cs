@@ -33,19 +33,12 @@ public class ColleguePanel : MonoBehaviour
                 Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/agitA_h_lv03");
                 collegueItem_Image.sprite = sprite;
             }
-            else if (_info.Level < 30)
+            else if (_info.Level <= 30)
             {
                 Sprite sprite = Resources.Load<Sprite>("Agit/Hacker/agitA_h_lv04");
                 collegueItem_Image.sprite = sprite;
             }
-          
-      
         }
-
-
-
-
-
     }
 
     public void StartSampleEffect()
@@ -56,5 +49,7 @@ public class ColleguePanel : MonoBehaviour
         combo.SetInfo("+" + GameManager.Instance.user.userBaseProperties.collegueInfos[0].collegueBasicSkill.money, simpleObjectPool.transform, sampleEffect_location.transform);
 
         moneyObject.SetActive(true);
+
+        //PoloSFX.Instance.Play_HackerUp();   
     }
 }

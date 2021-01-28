@@ -64,7 +64,7 @@ public class CollegueView : MonoBehaviour
         switch(curCollegue)
         {
             case CollegueIndex.HACKER:
-                SkillContext_TMP.text = GameManager.Instance.GetMoneyFormat(_skill.money) + " / " + _skill.hour +"시간";
+                SkillContext_TMP.text = GameManager.Instance.GetMoneyFormat(_skill.money);
                 break;
             case CollegueIndex.MECHANIC:
                 break;
@@ -121,7 +121,7 @@ public class CollegueView : MonoBehaviour
     public void SetLevelCost()
     {
         collegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
-        levelUpCost_TMP.text = info.Level + "개 필요";
+        levelUpCost_TMP.text = "x" +info.Level;
 
         if (GameManager.Instance.user.userBaseProperties.pinkChip >= info.Level)
         {
@@ -220,6 +220,6 @@ public class CollegueView : MonoBehaviour
 
     public void SetManipulateMoney()
     {
-        manipulateMoney_TMP.text = GameManager.Instance.GetMoneyFormat(GameManager.Instance.user.userBaseProperties.manipulatedMoney);
+        manipulateMoney_TMP.text = string.Format("{0:#,0}", GameManager.Instance.user.userBaseProperties.manipulatedMoney);
     }
 }

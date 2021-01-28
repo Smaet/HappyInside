@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class KitchenButton : MonoBehaviour
 {
 
     public Image ButtonImage;
+    public TMP_Text ButtonText;
 
     public int FoodIndex;
 
@@ -33,10 +35,11 @@ public class KitchenButton : MonoBehaviour
 
 
     // 버튼에 음식 할당  /  매니저->버튼
-    public void SetFoodToButton(int foodidx, Sprite foodSprite)
+    public void SetFoodToButton(int foodidx, Sprite foodSprite, string foodName)
     {
         FoodIndex = foodidx;
         ButtonImage.sprite = foodSprite;
+        ButtonText.text = foodName;
 
         Debug.Log(FoodIndex);
     }

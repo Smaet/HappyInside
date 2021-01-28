@@ -17,6 +17,8 @@ public class DepartmentStore : BaseFlexPlace
 {
     private int accumulatedConsumption;         //누적 소비액
 
+  
+
     public void StartMiniGame()
     {
         Debug.Log("백화점 미니게임 시작!");

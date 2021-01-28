@@ -11,68 +11,94 @@ using System.Collections;
 public class PoloSFX : SimpleSingleton<PoloSFX>
 {
     public AudioClip button;
-	public AudioClip tick;
-	public AudioClip capture;
-	public AudioClip recordStart;
-	public AudioClip recordEnd;
-	public AudioClip error;
-    public AudioClip connect;
-    public AudioClip disconnect;
-    public AudioClip popTouch;
-    public AudioClip popMessage;
+	public AudioClip bgm_Home;
+	public AudioClip bgm_Agit;
+	public AudioClip bgm_Department;
+	public AudioClip bgm_GrandFather;
+	public AudioClip curtain_Open;
+	public AudioClip curtain_Close;
+	public AudioClip cardSlice;
+    public AudioClip hackerUp;
+	public AudioClip miss;
+
+	private string playingBGM;
 
 	protected override void Awake()
 	{
 		base.Awake();
+		playingBGM = "";
 	}
 
     public void PlayButton()
 	{
-		PoloSound.Instance.PlayOnce(button);
+		PoloSound.Instance.PlayOnce(button, 0.5f);
 	}
 
-	public void PlayTick()
-	{
-        PoloSound.Instance.PlayOnce(tick);
-	}
-
-	public void PlayCapture()
-	{
-        PoloSound.Instance.PlayOnce(capture);
-	}
-
-	public void PlayRecordStart()
-	{
-        PoloSound.Instance.PlayOnce(recordStart);
-	}
-
-	public void PlayRecordEnd()
-	{
-        PoloSound.Instance.PlayOnce(recordEnd);
-	}
-
-	public void PlayError()
-	{
-        PoloSound.Instance.PlayOnce(error);
-	}
-
-	public void PlayConnect()
-	{
-        PoloSound.Instance.PlayOnce(connect, 0.5f);
-	}
-
-    public void PlayDisconnect()
+	public void PlayAgitBGM()
     {
-        PoloSound.Instance.PlayOnce(disconnect, 0.5f);
-    }
+		if(playingBGM != "")
+        {
+			PoloSound.Instance.StopLoop(playingBGM);
 
-    public void PlayPopTouch()
-    {
-        PoloSound.Instance.PlayOnce(popTouch);
-    }
+		}
+		playingBGM = PoloSound.Instance.PlayLoop(bgm_Agit, 1f);
+	}
 
-    public void PlayPopMessage()
+	public void PlayDepartmentBGM()
+	{
+		if (playingBGM != "")
+		{
+			PoloSound.Instance.StopLoop(playingBGM);
+
+		}
+		playingBGM = PoloSound.Instance.PlayLoop(bgm_Department, 1f);
+	}
+
+	public void PlayGrandFatherBGM()
+	{
+		if (playingBGM != "")
+		{
+			PoloSound.Instance.StopLoop(playingBGM);
+
+		}
+		playingBGM = PoloSound.Instance.PlayLoop(bgm_GrandFather, 0.8f);
+	}
+
+	public void PlayHomeBGM()
+	{
+		if (playingBGM != "")
+		{
+			PoloSound.Instance.StopLoop(playingBGM);
+
+		}
+		playingBGM = PoloSound.Instance.PlayLoop(bgm_Home, 1f);
+	}
+
+
+	public void Play_CurtainOpen()
+	{
+		PoloSound.Instance.PlayOnce(curtain_Open);
+	}
+	public void Play_CurtainClose()
+	{
+		PoloSound.Instance.PlayOnce(curtain_Close);
+	}
+
+	public void Play_CardSlice()
+	{
+		PoloSound.Instance.PlayOnce(cardSlice);
+	}
+
+	public void Play_HackerUp()
     {
-        PoloSound.Instance.PlayOnce(popMessage);
-    }
+		PoloSound.Instance.PlayOnce(hackerUp);
+
+	}
+
+	public void Play_Miss()
+	{
+		PoloSound.Instance.PlayOnce(miss);
+
+	}
+
 }

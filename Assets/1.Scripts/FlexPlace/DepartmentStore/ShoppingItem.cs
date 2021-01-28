@@ -16,7 +16,7 @@ public class ShoppingItem : MonoBehaviour
        shoppingItem_Image.sprite = null;
 
        Sprite sprite = Resources.Load<Sprite>("ShoppingItems/" + _name);
-       shoppingItem_Image.sprite = sprite; 
-       price_Text.text = string.Format("{0 : 0,000,000}원", _price);
+       shoppingItem_Image.sprite = sprite;
+       price_Text.text = _price;
     }
 }
