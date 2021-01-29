@@ -102,6 +102,20 @@ public class TimeManager : MonoBehaviour
             {
                 time = 0;
                 user.SetUserInfo(ChangeableUserProperties.GAMEHOUR, 1);
+
+                //게임 시간에 따른 배경 설정
+                if (user.userBaseProperties.gameHour < 8)
+                {
+                    HomeManager.Instance.SetBackground(0);
+                }
+                else if (user.userBaseProperties.gameHour < 16)
+                {
+                    HomeManager.Instance.SetBackground(1);
+                }
+                else if (user.userBaseProperties.gameHour < 24)
+                {
+                    HomeManager.Instance.SetBackground(2);
+                }
             }
 
             //날짜 갱신
@@ -110,6 +124,8 @@ public class TimeManager : MonoBehaviour
                 
                 user.SetUserInfo(ChangeableUserProperties.GAMEHOUR, 0);
                 user.SetUserInfo(ChangeableUserProperties.DAYSELASPSE, 1);
+
+                HomeManager.Instance.SetBackground(0);
 
                 yield return null;
             }

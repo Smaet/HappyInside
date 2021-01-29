@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
-    totalSpriteSurfaceArea: 49654324
+    totalSpriteSurfaceArea: 56815924
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -53,6 +53,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 48bf2d40562d89044bca9755b8080023, type: 3}
   - {fileID: 21300000, guid: 2331fe500cfe91b48a86bc53348b93a9, type: 3}
   - {fileID: 21300000, guid: 36b3fd80639350748a7a3b9eef2c3bec, type: 3}
+  - {fileID: 21300000, guid: 6ed800a0855031240a6e5c2103f76e35, type: 3}
   - {fileID: 21300000, guid: 5d654da0ec1c83a488004099ac46f305, type: 3}
   - {fileID: 21300000, guid: 020bb5b05b5ea28459bee7b2d1086177, type: 3}
   - {fileID: 21300000, guid: 523be851e2d7acd4691c22409a0507de, type: 3}
@@ -78,6 +79,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9aae71234365f9e42b36385ade16a1b4, type: 3}
   - {fileID: 21300000, guid: f2ff7033f9ba38546a2b64c9a79998f7, type: 3}
   - {fileID: 21300000, guid: 8776334354b182746a0021efb75043ef, type: 3}
+  - {fileID: 21300000, guid: ccb55563553ce9d46a779635fa6faaf3, type: 3}
   - {fileID: 21300000, guid: 3a5d166364e1e4848b9b662ecde33e00, type: 3}
   - {fileID: 21300000, guid: d05c937306a3efe458df7e3df097a3ff, type: 3}
   - {fileID: 21300000, guid: 9f026683d20561244b7cd4451866b846, type: 3}
@@ -109,6 +111,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 43a85e3511f11ae409405c8dac7dc4bb, type: 3}
   - {fileID: 21300000, guid: 4174bd55d44e3304993778128756cc54, type: 3}
   - {fileID: 21300000, guid: 44bf3975413065f4195481d154f878ca, type: 3}
+  - {fileID: 21300000, guid: e87303b556c95634b901a6eae36c9854, type: 3}
   - {fileID: 21300000, guid: 1dd22fd51c7b6b647b53c9164567a956, type: 3}
   - {fileID: 21300000, guid: f654acf515bcb59439ca1d91f5f649d4, type: 3}
   - {fileID: 21300000, guid: 7b44461613361564398c5dfa77236359, type: 3}
@@ -149,6 +152,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9959cbc856f652d45ba74200d4f1b3f2, type: 3}
   - {fileID: 21300000, guid: 93773fe88f7ed9444b64a0d326a78c3a, type: 3}
   - {fileID: 21300000, guid: d1d037f8f856a3d4e96a8112222049fb, type: 3}
+  - {fileID: 21300000, guid: 587998f8d0d0e11468360486a5b88240, type: 3}
   - {fileID: 21300000, guid: 3334e239bf0fe5a4fab041e7cff4b7f8, type: 3}
   - {fileID: 21300000, guid: 00af6c499fa55be4da829b7ae29a6149, type: 3}
   - {fileID: 21300000, guid: 1b883b89ecadc5f41b875e4af94a7915, type: 3}
@@ -161,6 +165,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e54b772aeabda3242bd042f295ba6974, type: 3}
   - {fileID: 21300000, guid: 1701653a0072be54dad090dab404f19f, type: 3}
   - {fileID: 21300000, guid: 53f4044ade0965540a00c5fe6edb7b3c, type: 3}
+  - {fileID: 21300000, guid: 9c1b447a7fc6e7241a880b421c557e10, type: 3}
   - {fileID: 21300000, guid: 1958c58a92825bf49a62350be7293536, type: 3}
   - {fileID: 21300000, guid: 5333cd9aa15c55445b34c10d99f87395, type: 3}
   - {fileID: 21300000, guid: 1bdba9aa8e696624f8142cbb9f213974, type: 3}
@@ -200,6 +205,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bb99fa3e3d3f13e43994e0f32f9c3636, type: 3}
   - {fileID: 21300000, guid: 3117636ec7ab2504fbabc42262fa3bf6, type: 3}
   - {fileID: 21300000, guid: 73a7a46ebdd2a1d4088ce0c967b79e65, type: 3}
+  - {fileID: 21300000, guid: 02a5447e312547a49ae5d5636a98ecd4, type: 3}
   - {fileID: 21300000, guid: 349f3deeeecd46941b25eb383af5347e, type: 3}
   - {fileID: 21300000, guid: c5c2cffe75cbf6f4b9a58c336b51657f, type: 3}
   - {fileID: 21300000, guid: 6edc6e0f5841fcb419a7a3b5e9dbd8e1, type: 3}
@@ -219,6 +225,7 @@ SpriteAtlas:
   - Azit_A2_Speech_White
   - Im_H_Azit_A
   - Azit_6_haker_character_icon4
+  - Im_H_Background_night
   - Store_4_ShopList_back
   - Im_H_MoveFlex_Casino2
   - Mansion_MenuList_Cri
@@ -244,6 +251,7 @@ SpriteAtlas:
   - Im_H_MoveAzit_Background
   - m_door_R
   - Azit_3_Character_Levelup
+  - flex_cake_temp
   - Im_H_I_HambergerBar_Popup2
   - Azit_6_haker_character_gauge_back4
   - Store_3_Gamerank_background3
@@ -275,6 +283,7 @@ SpriteAtlas:
   - Store_4_Pass_button
   - Mansion_home_button
   - Im_H_I_Blackcoin_PlusButton
+  - flex_pizza_temp
   - Azit_6_haker_character_back
   - Azit_4_Character_snagtae
   - Azit_A2_Speech_Black
@@ -315,6 +324,7 @@ SpriteAtlas:
   - Mansion_MenuList_background
   - Azit_3_Character_ability_1
   - Store_1_Home_button
+  - Im_H_Background_sunset
   - Im_H_MoveAzit_azitB
   - Im_H_I_TopBar
   - Im_H_I_HambergerBar_Popup5
@@ -327,6 +337,7 @@ SpriteAtlas:
   - Mansion_MenuList_Goldsam
   - flex_space_temp 2
   - m_door_L
+  - flex_steak_temp
   - Azit_3_Character_ability_2
   - Store_2_Gameplay_play_button
   - Store_5_ShopList_light
@@ -366,6 +377,7 @@ SpriteAtlas:
   - Transparency
   - Im_H_MoveFlex_Home2
   - Azit_3_Character_Vovely
+  - Im_H_Background
   - Im_H_MoveFlex_Background
   - Azit_4_Character_Dare
   - Mansion_Speach_White

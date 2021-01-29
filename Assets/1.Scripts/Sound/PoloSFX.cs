@@ -7,9 +7,11 @@
  *----------------------------------------------------------------------------------------*/
 using UnityEngine;
 using System.Collections;
+using Doozy.Engine.Soundy;
 
 public class PoloSFX : SimpleSingleton<PoloSFX>
 {
+	
     public AudioClip button;
 	public AudioClip bgm_Home;
 	public AudioClip bgm_Agit;
@@ -27,6 +29,8 @@ public class PoloSFX : SimpleSingleton<PoloSFX>
 	{
 		base.Awake();
 		playingBGM = "";
+		//SoundyManager.Init();
+		
 	}
 
     public void PlayButton()

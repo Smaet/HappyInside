@@ -14,18 +14,19 @@ public class SelfConversation : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         initDelay = Random.Range(0f, 4.0f);
 
         StartCoroutine(SelfConversationCoroutine(loopDelay));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        StopCoroutine(SelfConversationCoroutine(loopDelay));
     }
+
+    
 
     IEnumerator SelfConversationCoroutine(float looptime)
     {

@@ -81,6 +81,22 @@ public class GameManager : SimpleSingleton<GameManager>
         //게임 시간 시작
         HomeManager.Instance.timeManager.StartGameTime(user.userBaseProperties.gameHour, user.userBaseProperties.daysElapsed);
 
+        //게임 시간에 따른 배경 설정
+        if(user.userBaseProperties.gameHour < 9)
+        {
+            HomeManager.Instance.SetBackground(0);
+        }
+        else if(user.userBaseProperties.gameHour < 17)
+        {
+            HomeManager.Instance.SetBackground(1);
+        }
+        else if(user.userBaseProperties.gameHour < 24)
+        {
+            HomeManager.Instance.SetBackground(2);
+        }
+
+       
+
         //활성화 되어있는 동료들 활성화
         if (userProperties.collegueInfos[(int)CollegueIndex.HACKER].isActive)
         {

@@ -65,6 +65,10 @@ public enum CanvasIndex
 
 public class HomeManager : SimpleSingleton<HomeManager>
 {
+    [Header("Background")]
+    public Sprite[] backgrounds;
+    public Image background_Image;
+
     [Header("GrandFatherPanel")]
     public ScrollRect scrollRect_GrandFather;
     private bool isButtonSliding_GrandFather;
@@ -164,14 +168,20 @@ public class HomeManager : SimpleSingleton<HomeManager>
         }
     }
 
-    
+    #region 배경
+    public void SetBackground(int _index)
+    {
+        background_Image.sprite = backgrounds[_index];
+
+    }
+    #endregion
 
 
     #region 홈 화면 버튼 이벤트
-  
+
 
     //Back Button을 위한 UIView Push
-   
+
     #region HOMEUI BUTTON
     //홈 화면에 있는 버튼들을 눌렀했을 때 실행되는 이벤트
     public void OnClickHomeUIButton(GetEnums _index)
