@@ -16,7 +16,7 @@ public class InputManager : SimpleSingleton<InputManager>
     {
         Debug.Log(finger.Index + " Finger Touch!!!");
 
-        HomeManager.Instance.RightBottomMenuCheck();
+        HomeManager.Instance.ResetAgitAndFlexSlide();
 
     }
 

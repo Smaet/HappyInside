@@ -8,12 +8,12 @@ public class SpaceLab : BaseFlexPlace
     public ResultPanel resultPanel;
     private void OnEnable()
     {
-        Init();
+        //Init();
     }
-    protected override void Init()
-    {
-        resultPanel.Init();
-    }
+    //protected override void Init()
+    //{
+    //    resultPanel.Init();
+    //}
     public void OnClickButton_Donate()
     {
         User user = GameManager.Instance.user;

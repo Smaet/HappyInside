@@ -56,6 +56,8 @@ public class AgitManager : MonoBehaviour
             isInit = true;
             //버튼 셋팅
             //아지트 A
+
+            //agitA_Button.onClick.AddListener(UIEventManager.Instance.AgitButtonClick);
             agitA_Button.onClick
                .AsObservable()
                .Subscribe(_ =>

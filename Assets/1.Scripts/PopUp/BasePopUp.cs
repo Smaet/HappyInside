@@ -39,14 +39,14 @@ public class BasePopUp : MyUIView
             .AsObservable()
             .Subscribe(_ =>
             {
-                HomeManager.Instance.OnClickBackPopUpButton();
+                //HomeManager.Instance.OnClickBackPopUpButton();
             }).AddTo(this);
 
         closeButton.onClick
             .AsObservable()
             .Subscribe(_ =>
             {
-                HomeManager.Instance.OnClickBackPopUpButton();
+                //HomeManager.Instance.OnClickBackPopUpButton();
             }).AddTo(this);
     }   
     public virtual void OpenPopUp()

@@ -15,42 +15,16 @@ public enum DepartmentStoreButtonIndex
 
 public class DepartmentStore : BaseFlexPlace
 {
-    private int accumulatedConsumption;         //누적 소비액
-
-  
-
-    public void StartMiniGame()
+    public override void SetButton()
     {
-        Debug.Log("백화점 미니게임 시작!");
-    }
+        base.SetButton();
 
-    // Start is called before the first frame update
-    public override void OpenFlexPlace()
-    {
-        Debug.Log("DepartmentStore Call!!");
-        base.OpenFlexPlace();
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if((DepartmentStoreButtonIndex)i == DepartmentStoreButtonIndex.Badge)
+            {
+                buttons[i].onClick.AddListener(PoloSFX.Instance.PlayAgitBGM);
+            }
+        }
     }
-
-    public void SetGuidePanel()
-    {
-        Debug.Log("SetGuidePanel Call!!");
-    }
-
-    public void SetMyRankingBadge()
-    {
-        Debug.Log("SetMyRankingBadge Call!!");
-    }
-
-    public void SetRankingTop5()
-    {
-        Debug.Log("SetRankingTop5 Call!!");
-    }
-   
-
-    public void GoFlexDepartmentEvent(string _string)
-    {
-        Debug.Log("!!!!!!!!!!!!!!");
-    }
-  
-    
 }

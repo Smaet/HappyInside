@@ -20,7 +20,7 @@ public class BaseFlexPlaceGame : MyUIView
                 backButton.onClick
                 .AsObservable()
                 .Subscribe(_ =>{
-                       HomeManager.Instance.OnClickBackButton();
+                       //HomeManager.Instance.OnClickBackButton();
                 }).AddTo(this); 
         }
     }
