@@ -87,15 +87,31 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
     [SerializeField]
     private ResultPanel resultPanel;
 
+
+  
+
     private void OnEnable()
     {
-        //각종 초기화
-        Init();
-        //시작 신호
-        startPanel.StartSign(this);
+        //이벤트 설정
+        //시작 이벤트
+        OnClickDepartmentMiniGameStart += StartGame;
+        //난이도 설정이 추가 됨
+
+        //시작 카운트
+        StartSign();
+
+
+
     }
 
-    protected override void Init()
+    private void OnDisable()
+    {
+        //이벤트 설정
+        OnClickDepartmentMiniGameStart -= StartGame;
+    }
+
+
+    public override void Init()
     {
         score = 0;
         score_Text.text = "0";
@@ -115,16 +131,7 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         ShoppingListObject.SetActive(false);
     }
 
-    public override void OpenFlexPlaceGame()
-    {
-        Debug.Log("DepartmentStore Game Call!!!");
-        base.OpenFlexPlaceGame();
-        //각종 초기화
-        Init();
-        //시작 신호
-        startPanel.StartSign(this);
-    }
-
+    
     //private void Awake()
     //{
     //    //각종 초기화
@@ -132,6 +139,13 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
     //    //시작 신호
     //    startPanel.StartSign(this);
     //}
+
+    public override void StartSign()
+    {
+        Init();
+        startPanel.StartSign(this);
+    }
+
 
     public void StartGame()
     {

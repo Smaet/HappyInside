@@ -10,8 +10,6 @@ using UniRx;
 public class BaseFlexPlace : MonoBehaviour
 {
     [SerializeField]
-    private FlexPlaceIndex flexIndex;
-    [SerializeField]
     public Button[] buttons;                //플렉스 공간(로비)에서 사용되는 버튼들
     //public Doozy.Examples.
 
@@ -23,7 +21,4 @@ public class BaseFlexPlace : MonoBehaviour
             buttons[i].onClick.RemoveAllListeners();
         }
     }
-
-
-
 }

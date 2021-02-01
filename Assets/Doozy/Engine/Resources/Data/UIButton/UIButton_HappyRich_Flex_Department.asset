@@ -20,3 +20,5 @@ MonoBehaviour:
   - RankingTop5
   - Back
   - PlayGame
+  - GuideClose
+  - RankingClose

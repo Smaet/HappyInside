@@ -20,6 +20,6 @@ public class StartPanel : MonoBehaviour
 
     public void StartGame()
     {
-        game.StartGame();
+        HomeManager.Instance.flexPlaceManager.FlexPlaceGames[0].OnClickDepartmentMiniGameStart();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using Doozy.Engine.UI;
 
 public enum DepartmentStoreButtonIndex
 {
@@ -15,16 +16,5 @@ public enum DepartmentStoreButtonIndex
 
 public class DepartmentStore : BaseFlexPlace
 {
-    public override void SetButton()
-    {
-        base.SetButton();
-
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            if((DepartmentStoreButtonIndex)i == DepartmentStoreButtonIndex.Badge)
-            {
-                buttons[i].onClick.AddListener(PoloSFX.Instance.PlayAgitBGM);
-            }
-        }
-    }
+    
 }

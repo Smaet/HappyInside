@@ -5,12 +5,14 @@
   
   
   기능
-  
+  1. FlexPlace 와 FlexPlaceGame에 접근 할수 있는 기능
+  2. FlexPlace에서 발생하는 이벤트 관리
 
 */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum FlexPlaceIndex
 {
@@ -30,10 +32,25 @@ public class FlexPlaceManager : MonoBehaviour
     [Header("FlexPlaceGames")]
     public BaseFlexPlaceGame[] FlexPlaceGames;
 
-    public void StartDepartmentMiniGame()
+
+    //각종 이벤트 및 초기화 셋팅
+    public void Init()
     {
-        FlexPlaceGames[(int)FlexPlaceIndex.DEPARTMENTSTORE].OpenFlexPlaceGame();
+        DepartmentInit();
     }
 
-    
+    #region 백화점
+  
+
+    private void DepartmentInit()
+    {
+       
+     
+    }
+
+   
+
+    #endregion
+
+
 }

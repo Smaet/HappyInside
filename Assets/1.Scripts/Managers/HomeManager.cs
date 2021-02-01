@@ -94,7 +94,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     private UserAttainment userAttainment;
     public AgitManager agitManager;
     [SerializeField]
-    private FlexPlaceManager flexPlaceManager;
+    public FlexPlaceManager flexPlaceManager;
     [SerializeField]
     private InputManager inputManager;
     public TimeManager timeManager;
@@ -117,6 +117,9 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
     public void Init()
     {
+        //플렉스 매니저 초기화
+        flexPlaceManager.Init();
+
         topUIManager.Init();
         comprehensivePanel.Init();
 
