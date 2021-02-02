@@ -77,9 +77,9 @@ public class UserBaseProperties
     public long resultMoney;                //현재 잔액
     public long recentChangeMoney;          //최근 변화된 돈
     public long FlexConsumption;            //누적 소비액  --> 해당 금액에 따른 난이도 변화
-    public long donateMoney;                 //기부하는 돈
-    public int gameHour;                  //게임 시간
-    public int daysElapsed;               //경과된 일수
+    public long donateMoney;                //기부하는 돈
+    public int gameHour;                    //게임 시간
+    public int daysElapsed;                 //경과된 일수
     public Doubt doubt;                     //의심도
     public float pinkChip;                  //핑크칩?
 
@@ -94,12 +94,11 @@ public class UserBaseProperties
             collegueInfos[i] = new collegueInfo();
         }
 
-        buffs = new Buff[1];
-        buffs[0] = new Buff();
+        buffs = new List<Buff>();
 
     }
 
-    public Buff[] buffs;
+    public List<Buff> buffs;
    
 
 }
@@ -125,12 +124,13 @@ public class Doubt
 [Serializable]
 public class Buff
 {
+    public int icon;                        //버프창 아이콘 Index
+    public BuffIndex buffIndex;             //버프 구분 인덱스
     public bool isActive;                   //활성화 인지 아닌지
-    public bool isRunning;                  //버프가 돌아가는 중 인지 아닌지
     public bool isGood;                     //버프가 이로운 효과 인지 아닌지
     public bool isBuffed;
     public bool isReset;                    //리셋을 하는지 아닌지
-    public int continueTime;                //지속시간
+    public int totalContinueTime;           //전체 지속시간
     public int remainTime;                  //남은시간
     public float effect_Doubt_Plus;         //의심에 사용되는 효과 수치 (이로운 수치)
     public float effect_Doubt_Minus;        //의심에 사용되는 효과 수치 (이롭지 않은 수치)
@@ -154,7 +154,6 @@ public class collegueInfo
     public collegueBasicSkill collegueBasicSkill;
     public colleguePassiveSkill[] colleguePassiveSkills;
     public collegueItem collegueItem;
-    public collegueDevice collegueDevice;
 }
 
 [Serializable]

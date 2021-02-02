@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class CollegueView : MonoBehaviour
 {
@@ -23,6 +24,13 @@ public class CollegueView : MonoBehaviour
     public Sprite[] abilityEnableSprites;
 
     public Button levelUp_button;
+    [Header("Event")]
+    public Action<collegueInfo> OnClickOpenCollegueView;
+
+    public void Init()
+    {
+        OnClickOpenCollegueView += OpenCollegueView;
+    }
 
     public void OpenCollegueView(collegueInfo _info)
     {

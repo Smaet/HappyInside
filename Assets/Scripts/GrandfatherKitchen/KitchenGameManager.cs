@@ -239,22 +239,10 @@ public class KitchenGameManager : MonoBehaviour
             uiView_ResultScreen_Success.Show();
 
        
-            if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
+            if (GameManager.Instance.user.userBaseProperties.buffs.Exists(x => x.buffIndex == BuffIndex.GRANDFATHER) == false)
             {
-                Buff GrandFather = new Buff();
-                GrandFather.isActive = true;
-                GrandFather.isGood = true;
-                GrandFather.isRunning = true;
-                GrandFather.isBuffed = false;
-                GrandFather.remainTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
-                GrandFather.continueTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
-                GrandFather.effect_Doubt_Plus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Plus;
-                GrandFather.effect_Doubt_Minus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Minus;
-
-                GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, GrandFather);
-             
-                HomeManager.Instance.timeManager.StartGrandFatherBuff();
-
+                //유저에게 버프 추가
+                GameManager.Instance.AddBuff_GrandFather(true);
             }
             
         }
@@ -262,21 +250,10 @@ public class KitchenGameManager : MonoBehaviour
         {
             uiView_ResultScreen_Fail.Show();
 
-            if (GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].isActive == false)
+            if (GameManager.Instance.user.userBaseProperties.buffs.Exists(x => x.buffIndex == BuffIndex.GRANDFATHER) == false)
             {
-                Buff GrandFather = new Buff();
-                GrandFather.isActive = true;
-                GrandFather.isGood = false;
-                GrandFather.isRunning = true;
-                GrandFather.isBuffed = false;
-                GrandFather.remainTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
-                GrandFather.continueTime = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].continueTime;
-                GrandFather.effect_Doubt_Plus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Plus;
-                GrandFather.effect_Doubt_Minus = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER].effect_Doubt_Minus;
-
-                GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, GrandFather);
-                
-                HomeManager.Instance.timeManager.StartGrandFatherBuff();
+                //유저에게 버프 추가
+                GameManager.Instance.AddBuff_GrandFather(false);
             }
         }
     }

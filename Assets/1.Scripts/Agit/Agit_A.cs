@@ -4,29 +4,18 @@ using UnityEngine;
 
 public class Agit_A : BaseAgit
 {
-    public override void OpenAgit()
-    {
-        Init();
-        SetCollegueUI(CollegueIndex.HACKER);
-
-
-    }
-
+    //아지트에 보여지는 동료 패널 정보 (레벨에 따른 동료의 변화 등등..)
     public ColleguePanel[] colleguePanels;
 
-
-    public void OnUseMouse()
+    private void OnEnable()
     {
-        Debug.Log("대화창 클릭!");
+        Init();
+        UpdateAgitACollegueUI(CollegueIndex.HACKER);
     }
 
 
-    public void OnCollegueButtonClick()
-    {
-
-    }
-
-    public void SetCollegueUI(CollegueIndex _index)
+    
+    public void UpdateAgitACollegueUI(CollegueIndex _index)
     {
         switch(_index)
         {

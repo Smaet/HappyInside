@@ -9,9 +9,5 @@ public class Agit_B : BaseAgit
         base.Init();
     }
 
-    public override void OpenAgit()
-    {
-        Init();
-        base.OpenAgit();
-    }
+   
 }

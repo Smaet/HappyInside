@@ -12,7 +12,7 @@
   2. 홈 화면에서 이루어지는 버튼 이벤트 관리
 
   3. 홈 화면에서 다른 화면으로 넘어가는 버튼들은 DoozyUI로 처리
-
+  4. 버프 관리
 
 */
 
@@ -22,7 +22,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using Doozy;
-
+using PixelCrushers.DialogueSystem;
 
 #region Enums
 public enum MenuIndex
@@ -84,6 +84,9 @@ public class HomeManager : SimpleSingleton<HomeManager>
     [SerializeField]
     private BaseSlideButtonPanel[] baseSlideButtonPanels;
 
+    //버프 관리
+    public List<Buff> buffs = new List<Buff>();
+
     #region Managers
     [Header("Managers")]
     [SerializeField]
@@ -104,10 +107,8 @@ public class HomeManager : SimpleSingleton<HomeManager>
     public GrandFatherHouseManager grandFatherHouseManager;
     #endregion
 
-    #region Variables
-    private bool isFading = false;
-
-    #endregion
+    public DialogueSystemTrigger dst;
+    public DialogueSystemController dController;
    
 
     protected override void Awake()
@@ -119,7 +120,12 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         //플렉스 매니저 초기화
         flexPlaceManager.Init();
+        //아지트 매니저 초기화
+        agitManager.Init();
 
+
+
+        ////////////////////////////////
         topUIManager.Init();
         comprehensivePanel.Init();
 
@@ -128,6 +134,10 @@ public class HomeManager : SimpleSingleton<HomeManager>
         {
             baseSlideButtonPanels[i].SetButton();
         }
+
+        dst.conversation = "New Conversation 1";
+        //dController.displaySettings
+        dst.TryStart(this.transform);
 
     }
 
@@ -150,7 +160,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     }
     #endregion
 
-
+    //통계로 수정 예정
     #region 할아버지 그림 버튼
     public void DebugScrollRect(Vector2 _vector2)
     {
@@ -214,6 +224,11 @@ public class HomeManager : SimpleSingleton<HomeManager>
             yield return null;
         }
     }
-    #endregion
+    #endregion]
+
+    public void ShowAnimation()
+    {
+        print(this.gameObject.name + " Show Animation!");
+    }
 
 }

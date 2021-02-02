@@ -5,6 +5,7 @@
   1.변수는 소문자로 시작해서 구분하기 위한 부분에 대문자를 넣어서 사용
   2.함수의 매개 변수는 '_'을 변수 앞에 붙이기 -> Example(int _index) {}
   3.각각의 버튼 이벤트들은 해당 버튼의 상위 클래스에서 관리.
+  4.UI 관련 변수는 앞에 소문자로 UI 명을 붙이고 다음에 해당변수 이름 사용 -> Image image_Player
   
   기능
   1. 유저 정보 관리
@@ -96,20 +97,6 @@ public class GameManager : SimpleSingleton<GameManager>
             HomeManager.Instance.SetBackground(2);
         }
 
-       
-
-        //활성화 되어있는 동료들 활성화
-        if (userProperties.collegueInfos[(int)CollegueIndex.HACKER].isActive)
-        {
-            HomeManager.Instance.timeManager.StartRunHacker();
-        }
-
-        //활성화 되어있는 버프들 활성화
-        if (userProperties.buffs[0].isActive)
-        {
-            HomeManager.Instance.timeManager.StartGrandFatherBuff();
-        }
-
 
         PoloSFX.Instance.PlayHomeBGM();
     }
@@ -163,17 +150,8 @@ public class GameManager : SimpleSingleton<GameManager>
 
             tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
 
-            tempUserData.userBaseProperties.buffs = new Buff[1];
-            tempUserData.userBaseProperties.buffs[0] = new Buff();
-            tempUserData.userBaseProperties.buffs[0].isActive = false;
-            tempUserData.userBaseProperties.buffs[0].isRunning = false;
-            tempUserData.userBaseProperties.buffs[0].isGood = false;
-            tempUserData.userBaseProperties.buffs[0].isBuffed = false;
-
-            tempUserData.userBaseProperties.buffs[0].continueTime = 12;
-            tempUserData.userBaseProperties.buffs[0].remainTime = 0;
-            tempUserData.userBaseProperties.buffs[0].effect_Doubt_Plus = -5;
-            tempUserData.userBaseProperties.buffs[0].effect_Doubt_Minus = 5;
+            tempUserData.userBaseProperties.buffs = new List<Buff>();
+     
 
             for (int i = 0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
             {
@@ -251,6 +229,35 @@ public class GameManager : SimpleSingleton<GameManager>
 
     }
 
+    #endregion
+
+    #region Buff
+    public void AddBuff_GrandFather(bool _isGood)
+    {
+        Buff buff = new Buff();
+        buff.icon = 0;
+        buff.buffIndex = BuffIndex.GRANDFATHER;
+        buff.isActive = false;
+        buff.isGood = _isGood;
+        buff.isBuffed = false;
+
+        buff.totalContinueTime = 12;
+        buff.remainTime = buff.totalContinueTime;
+        buff.effect_Doubt_Plus = -5;
+        buff.effect_Doubt_Minus = 5;
+
+        user.userBaseProperties.buffs.Add(buff);
+
+        //버프 추가 후 유저의 의심도 증가 또는 하락
+        if(_isGood)
+        {
+            user.SetUserInfo(DoubtIndex.GRANDFATHER, buff.effect_Doubt_Plus);
+        }
+        else
+        {
+            user.SetUserInfo(DoubtIndex.GRANDFATHER, buff.effect_Doubt_Minus);
+        }
+    }
     #endregion
 
     #region Util

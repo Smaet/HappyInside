@@ -16,8 +16,8 @@ public enum TimerIndex
 
 public class TimeManager : MonoBehaviour
 {
-    float HourUpdateCycle = 5;      //시간이 업데이트 되는 주기 (5초)
-    float DaysUpdateCycle = 24;      //날짜가 업데이트 되는 주기 (24시간)
+    float HourUpdateCycle = 5;          //시간이 업데이트 되는 주기 (5초)
+    float DaysUpdateCycle = 24;         //날짜가 업데이트 되는 주기 (24시간)
 
     [SerializeField]
     private int curHour;
@@ -73,7 +73,9 @@ public class TimeManager : MonoBehaviour
     });
     }
     #endregion
-
+    //임시
+    [Header("Hacker")]
+    private int hackerSkillTime;        //해커의 능력이 발동 될 때 까지의 실제 타임
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +85,9 @@ public class TimeManager : MonoBehaviour
         //시간 관련 UI 갱신
         curHour = _savedHour;
         curDay = _savedDay;
+
+        Debug.Log("<color=red>Hacker 활성화!</color>");
+
         StartCoroutine(GameTimer());
     }
 
@@ -96,25 +101,38 @@ public class TimeManager : MonoBehaviour
             //동료들이 있다면 유저에게 있는 동료에 관한 기본능력 처리 
             //시간 갱신
             User user = GameManager.Instance.user;
+            collegueInfo hacker = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER];
 
 
             if (time >= HourUpdateCycle)
             {
                 time = 0;
+              
                 user.SetUserInfo(ChangeableUserProperties.GAMEHOUR, 1);
 
                 //게임 시간에 따른 배경 설정
-                if (user.userBaseProperties.gameHour < 8)
+                CheckBackgroundChange(user);
+
+                //시간에 따른 해커의 능력 설정
+                hackerSkillTime++;
+                CheckHacker(hacker); 
+
+                //버프관련 해커의 버프는 켜지는 순간에 이미 적용이 되어있음
+                if(GameManager.Instance.user.userBaseProperties.buffs.Count > 0)
                 {
-                    HomeManager.Instance.SetBackground(0);
-                }
-                else if (user.userBaseProperties.gameHour < 16)
-                {
-                    HomeManager.Instance.SetBackground(1);
-                }
-                else if (user.userBaseProperties.gameHour < 24)
-                {
-                    HomeManager.Instance.SetBackground(2);
+                    for(int i=0; i < GameManager.Instance.user.userBaseProperties.buffs.Count; i++)
+                    {
+                        //지속시간 남아있을 때
+                        if(GameManager.Instance.user.userBaseProperties.buffs[i].remainTime > 0)
+                        {
+                            GameManager.Instance.user.userBaseProperties.buffs[i].remainTime--;
+                        }
+                        //지속시간이 끝났을 때
+                        else
+                        {
+                            GameManager.Instance.user.userBaseProperties.buffs.RemoveAt(i);
+                        }
+                    }
                 }
             }
 
@@ -125,7 +143,8 @@ public class TimeManager : MonoBehaviour
                 user.SetUserInfo(ChangeableUserProperties.GAMEHOUR, 0);
                 user.SetUserInfo(ChangeableUserProperties.DAYSELASPSE, 1);
 
-                HomeManager.Instance.SetBackground(0);
+
+                SetBackground(0);
 
                 yield return null;
             }
@@ -134,118 +153,54 @@ public class TimeManager : MonoBehaviour
             yield return null;
         }
     }
+
+    void CheckBackgroundChange(User user)
+    {
+        //게임 시간에 따른 배경 설정
+        if (user.userBaseProperties.gameHour < 8)
+        {
+            HomeManager.Instance.SetBackground(0);
+        }
+        else if (user.userBaseProperties.gameHour < 16)
+        {
+            HomeManager.Instance.SetBackground(1);
+        }
+        else if (user.userBaseProperties.gameHour < 24)
+        {
+            HomeManager.Instance.SetBackground(2);
+        }
+    }
+
+    void SetBackground(int _index)
+    {
+        HomeManager.Instance.SetBackground(_index);
+    }
+    
+
     #region 해커의 시간 관련
-    public void StartRunHacker()
-    {
-        Debug.Log("<color=red>Hacker 활성화!</color>");
-        StartCoroutine(RunHacker());
-    }
 
-    IEnumerator RunHacker()
+    public void CheckHacker(collegueInfo _hacker)
     {
-        float time = 0;
-        float hourCount = 0;
-
-        while (true)
+        if (_hacker.isActive && hackerSkillTime > _hacker.collegueBasicSkill.hour - 1)
         {
-            //시간 관련 UI 갱신
-            //동료들이 있다면 유저에게 있는 동료에 관한 기본능력 처리 
-            //시간 갱신
-            collegueInfo hacker = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER];
+            hackerSkillTime = 0;
+            Debug.Log("<color=red>Hacker 의 능력으로 조작된 돈 추가  </color> : " + _hacker.collegueBasicSkill.money);
 
+            //해커의 아이템으로 추가되는 능력 더하기
 
-            if (time >= HourUpdateCycle)        //시간이 바뀔때.
-            {
-                time = 0;
-                hourCount++;
-            }
+            Debug.Log("<color=purple>Hacker 의 아이템으로 증가된 수치 </color> : " + _hacker.collegueItem.chance);
 
-            else if(hourCount >= hacker.collegueBasicSkill.hour)
-            {
-                hourCount = 0;
-                Debug.Log("<color=red>Hacker 의 능력으로 조작된 돈 추가  </color> : " + hacker.collegueBasicSkill.money);
+            double itemChance = _hacker.collegueItem.chance * 0.01;
+            long result = _hacker.collegueBasicSkill.money + (long)(_hacker.collegueBasicSkill.money * itemChance);
 
-                //해커의 아이템으로 추가되는 능력 더하기
-
-                Debug.Log("<color=purple>Hacker 의 아이템으로 증가된 수치 </color> : " + hacker.collegueItem.chance);
-
-                double itemChance = hacker.collegueItem.chance * 0.01;
-                long result = hacker.collegueBasicSkill.money + (long)(hacker.collegueBasicSkill.money * itemChance);
-
-                GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
-                HomeManager.Instance.agitManager.collegueView.SetManipulateMoney();
-                HomeManager.Instance.agitManager.agit_A.colleguePanels[0].StartSampleEffect();
-
-            }
-
-            time += Time.deltaTime;
-            yield return null;
-        }
+            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
+            HomeManager.Instance.agitManager.collegueView.SetManipulateMoney();
+            HomeManager.Instance.agitManager.agit_A.colleguePanels[0].StartSampleEffect();
+        }           
     }
+
     #endregion
 
-    #region 할아버지 버프
-    public void StartGrandFatherBuff()
-    {
-        Debug.Log("<color=red>할아버지 버프 활성화!</color>");
-        StartCoroutine(GrandFatherBuff());
-    }
-
-    IEnumerator GrandFatherBuff()
-    {
-        float time = 0;
-        float hourCount = 0;
-
-      
-        while (true)
-        {
-            Buff grandFather = GameManager.Instance.user.userBaseProperties.buffs[(int)BuffIndex.GRANDFATHER];
-
-
-            if (grandFather.remainTime > 0)
-            {
-                if (time >= HourUpdateCycle)        //시간이 바뀔때.
-                {
-                    time = 0;
-                    hourCount++;
-                    Debug.Log("<color=green>할아버지 버프 남은 시간.  </color> : " + (grandFather.remainTime - 1));
-
-                    grandFather.remainTime -= 1;
-                    GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
-                }
-            }
-            else
-            {
-                hourCount = 0;
-                Debug.Log("<color=red>할아버지 버프 종료  </color>");
-                grandFather.isActive = false;
-                grandFather.isRunning = false;
-                grandFather.isBuffed = false;
-                grandFather.remainTime = 0;
-                grandFather.isReset = true;
-                if (grandFather.isGood)
-                {
-                    grandFather.isGood = false;
-
-                    GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
-                }
-                else
-                {
-                    grandFather.isGood = false;
-                    GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
-                }
-
-                GameManager.Instance.user.SetUserInfo(BuffIndex.GRANDFATHER, grandFather);
-
-                yield break;
-
-            }
-          
-
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }
-    #endregion
+   
     #endregion
 }

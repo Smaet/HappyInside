@@ -94,20 +94,17 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
     {
         //이벤트 설정
         //시작 이벤트
-        OnClickDepartmentMiniGameStart += StartGame;
+        DepartmentMiniGameStart += StartGame;
         //난이도 설정이 추가 됨
 
         //시작 카운트
         StartSign();
-
-
-
     }
 
     private void OnDisable()
     {
         //이벤트 설정
-        OnClickDepartmentMiniGameStart -= StartGame;
+        DepartmentMiniGameStart -= StartGame;
     }
 
 
@@ -116,11 +113,12 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         score = 0;
         score_Text.text = "0";
 
-        curtainPanel.Init(this);
-        InitCombo();
-        InitMoney();
-        InitCardReader();
-        InitShoppingList();
+        clerkPanel.Init();              //점원 초기화
+        curtainPanel.Init(this);        //열리는 문 초기화
+        InitCombo();                    //콤보 초기화
+        InitMoney();                    //돈 수치 초기화
+        InitCardReader();               //카드 리더 초기화
+        InitShoppingList();             //쇼핑 리스트 초기화
 
         departmentGameTimer.Init(this);
 
@@ -130,15 +128,6 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
 
         ShoppingListObject.SetActive(false);
     }
-
-    
-    //private void Awake()
-    //{
-    //    //각종 초기화
-    //    Init();
-    //    //시작 신호
-    //    startPanel.StartSign(this);
-    //}
 
     public override void StartSign()
     {

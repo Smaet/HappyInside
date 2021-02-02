@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -18,6 +19,14 @@ public class CollegueItemView : MonoBehaviour
     public TextMeshProUGUI levelUpCost_TMP;
 
     public Button levelUp_button;
+
+    [Header("Event")]
+    public Action<collegueInfo> OnClickOpenCollegueItemView;
+
+    public void Init()
+    {
+        OnClickOpenCollegueItemView += OpenCollegueItemView;
+    }
 
     public void OpenCollegueItemView(collegueInfo _info)
     {

@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ClerkPanel : MonoBehaviour
 {
 
     [SerializeField]
-    private Text clerkName_Text;
+    private TextMeshProUGUI clerkName_Text;
 
     [SerializeField]
-    private Text clerkContext_Text;
+    private TextMeshProUGUI clerkContext_Text;
 
-
-    private void Awake()
-    {
-        Init();
-        gameObject.SetActive(false);
-    }
 
     public void Init()
     {
+        gameObject.SetActive(false);
         clerkName_Text.text = "점원";
         clerkContext_Text.text = " 00고객님\n오늘도 오셨군요!";
     }
