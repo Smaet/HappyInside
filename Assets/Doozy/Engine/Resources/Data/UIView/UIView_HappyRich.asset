@@ -15,15 +15,24 @@ MonoBehaviour:
   CategoryName: HappyRich
   DatabaseType: 2
   Names:
-  - Home
-  - AgitA
-  - AgitB
+  - Agit_Office
+  - AgitSlider
+  - Dialogue
   - Flex_Department
   - Flex_Department_Game
-  - TopUIBar
-  - AgitSlider
-  - FlexSlider
+  - Flex_Gallery_Inside
+  - Flex_Gallery_Lobby
+  - Flex_Garage_Inside
+  - Flex_Garage_Lobby
   - Flex_GrandFatherHouse
+  - Flex_GrandFatherHouse_BedRoom
   - Flex_GrandFatherHouse_Kitchen
-  - Flex_SpaceLab
-  - Dialogue
+  - Flex_GrandFatherHouse_Library
+  - FlexSlider
+  - Home
+  - TopUIBar
+  - Agit_Office
+  - Agit_Factory
+  - Agit_BlastFurnace
+  - Agit_SpaceAirField
+  - Agit_Lab

@@ -15,5 +15,8 @@ MonoBehaviour:
   CategoryName: HappyRich_HomeMenu_AgitButton
   DatabaseType: 0
   Names:
-  - AgitA
-  - AgitB
+  - Office
+  - Factory
+  - BlastFurnace
+  - SpaceAirField
+  - Lab

@@ -22,7 +22,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using Doozy;
-using PixelCrushers.DialogueSystem;
 
 #region Enums
 public enum MenuIndex
@@ -105,15 +104,23 @@ public class HomeManager : SimpleSingleton<HomeManager>
     public TopUIManager topUIManager ;
     public ComprehensivePanel comprehensivePanel;
     public GrandFatherHouseManager grandFatherHouseManager;
+
+    public HappyRichDialogueManager happyRichDialogueManager;
     #endregion
 
-    public DialogueSystemTrigger dst;
-    public DialogueSystemController dController;
    
 
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            happyRichDialogueManager.StartDialogue();
+        }
     }
 
     public void Init()
@@ -122,8 +129,6 @@ public class HomeManager : SimpleSingleton<HomeManager>
         flexPlaceManager.Init();
         //아지트 매니저 초기화
         agitManager.Init();
-
-
 
         ////////////////////////////////
         topUIManager.Init();
@@ -135,9 +140,11 @@ public class HomeManager : SimpleSingleton<HomeManager>
             baseSlideButtonPanels[i].SetButton();
         }
 
-        dst.conversation = "New Conversation 1";
+
         //dController.displaySettings
-        dst.TryStart(this.transform);
+        //강제 시작.
+        //dst.TryStart(actor);
+        //dst.start
 
     }
 

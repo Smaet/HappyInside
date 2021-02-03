@@ -71,7 +71,7 @@ public class GameManager : SimpleSingleton<GameManager>
         //할아버지 의심도및  재산 셋팅
         HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userProperties.manipulatedMoney);
         HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userProperties.ConsumptionMoney, userProperties.manipulatedMoney);
-        HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userProperties.startMoney, userProperties.manipulatedMoney);
+        //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userProperties.startMoney, userProperties.manipulatedMoney);
 
         //상단 패널 셋팅
         HomeManager.Instance.topUIManager.SetCrystal(userProperties.crystal);
@@ -131,11 +131,10 @@ public class GameManager : SimpleSingleton<GameManager>
             tempUserData.userBaseProperties = new UserBaseProperties();
             tempUserData.userBaseProperties.nickName = "플렉스";
             tempUserData.userBaseProperties.crystal = 99;
-            tempUserData.userBaseProperties.startMoney = 50000000000;
+            //tempUserData.userBaseProperties.startMoney = 50000000000;
             tempUserData.userBaseProperties.ConsumptionMoney = 0;
             tempUserData.userBaseProperties.manipulatedMoney = 5000000000;
             tempUserData.userBaseProperties.resultMoney = 0;
-            tempUserData.userBaseProperties.recentChangeMoney = 0;
             tempUserData.userBaseProperties.donateMoney = 1000000000;
             tempUserData.userBaseProperties.gameHour = 0;
             tempUserData.userBaseProperties.daysElapsed = 1;

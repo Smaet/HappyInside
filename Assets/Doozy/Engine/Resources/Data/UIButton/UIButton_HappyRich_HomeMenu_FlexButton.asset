@@ -15,9 +15,8 @@ MonoBehaviour:
   CategoryName: HappyRich_HomeMenu_FlexButton
   DatabaseType: 0
   Names:
-  - Flex_Department
-  - Flex_GrandFatherHouse
-  - Flex_Casino
-  - Flex_Airport
-  - Flex_SpaceLab
+  - Department
+  - GrandFatherHouse
+  - Gallery
+  - Garage
   - Back

@@ -19,9 +19,8 @@ MonoBehaviour:
   - HappyRich_HomeMenu_AgitButton
   - HappyRich_HomeMenu_FlexButton
   - HappyRich_Flex_Department
-  - HappyRich_Agit_A
-  - Collegue
-  - HappyRich_Agit_B
+  - HappyRich_Agit_Office
+  - HappyRich_Agit_Factory
   - CollegueItem
   - CollegueDevice
   - Collegue_PinkChip
@@ -29,13 +28,20 @@ MonoBehaviour:
   - HappyRich_Flex_GrandFatherHouse
   - HappyRich_Flex_GrandFatherHouse_Kitchen
   - HappyRich_Flex_SpaceLab
+  - HappyRich_Flex_GrandFatherHouse_BedRoom
+  - HappyRich_Flex_GrandFatherHouse_Library
+  - HappyRich_Flex_Gallery_Lobby
+  - HappyRich_Flex_Gallery_Inside
+  - HappyRich_Flex_Garage_Lobby
+  - HappyRich_Flex_Garage_Inside
+  - Collegue
+  - HappyRich_Agit_Furnace
   Categories:
   - {fileID: 11400000, guid: 921503f73ba0d0d48a43ffe857508ab9, type: 2}
   - {fileID: 11400000, guid: aededc754a576394ca0ae8581e5e5bef, type: 2}
   - {fileID: 11400000, guid: 97df7000d8bfabc48a9c5bff91736f38, type: 2}
   - {fileID: 11400000, guid: 1c6a562a2f479ed4f97d846955c032c3, type: 2}
   - {fileID: 11400000, guid: e299d8fc1edcf954cb869080ca74b7da, type: 2}
-  - {fileID: 11400000, guid: cc31d1dcfad7e274bbe205cf7fead9db, type: 2}
   - {fileID: 11400000, guid: 4c084d35e8bbd9d4eae0eb47725327f1, type: 2}
   - {fileID: 11400000, guid: 78dc98b334e2d40489c4287db5523651, type: 2}
   - {fileID: 11400000, guid: e6e40bda2e31c49498a40eebfd773b1d, type: 2}
@@ -44,3 +50,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 996680b0afd865544b20bc146d799725, type: 2}
   - {fileID: 11400000, guid: 428abac2e1d743b4e8f9f7d0a74f5d15, type: 2}
   - {fileID: 11400000, guid: 10401f784c5e96a4e9c86c4b2fd3f4f8, type: 2}
+  - {fileID: 11400000, guid: 2d98ed2510cea0c4893799c006c4fe70, type: 2}
+  - {fileID: 11400000, guid: cfd80cce061eb4744b9679801f4859f6, type: 2}
+  - {fileID: 11400000, guid: 8810a04c34a005043b334bcc63c063e1, type: 2}
+  - {fileID: 11400000, guid: 58550569d51910d43afdde5d53355e7b, type: 2}
+  - {fileID: 11400000, guid: cd31d0276a2fab34397581cae92ac2f0, type: 2}
+  - {fileID: 11400000, guid: 3a632b7af18637a42ab57313086f598f, type: 2}
+  - {fileID: 11400000, guid: 8ee6ce9017e87744689bf03c32910a4d, type: 2}
+  - {fileID: 11400000, guid: 8a3740312f6ed7343a6817da7c77a961, type: 2}

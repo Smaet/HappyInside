@@ -379,9 +379,11 @@ namespace PixelCrushers.DialogueSystem
 
         protected virtual void SetUIElementsActive(bool value)
         {
+           
             Tools.SetGameObjectActive(panel, value);
             Tools.SetGameObjectActive(portraitImage, value && portraitImage != null && portraitImage.sprite != null);
             portraitName.SetActive(value);
+            print(gameObject.name + " : " + portraitName.isActiveSelf);
             subtitleText.SetActive(value);
             Tools.SetGameObjectActive(continueButton, false); // Let ConversationView determine if continueButton should be shown.
         }

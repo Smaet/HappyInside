@@ -24,8 +24,8 @@ public class ComprehensivePanel : MonoBehaviour
     public void SetCurrentAssetStatus_Slider(long _manipulateMoney)
     {
         //전체 재산에서 
-        double manipulatePercent = (double)_manipulateMoney / (double)GameManager.Instance.user.userBaseProperties.startMoney;
-        CurrentAssetStatus_Slider.value =(float) manipulatePercent;
+        //double manipulatePercent = (double)_manipulateMoney / (double)GameManager.Instance.user.userBaseProperties.startMoney;
+        //CurrentAssetStatus_Slider.value =(float) manipulatePercent;
     }
 
     public void SetCurrentDoubtStatus_Slider(long _consumption, long  _manipulateMoney)

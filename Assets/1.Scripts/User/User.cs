@@ -52,7 +52,6 @@ public enum ChangeableUserProperties
     CONSUMPTION,
     MANIPULATEMONEY,
     RESULTMONEY,
-    RECENTCHANGEMONEY,
     GAMEHOUR,
     DAYSELASPSE,
     DOUBT,
@@ -71,17 +70,17 @@ public class UserBaseProperties
 {
     public string nickName;                 //닉네임
     public int crystal;                     //크리스탈
-    public long startMoney;                 //시작재산 (고정된 재산)
     public long ConsumptionMoney;           //현재 가지고 있는 돈 (실제 재산)
     public long manipulatedMoney;           //현재 조작된 돈
     public long resultMoney;                //현재 잔액
-    public long recentChangeMoney;          //최근 변화된 돈
     public long FlexConsumption;            //누적 소비액  --> 해당 금액에 따른 난이도 변화
     public long donateMoney;                //기부하는 돈
     public int gameHour;                    //게임 시간
     public int daysElapsed;                 //경과된 일수
-    public Doubt doubt;                     //의심도
+    public Doubt doubt;                     //의심도           --> 할아버지 분노 정도
     public float pinkChip;                  //핑크칩?
+
+    //인벤토리
 
 
     public collegueInfo[] collegueInfos;
@@ -95,12 +94,8 @@ public class UserBaseProperties
         }
 
         buffs = new List<Buff>();
-
     }
-
     public List<Buff> buffs;
-   
-
 }
 [Serializable]
 public class Doubt
@@ -212,11 +207,9 @@ public class User : MonoBehaviour
 
         userBaseProperties.nickName = _userInfo.userBaseProperties.nickName;
         userBaseProperties.crystal = _userInfo.userBaseProperties.crystal;
-        userBaseProperties.startMoney = _userInfo.userBaseProperties.startMoney;
         userBaseProperties.ConsumptionMoney = _userInfo.userBaseProperties.ConsumptionMoney;
         userBaseProperties.manipulatedMoney = _userInfo.userBaseProperties.manipulatedMoney;
         userBaseProperties.resultMoney = _userInfo.userBaseProperties.resultMoney;
-        userBaseProperties.recentChangeMoney = _userInfo.userBaseProperties.recentChangeMoney;
         userBaseProperties.gameHour = _userInfo.userBaseProperties.gameHour;
         userBaseProperties.daysElapsed = _userInfo.userBaseProperties.daysElapsed;
         userBaseProperties.doubt = _userInfo.userBaseProperties.doubt;
@@ -311,9 +304,9 @@ public class User : MonoBehaviour
         switch (_changeableIndex)
         {
             case ChangeableUserProperties.STARTMONEY:
-                userBaseProperties.startMoney += _value;
-                HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
-                Debug.Log("현재 시작금액 : " + userBaseProperties.startMoney);
+                //userBaseProperties.startMoney += _value;
+                //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
+                //Debug.Log("현재 시작금액 : " + userBaseProperties.startMoney);
                 break;
             case ChangeableUserProperties.CONSUMPTION:
                 userBaseProperties.ConsumptionMoney += _value;
@@ -364,7 +357,7 @@ public class User : MonoBehaviour
                 HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userBaseProperties.manipulatedMoney);
                 
                 //현재 할아버지의 총 재산에 대한 정보
-                HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
+                //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
                 //Debug.Log("현재 조작된금액 : " + userBaseProperties.manipulatedMoney);
 
                 //해커 동료창에도 UI 갱신
@@ -374,10 +367,6 @@ public class User : MonoBehaviour
             case ChangeableUserProperties.RESULTMONEY:
                 userBaseProperties.resultMoney += _value;
                 Debug.Log("현재 결과금액 : " + userBaseProperties.resultMoney);
-                break;
-            case ChangeableUserProperties.RECENTCHANGEMONEY:
-                userBaseProperties.recentChangeMoney += _value;
-                Debug.Log("현재 최근바뀐금액 : " + userBaseProperties.recentChangeMoney);
                 break;
             case ChangeableUserProperties.FLEXCONSUMPTION:
                 userBaseProperties.FlexConsumption += _value;
