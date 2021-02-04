@@ -21,33 +21,33 @@ public class CollegueItemView : MonoBehaviour
     public Button levelUp_button;
 
     [Header("Event")]
-    public Action<collegueInfo> OnClickOpenCollegueItemView;
+    public Action<CollegueInfo> OnClickOpenCollegueItemView;
 
     public void Init()
     {
         OnClickOpenCollegueItemView += OpenCollegueItemView;
     }
 
-    public void OpenCollegueItemView(collegueInfo _info)
+    public void OpenCollegueItemView(CollegueInfo _info)
     {
         CollegueIndex index = _info.collegueIndex;
         curCollegue = index;
 
         switch (index)
         {
-            case CollegueIndex.HACKER:
+            case CollegueIndex.Dare:
                 SetName("X-다레");
                 SetLevel(_info.itemLevel);
                 SetSkillContext();
                 SetLevelCost();
                 break;
-            case CollegueIndex.MECHANIC:
+            case CollegueIndex.Lovely:
                 break;
-            case CollegueIndex.CHEMIST:
+            case CollegueIndex.Soso:
                 break;
-            case CollegueIndex.COOK:
+            case CollegueIndex.Happy:
                 break;
-            case CollegueIndex.TRADER:
+            case CollegueIndex.Sad:
                 break;
         }
     }
@@ -64,37 +64,37 @@ public class CollegueItemView : MonoBehaviour
 
     public void SetSkillContext()
     {
-        collegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
+        CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         switch (curCollegue)
         {
-            case CollegueIndex.HACKER:
+            case CollegueIndex.Dare:
                 SkillContext_TMP.text = "해커의 조작된 재산 생성량 " + info.collegueItem.chance + "% 증가";
                 break;
-            case CollegueIndex.MECHANIC:
+            case CollegueIndex.Lovely:
                 break;
-            case CollegueIndex.CHEMIST:
+            case CollegueIndex.Soso:
                 break;
-            case CollegueIndex.COOK:
+            case CollegueIndex.Happy:
                 break;
-            case CollegueIndex.TRADER:
+            case CollegueIndex.Sad:
                 break;
         }
     }
 
     public void SetLevelCost()
     {
-        collegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
+        CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         levelUpCost_TMP.text = info.itemLevel + "개 필요";
     }
 
     public void OnButtonLevelUpClick()
     {
-        collegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
+        CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         //스킬업 가능 조건 레벨보다 핑크칩의 갯수가 크거나 같으면
-        if (GameManager.Instance.user.userBaseProperties.pinkChip >= info.itemLevel)
+        if (GameManager.Instance.user.userBaseProperties.xCoin >= info.itemLevel)
         {
             //핑크칩 갯수 다운
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.PINKCHIP, -info.itemLevel);
+            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.XCOIN, -info.itemLevel);
 
             //동료의 아이템 레벨 업
             info.itemLevel++;

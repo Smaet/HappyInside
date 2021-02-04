@@ -19,20 +19,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DoubtIndex
+
+public enum GrandFatherAngerIndex
 {
-    BASIC = 0,
-    GRANDFATHER,
+    VALUE01 = 0,
 }
 
 
 public enum CollegueIndex
 {
-    HACKER = 0,
-    MECHANIC,
-    CHEMIST,
-    COOK,
-    TRADER,
+    Dare = 0,
+    Lovely,
+    Soso,
+    Happy,
+    Sad,
 }
 
 public enum BuffIndex
@@ -48,73 +48,107 @@ public enum ChangeableUserProperties
 {
     NONE = 0,
     CRYSTAL = 1,
-    STARTMONEY,
-    CONSUMPTION,
-    MANIPULATEMONEY,
-    RESULTMONEY,
+    XCOIN,
+    CURRENTAMOUNT,
+    GRANDFATHERANGER,
+    TERROR,
     GAMEHOUR,
     DAYSELASPSE,
-    DOUBT,
-    PINKCHIP,
-    FLEXCONSUMPTION,
+ 
     HACKER,
     BUFF,
-
-
 }
-
 
 //유저의 기본 변수들
 [Serializable]
 public class UserBaseProperties
 {
-    public string nickName;                 //닉네임
-    public int crystal;                     //크리스탈
-    public long ConsumptionMoney;           //현재 가지고 있는 돈 (실제 재산)
-    public long manipulatedMoney;           //현재 조작된 돈
-    public long resultMoney;                //현재 잔액
-    public long FlexConsumption;            //누적 소비액  --> 해당 금액에 따른 난이도 변화
-    public long donateMoney;                //기부하는 돈
-    public int gameHour;                    //게임 시간
-    public int daysElapsed;                 //경과된 일수
-    public Doubt doubt;                     //의심도           --> 할아버지 분노 정도
-    public float pinkChip;                  //핑크칩?
+    public string nickName;                             //닉네임
+    public int crystal;                                 //크리스탈
+    public long xCoin;                                  // 엑스코인    
+                                                        // - 공장에서 생산품을 생산화는 화폐    
+                                                        // - 단위 : 1개 ~ 1억개 
+
+
+    public long currentAmount;                          //재산은 두가지로
+                                                        //현재 재산과
+                                                        //테러로 부과되는 피해 금액
+                                                        //현재 금액
+
+    public Terror terror;                               //테러에 관련된 정보 모음 클래스
+    public GrandFatherAnger grandFatherAnger;           //할아버지 분노
+    public int gameHour;                                //게임 시간
+    public int daysElapsed;                             //경과된 일수
+
+
 
     //인벤토리
-
-
-    public collegueInfo[] collegueInfos;
+    public List<HappyRichItem> happyRichItems;
+    //동료들
+    public CollegueInfo[] collegueInfos;
 
     public UserBaseProperties()
     {
-        collegueInfos = new collegueInfo[5];
+        collegueInfos = new CollegueInfo[5];
         for(int i=0; i < collegueInfos.Length; i++)
         {
-            collegueInfos[i] = new collegueInfo();
+            collegueInfos[i] = new CollegueInfo();
         }
 
         buffs = new List<Buff>();
     }
     public List<Buff> buffs;
 }
+
+/****************************************
+ * 테러 활동에 대한 정보 클래스
+ * - 테러 피해 금액에 따른 등급
+ * - 테러 피해 금액
+ *  - 금액에 따라서 홈 화면이 업데이트
+    
+   ****************************************/
+
 [Serializable]
-public class Doubt
+public class Terror
 {
-    public double curDoubt;                 //현재 의심도
-    public double basicDoubt;               //기본적인 의심 공식에 의한 값
-    public double GrandFatherDoubt;         //할아버지 집에 갔을때 영향을 받은 값.
+    public int terrorRanking;
+    public long damageAmount;       //추후에 플렉스 공간에 따른 피해액으로 나뉠수 있음 (통계 때문에)
 
-
-    public void UpdateDoubt()
+    public void UpdateTerror(long _damageAmount)
     {
-        curDoubt = basicDoubt + GrandFatherDoubt;
-        if(curDoubt <= 0)
+        damageAmount = _damageAmount;
+    }
+}
+
+/****************************************
+ * 할아버지 분노 관련 클래스
+ * 종료 : 정상, 소노, 중노, 대노, 극대노
+ * 
+   ****************************************/
+
+[Serializable]
+public class GrandFatherAnger   
+{
+    public double curAnger;                         //현재 분노
+    public double specificEventAngerValue01;        //특정이벤트로 인한 값  (임시)
+    //public double GrandFatherDoubt;               //할아버지 집에 갔을때 영향을 받은 값.
+
+
+    public void UpdateAnger()
+    {
+        curAnger = curAnger + specificEventAngerValue01;
+        if(curAnger <= 0)
         {
-            curDoubt = 0;
+            curAnger = 0;
         }
     }
 }
 
+/****************************************
+ * 현재 버프 종류
+ * 대노 : 시간당 지속적으로 1% 증가
+ * 
+   ****************************************/
 
 [Serializable]
 public class Buff
@@ -125,17 +159,22 @@ public class Buff
     public bool isGood;                     //버프가 이로운 효과 인지 아닌지
     public bool isBuffed;
     public bool isReset;                    //리셋을 하는지 아닌지
-    public int totalContinueTime;           //전체 지속시간
+    public int totalContinueTime;           //전체 지속시간  --> 고정 값으로 해도 될 수도 있지만 추후에 지속 시간이 늘어날수도 있어서 변수에 포함
     public int remainTime;                  //남은시간
     public float effect_Doubt_Plus;         //의심에 사용되는 효과 수치 (이로운 수치)
     public float effect_Doubt_Minus;        //의심에 사용되는 효과 수치 (이롭지 않은 수치)
 }
 
 
-
+/****************************************
+ * 동료들 정보 클래스
+ * 동료 : 다레, 럽리, 쌔드, 햅삐, 쏘쏘
+ * 
+   ****************************************/
 [Serializable]
-public class collegueInfo
+public class CollegueInfo
 {
+   
     public bool isActive;
 
     public CollegueIndex collegueIndex; //동료의 인덱스
@@ -146,13 +185,13 @@ public class collegueInfo
     public int levelUpTime;         
     public int leftLevelUpTime;     
 
-    public collegueBasicSkill collegueBasicSkill;
-    public colleguePassiveSkill[] colleguePassiveSkills;
-    public collegueItem collegueItem;
+    public CollegueBasicSkill collegueBasicSkill;
+    public ColleguePassiveSkill[] colleguePassiveSkills;
+    public CollegueItem collegueItem;
 }
 
 [Serializable]
-public class collegueBasicSkill
+public class CollegueBasicSkill
 {
     public float hour;
     public int day;
@@ -160,8 +199,9 @@ public class collegueBasicSkill
     public float chance;
 }
 
+
 [Serializable]
-public class colleguePassiveSkill
+public class ColleguePassiveSkill
 {
     public bool isActive;
     public float hour;
@@ -171,7 +211,7 @@ public class colleguePassiveSkill
 }
 
 [Serializable]
-public class collegueItem
+public class CollegueItem
 {
     public bool isActive;
     public float chance;
@@ -179,10 +219,22 @@ public class collegueItem
 
 
 [Serializable]
-public class collegueDevice
+public class CollegueDevice
 {
     public bool isActive;
 }
+
+[Serializable]
+public class HappyRichItem
+{
+    public int icon;            //아이콘
+    public int description;     //설명 - 내장되어있는 설명을 인덱스로 불러오는 형식으로
+    public int count;           //아이템 개수
+    public int timeTaken;       //걸리는 시간
+}
+
+
+
 
 
 public class User : MonoBehaviour
@@ -207,17 +259,18 @@ public class User : MonoBehaviour
 
         userBaseProperties.nickName = _userInfo.userBaseProperties.nickName;
         userBaseProperties.crystal = _userInfo.userBaseProperties.crystal;
-        userBaseProperties.ConsumptionMoney = _userInfo.userBaseProperties.ConsumptionMoney;
-        userBaseProperties.manipulatedMoney = _userInfo.userBaseProperties.manipulatedMoney;
-        userBaseProperties.resultMoney = _userInfo.userBaseProperties.resultMoney;
+        userBaseProperties.xCoin = _userInfo.userBaseProperties.xCoin;
+        userBaseProperties.currentAmount = _userInfo.userBaseProperties.currentAmount;
+
+        userBaseProperties.terror = _userInfo.userBaseProperties.terror;
+        userBaseProperties.grandFatherAnger = _userInfo.userBaseProperties.grandFatherAnger;
         userBaseProperties.gameHour = _userInfo.userBaseProperties.gameHour;
         userBaseProperties.daysElapsed = _userInfo.userBaseProperties.daysElapsed;
-        userBaseProperties.doubt = _userInfo.userBaseProperties.doubt;
-        userBaseProperties.pinkChip = _userInfo.userBaseProperties.pinkChip;
-        userBaseProperties.FlexConsumption = _userInfo.userBaseProperties.FlexConsumption;
+   
+     
+    
         userBaseProperties.collegueInfos = _userInfo.userBaseProperties.collegueInfos;
         userBaseProperties.buffs = _userInfo.userBaseProperties.buffs;
-        userBaseProperties.donateMoney = _userInfo.userBaseProperties.donateMoney;
 
         //Debug.Log("NickName : " + userBaseProperties.nickName);
         //Debug.Log("crystal : " + userBaseProperties.crystal);
@@ -303,124 +356,38 @@ public class User : MonoBehaviour
 
         switch (_changeableIndex)
         {
-            case ChangeableUserProperties.STARTMONEY:
-                //userBaseProperties.startMoney += _value;
-                //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
-                //Debug.Log("현재 시작금액 : " + userBaseProperties.startMoney);
+            case ChangeableUserProperties.XCOIN:
+                userBaseProperties.xCoin += _value;
+
+                HomeManager.Instance.topUIManager.SetPinkChip(userBaseProperties.xCoin);
+                Debug.Log("현재 X코인 개수 : " + userBaseProperties.xCoin);
                 break;
-            case ChangeableUserProperties.CONSUMPTION:
-                userBaseProperties.ConsumptionMoney += _value;
-                Debug.Log("현재 까지 총 소비금액 : " + userBaseProperties.ConsumptionMoney);
-
-
-                //현재 의심도
-                //조작된 돈으로 인한 기본적인 의심도
-                double doubt_Consumtion = (double)(userBaseProperties.ConsumptionMoney / (double)userBaseProperties.manipulatedMoney) * 100;
-                Debug.Log("조작된 돈으로 인한 의심도 : " + doubt_Consumtion + "%");
-                SetUserInfo(DoubtIndex.BASIC, doubt_Consumtion);
-   
-                break;
-
-            case ChangeableUserProperties.MANIPULATEMONEY:
-                userBaseProperties.manipulatedMoney += _value;
-
-                //해커의 레벨에 따른 추가적인 계산
-                double additionalPercent = 0;
-                if(userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[0].isActive)
-                {
-                    additionalPercent = userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[0].chance;
-                }
-                if (userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[1].isActive)
-                {
-                    additionalPercent = userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[1].chance;
-                }
-                if (userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[2].isActive)
-                {
-                    additionalPercent = userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER].colleguePassiveSkills[2].chance;
-                }
-                
-                if (additionalPercent != 0)
-                {
-                    additionalPercent = additionalPercent * 0.01;
-                    //기존의 조작된 머니 + 
-                    userBaseProperties.manipulatedMoney = userBaseProperties.manipulatedMoney + (long)(userBaseProperties.manipulatedMoney * additionalPercent);
-                }
-                //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                //조작된 돈으로 인한 기본적인 의심도
-                double doubt_Mani = (double)(userBaseProperties.ConsumptionMoney / userBaseProperties.manipulatedMoney) * 100;
-                Debug.Log("조작된 돈으로 인한 의심도 : " + doubt_Mani + "%");
-                SetUserInfo(DoubtIndex.BASIC, doubt_Mani);
-
-
-                //현재 재산 정보 UI 업데이트
-                HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userBaseProperties.manipulatedMoney);
-                
-                //현재 할아버지의 총 재산에 대한 정보
-                //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userBaseProperties.startMoney, userBaseProperties.manipulatedMoney);
-                //Debug.Log("현재 조작된금액 : " + userBaseProperties.manipulatedMoney);
-
-                //해커 동료창에도 UI 갱신
-
-                break;
-
-            case ChangeableUserProperties.RESULTMONEY:
-                userBaseProperties.resultMoney += _value;
-                Debug.Log("현재 결과금액 : " + userBaseProperties.resultMoney);
-                break;
-            case ChangeableUserProperties.FLEXCONSUMPTION:
-                userBaseProperties.FlexConsumption += _value;
-                Debug.Log("현재 플렉스 소비 금액 : " + userBaseProperties.FlexConsumption);
-
-                //현재 의심도
-                //조작된 돈으로 인한 기본적인 의심도
-                //double doubt_FlexConsumtion = (userBaseProperties.ConsumptionMoney / userBaseProperties.manipulatedMoney) * 100;
-                //Debug.Log("조작된 돈으로 인한 의심도 : " + doubt_FlexConsumtion + "%");
-                //SetUserInfo(DoubtIndex.BASIC, doubt_FlexConsumtion);
-                break;
-              
-
-
-
         }
 
         GameManager.Instance.SaveUserData();
     }
 
-    public void SetUserInfo(DoubtIndex _doubtIndex, double _value)
+    public void SetUserInfo(GrandFatherAngerIndex _AngerIndex, double _value)
     {
-        switch (_doubtIndex)
+        switch (_AngerIndex)
         {
 
-            case DoubtIndex.BASIC:
+            case GrandFatherAngerIndex.VALUE01:
 
                 //기본 공식 적용
-                userBaseProperties.doubt.basicDoubt = _value;
-                Debug.Log("현재 조작된 의심도 수치 :  " + userBaseProperties.doubt.basicDoubt + "%");
+                userBaseProperties.grandFatherAnger.specificEventAngerValue01 = _value;
+                Debug.Log("현재 VALUE 01로 인한 분노 증가량 :  " + userBaseProperties.grandFatherAnger.specificEventAngerValue01 + "%");
 
                 //의심도 갱신
-                userBaseProperties.doubt.UpdateDoubt();
+                userBaseProperties.grandFatherAnger.UpdateAnger();
 
                 //UI 갱신
-                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.doubt.curDoubt);
+                //HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.doubt.curDoubt);
+               
 
                 break;
 
-            case DoubtIndex.GRANDFATHER:
-
-                
-                userBaseProperties.doubt.GrandFatherDoubt = _value;
-
-                Debug.Log("할아버지 버프 의심도 수치 : " + userBaseProperties.doubt.GrandFatherDoubt);
-
-                //의심도 갱신
-                userBaseProperties.doubt.UpdateDoubt();
-
-                //UI 갱신
-                HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userBaseProperties.doubt.curDoubt);
-
-
-                break;
+     
         }
 
 
@@ -428,25 +395,7 @@ public class User : MonoBehaviour
     }
 
 
-    public void SetUserInfo(ChangeableUserProperties _changeableIndex, float _value)
-    {
-
-        switch (_changeableIndex)
-        {
-           
-            case ChangeableUserProperties.PINKCHIP:
-                userBaseProperties.pinkChip += _value;
-                Debug.Log("현재 핑크 칩 : " + userBaseProperties.pinkChip);
-                //UI 갱신
-                HomeManager.Instance.topUIManager.SetPinkChip(userBaseProperties.pinkChip);
-                break;
-
-        }
-
-        GameManager.Instance.SaveUserData();
-    }
-
-    public void SetUserInfo(CollegueIndex _collegueIndex, collegueInfo _info)
+    public void SetUserInfo(CollegueIndex _collegueIndex, CollegueInfo _info)
     {
 
         userBaseProperties.collegueInfos[(int)_collegueIndex].Level = _info.Level;
@@ -478,11 +427,11 @@ public class User : MonoBehaviour
                     {
                         if (userBaseProperties.buffs[(int)_buffIndex].isGood)
                         {
-                            SetUserInfo(DoubtIndex.GRANDFATHER, userBaseProperties.buffs[(int)_buffIndex].effect_Doubt_Plus);
+                            SetUserInfo(GrandFatherAngerIndex.VALUE01, userBaseProperties.buffs[(int)_buffIndex].effect_Doubt_Plus);
                         }
                         else
                         {
-                            SetUserInfo(DoubtIndex.GRANDFATHER, userBaseProperties.buffs[(int)_buffIndex].effect_Doubt_Minus);
+                            SetUserInfo(GrandFatherAngerIndex.VALUE01, userBaseProperties.buffs[(int)_buffIndex].effect_Doubt_Minus);
                         }
 
                         userBaseProperties.buffs[(int)_buffIndex].isBuffed = true;
@@ -490,7 +439,7 @@ public class User : MonoBehaviour
                 }
                 else
                 {
-                    SetUserInfo(DoubtIndex.GRANDFATHER, 0);
+                    SetUserInfo(GrandFatherAngerIndex.VALUE01, 0);
                 }
 
              

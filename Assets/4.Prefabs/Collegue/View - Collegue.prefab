@@ -5238,9 +5238,11 @@ GameObject:
   - component: {fileID: 6507932768084551067}
   - component: {fileID: 6507932768084551044}
   - component: {fileID: 6507932768084551065}
+  - component: {fileID: 2687640722831041881}
   - component: {fileID: 6507932768084551045}
   - component: {fileID: 6507932768084551046}
   - component: {fileID: 6507932768084551047}
+  - component: {fileID: 1147110846739620804}
   m_Layer: 0
   m_Name: View - Collegue
   m_TagString: Untagged
@@ -5351,6 +5353,30 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f7f556d25f73295479b8ee1db9df73e8, type: 3}
   - {fileID: 21300000, guid: 1a7e636fb742d894d93dec1116ebae84, type: 3}
   levelUp_button: {fileID: 6507932768058613987}
+--- !u!114 &2687640722831041881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6507932768084551041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781174612db2c1d43881f61e025e5162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curCollegue: 0
+  collegueImage: {fileID: 0}
+  name_TMP: {fileID: 0}
+  level_TMP: {fileID: 0}
+  SkillContext_TMP: {fileID: 0}
+  manipulateMoney_TMP: {fileID: 0}
+  collegueProfile_TMP: {fileID: 0}
+  levelUpCost_TMP: {fileID: 0}
+  passiveSkills: []
+  abilityDisableSprites: []
+  abilityEnableSprites: []
+  levelUp_button: {fileID: 0}
 --- !u!114 &6507932768084551045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6162,6 +6188,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1147110846739620804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6507932768084551041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81a1bc8cae28234aa2b0bc01f7c0fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curCollegue: 0
+  collegueImage: {fileID: 6507932767376598243}
+  name_TMP: {fileID: 6507932768716053562}
+  level_TMP: {fileID: 6507932767661123715}
+  SkillContext_TMP: {fileID: 6507932767472668309}
+  manipulateMoney_TMP: {fileID: 6507932767923469565}
+  collegueProfile_TMP: {fileID: 6507932767561517177}
+  levelUpCost_TMP: {fileID: 6507932767792952311}
+  passiveSkills:
+  - {fileID: 6507932767346030688}
+  - {fileID: 6507932768276606623}
+  - {fileID: 6507932768859950684}
+  abilityDisableSprites:
+  - {fileID: 21300000, guid: 93773fe88f7ed9444b64a0d326a78c3a, type: 3}
+  - {fileID: 21300000, guid: 1958c58a92825bf49a62350be7293536, type: 3}
+  - {fileID: 21300000, guid: 0ff5675caba0b09458a01f72f391fb49, type: 3}
+  abilityEnableSprites:
+  - {fileID: 21300000, guid: abe67d6f0295b044580972f9f5b22846, type: 3}
+  - {fileID: 21300000, guid: f7f556d25f73295479b8ee1db9df73e8, type: 3}
+  - {fileID: 21300000, guid: 1a7e636fb742d894d93dec1116ebae84, type: 3}
+  levelUp_button: {fileID: 6507932768058613987}
 --- !u!1 &6507932768091413197
 GameObject:
   m_ObjectHideFlags: 0

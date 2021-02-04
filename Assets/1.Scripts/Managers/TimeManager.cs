@@ -101,7 +101,7 @@ public class TimeManager : MonoBehaviour
             //동료들이 있다면 유저에게 있는 동료에 관한 기본능력 처리 
             //시간 갱신
             User user = GameManager.Instance.user;
-            collegueInfo hacker = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)CollegueIndex.HACKER];
+            CollegueInfo hacker = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)CollegueIndex.Dare];
 
 
             if (time >= HourUpdateCycle)
@@ -179,7 +179,7 @@ public class TimeManager : MonoBehaviour
 
     #region 해커의 시간 관련
 
-    public void CheckHacker(collegueInfo _hacker)
+    public void CheckHacker(CollegueInfo _hacker)
     {
         if (_hacker.isActive && hackerSkillTime > _hacker.collegueBasicSkill.hour - 1)
         {
@@ -193,9 +193,9 @@ public class TimeManager : MonoBehaviour
             double itemChance = _hacker.collegueItem.chance * 0.01;
             long result = _hacker.collegueBasicSkill.money + (long)(_hacker.collegueBasicSkill.money * itemChance);
 
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
-            HomeManager.Instance.agitManager.collegueView.SetManipulateMoney();
-            HomeManager.Instance.agitManager.agit_A.colleguePanels[0].StartSampleEffect();
+            //GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.MANIPULATEMONEY, result);
+            //HomeManager.Instance.agitManager.collegueView.SetManipulateMoney();
+            HomeManager.Instance.agitManager.agitOffice.colleguePanels[0].StartSampleEffect();
         }           
     }
 

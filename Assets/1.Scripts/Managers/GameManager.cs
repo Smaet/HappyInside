@@ -69,14 +69,14 @@ public class GameManager : SimpleSingleton<GameManager>
 
         //각종 셋팅
         //할아버지 의심도및  재산 셋팅
-        HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userProperties.manipulatedMoney);
-        HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userProperties.ConsumptionMoney, userProperties.manipulatedMoney);
+        //HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userProperties.manipulatedMoney);
+        //HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userProperties.ConsumptionMoney, userProperties.manipulatedMoney);
         //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userProperties.startMoney, userProperties.manipulatedMoney);
 
         //상단 패널 셋팅
         HomeManager.Instance.topUIManager.SetCrystal(userProperties.crystal);
         HomeManager.Instance.topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
-        HomeManager.Instance.topUIManager.SetPinkChip(userProperties.pinkChip);
+        HomeManager.Instance.topUIManager.SetPinkChip(userProperties.xCoin);
         HomeManager.Instance.topUIManager.SetHour(userProperties.gameHour);
         HomeManager.Instance.topUIManager.SetDays(userProperties.daysElapsed);
 
@@ -132,54 +132,53 @@ public class GameManager : SimpleSingleton<GameManager>
             tempUserData.userBaseProperties.nickName = "플렉스";
             tempUserData.userBaseProperties.crystal = 99;
             //tempUserData.userBaseProperties.startMoney = 50000000000;
-            tempUserData.userBaseProperties.ConsumptionMoney = 0;
-            tempUserData.userBaseProperties.manipulatedMoney = 5000000000;
-            tempUserData.userBaseProperties.resultMoney = 0;
-            tempUserData.userBaseProperties.donateMoney = 1000000000;
+            tempUserData.userBaseProperties.currentAmount = HappyRichReadOnly.StartGrandFatherMoney;
+            tempUserData.userBaseProperties.terror = new Terror();
+            tempUserData.userBaseProperties.terror.damageAmount = 0;
+            tempUserData.userBaseProperties.terror.terrorRanking = 1;
+
             tempUserData.userBaseProperties.gameHour = 0;
             tempUserData.userBaseProperties.daysElapsed = 1;
 
-            tempUserData.userBaseProperties.doubt  = new Doubt();
-            tempUserData.userBaseProperties.doubt.curDoubt = 0;
-            tempUserData.userBaseProperties.doubt.basicDoubt = 0;
-            tempUserData.userBaseProperties.doubt.GrandFatherDoubt = 0;
+            tempUserData.userBaseProperties.grandFatherAnger  = new GrandFatherAnger();
+            tempUserData.userBaseProperties.grandFatherAnger.curAnger = 0;
+            tempUserData.userBaseProperties.grandFatherAnger.specificEventAngerValue01 = 0;
 
-            tempUserData.userBaseProperties.pinkChip = 1000;
-            tempUserData.userBaseProperties.FlexConsumption = 0;
+            tempUserData.userBaseProperties.xCoin = 1000;
 
-            tempUserData.userBaseProperties.collegueInfos = new collegueInfo[5];
+            tempUserData.userBaseProperties.collegueInfos = new CollegueInfo[5];
 
             tempUserData.userBaseProperties.buffs = new List<Buff>();
      
 
             for (int i = 0; i < tempUserData.userBaseProperties.collegueInfos.Length; i++)
             {
-                tempUserData.userBaseProperties.collegueInfos[i] = new collegueInfo();
-                if (i == (int)CollegueIndex.HACKER)
+                tempUserData.userBaseProperties.collegueInfos[i] = new CollegueInfo();
+                if (i == (int)CollegueIndex.Dare)
                 {   
                     tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
 
                     tempUserData.userBaseProperties.collegueInfos[i].Level = 1;
                     tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 1;
                     tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 1;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new collegueBasicSkill();
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new CollegueBasicSkill();
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
 
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new colleguePassiveSkill[3];
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new ColleguePassiveSkill[3];
 
                     for (int j = 0; j < 3; j++)
                     {
-                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new colleguePassiveSkill();
+                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new ColleguePassiveSkill();
                     }
 
                     tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
                     tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
                     tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
 
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new collegueItem();
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new CollegueItem();
                     tempUserData.userBaseProperties.collegueInfos[i].collegueItem.isActive = true;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 10;
 
@@ -191,29 +190,24 @@ public class GameManager : SimpleSingleton<GameManager>
                     tempUserData.userBaseProperties.collegueInfos[i].Level = 0;
                     tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 0;
                     tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 0;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new collegueBasicSkill();
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new CollegueBasicSkill();
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
                     tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
 
-
-
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new colleguePassiveSkill[3];
+                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new ColleguePassiveSkill[3];
 
                     for (int j = 0; j < 3; j++)
                     {
-                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new colleguePassiveSkill();
+                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new ColleguePassiveSkill();
                     }
 
                     tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
                     tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
                     tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
                 }
-
             }
-
-
             user.SetUserInfo(tempUserData);
         }
         else
@@ -250,11 +244,11 @@ public class GameManager : SimpleSingleton<GameManager>
         //버프 추가 후 유저의 의심도 증가 또는 하락
         if(_isGood)
         {
-            user.SetUserInfo(DoubtIndex.GRANDFATHER, buff.effect_Doubt_Plus);
+            user.SetUserInfo(GrandFatherAngerIndex.VALUE01, buff.effect_Doubt_Plus);
         }
         else
         {
-            user.SetUserInfo(DoubtIndex.GRANDFATHER, buff.effect_Doubt_Minus);
+            user.SetUserInfo(GrandFatherAngerIndex.VALUE01, buff.effect_Doubt_Minus);
         }
     }
     #endregion

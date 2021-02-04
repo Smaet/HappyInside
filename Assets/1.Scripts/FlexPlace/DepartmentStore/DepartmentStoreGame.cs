@@ -155,9 +155,9 @@ public class DepartmentStoreGame : BaseFlexPlaceGame
         //각종 실행중인 것들 종료
         //콤보 2배 이벤트
         isSpecialComboActive = false;
-        GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.CONSUMPTION, score);
-        GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.FLEXCONSUMPTION, score);
-        GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.PINKCHIP, (float)UnityEngine.Random.Range(5,10)); 
+        //GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.CONSUMPTION, score);
+        //GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.FLEXCONSUMPTION, score);
+        //GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.PINKCHIP, (float)UnityEngine.Random.Range(5,10)); 
         //팝업창 생성 밑 확인 버튼으로 되돌아 가기.
         resultPanel.OnResultPanel(string.Format("{0:#,0}원", score));
     }

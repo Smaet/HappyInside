@@ -2,10 +2,7 @@
   2021.01.11 Created 
   HomeManager.cs   
   
-  * Layer 순서
-  - 0 : 안보이는 Layer
-  - 500 : 현재 보이는 Layer
-  - 1000 : Fade Layer
+
 
   기능
   1. 전체적인 매니저 클래스 관리

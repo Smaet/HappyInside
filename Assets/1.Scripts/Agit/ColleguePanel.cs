@@ -21,36 +21,21 @@ public class ColleguePanel : MonoBehaviour
 
     public void OnEnable()
     {
-        switch(curIndex)
-        {
-            case CollegueIndex.HACKER:
-                button_Collegeue.onClick.AddListener(() =>
-    HomeManager.Instance.agitManager.collegueView.OnClickOpenCollegueView(GameManager.Instance.user.userBaseProperties.collegueInfos[0]));
-
-                button_CollegeueItem.onClick.AddListener(() =>
-  HomeManager.Instance.agitManager.collegueItemView.OnClickOpenCollegueItemView(GameManager.Instance.user.userBaseProperties.collegueInfos[0]));
-
-
-                break;
-        }
+        button_Collegeue.onClick.AddListener(() =>
+                 HomeManager.Instance.agitManager.ClickCollegueButton(curIndex));
     }
 
     public void OnDisable()
     {
-        switch (curIndex)
-        {
-            case CollegueIndex.HACKER:
-                button_Collegeue.onClick.RemoveAllListeners();
-                button_CollegeueItem.onClick.RemoveAllListeners();
-                break;
-        }
+        button_Collegeue.onClick.RemoveAllListeners();
+        button_CollegeueItem.onClick.RemoveAllListeners();
     }
 
 
 
-    public void SetUI(collegueInfo _info)
+    public void SetUI(CollegueInfo _info)
     {
-        if (_info.collegueIndex == CollegueIndex.HACKER)
+        if (_info.collegueIndex == CollegueIndex.Dare)
         {
             if (_info.Level < 10)
             {

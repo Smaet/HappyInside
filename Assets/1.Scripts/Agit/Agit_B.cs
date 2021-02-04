@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Agit_B : BaseAgit
 {
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
     }
