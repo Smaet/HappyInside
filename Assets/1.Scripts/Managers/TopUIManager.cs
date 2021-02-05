@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,69 @@ public class TopUIManager : MonoBehaviour
     private TextMeshProUGUI crystal_TMP;
     [SerializeField]
     private TextMeshProUGUI notice_TMP;
+
+    public Tablet tablet;
+
+    //Event
+    public event Action OnClickTabletTab_01;
+    public event Action OnClickTabletTab_02;
+    public event Action OnClickTabletTab_03;
+    public event Action OnClickTabletTab_04;
+    public event Action OnClickTabletTab_05;
+    public event Action OnClickTabletTab_06;
+
+
+    public void ClickTabletTab_01()
+    {
+        if (OnClickTabletTab_01 != null)
+        {
+            OnClickTabletTab_01();
+        }
+    }
+    public void ClickTabletTab_02()
+    {
+        if (OnClickTabletTab_02 != null)
+        {
+            OnClickTabletTab_02();
+        }
+    }
+
+
+    public void ClickTabletTab_03()
+    {
+        if (OnClickTabletTab_03 != null)
+        {
+            OnClickTabletTab_03();
+        }
+    }
+
+    public void ClickTabletTab_04()
+    {
+        if (OnClickTabletTab_04 != null)
+        {
+            OnClickTabletTab_04();
+        }
+    }
+
+    public void ClickTabletTab_05()
+    {
+        if (OnClickTabletTab_05 != null)
+        {
+            OnClickTabletTab_05();
+        }
+    }
+
+    public void ClickTabletTab_06()
+    {
+        if (OnClickTabletTab_06 != null)
+        {
+            OnClickTabletTab_06();
+        }
+    }
+
+
+
+
 
     public void Init()
     {

@@ -9,6 +9,7 @@ public class CollegueView_Soso : CollegueView
         base.Init();
         print(gameObject.name + " Init!!!");
         HomeManager.Instance.agitManager.OnClickCollegueButton_Soso += OpenCollegueView;
+        SetName("쏘쏘");
     }
 
 

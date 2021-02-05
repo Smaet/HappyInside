@@ -38,6 +38,13 @@ MonoBehaviour:
       m_inputSocketId: d87d5b09-8993-4915-8bd4-c0123b2e4fdd
       m_outputNodeId: f598201a-2a9b-42af-8930-68a3daf31a48
       m_outputSocketId: b735c599-8577-419a-b88b-909f6bb51efa
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: fededd5e-5eac-4905-8b4e-6e75885013a1
+      m_inputNodeId: 10628f1c-e685-4daf-809c-5fe0a7e7615f
+      m_inputSocketId: d87d5b09-8993-4915-8bd4-c0123b2e4fdd
+      m_outputNodeId: b390aee7-e808-418f-9330-797d461ecc0f
+      m_outputSocketId: f78a3de1-6452-49c0-8ffa-622af4218ba8
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -134,6 +141,32 @@ MonoBehaviour:
     m_value: '{"ButtonCategory":"HappyRich_Agit_Furnace","ButtonName":"Item","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - m_connectionMode: 0
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: c52e51b5-bcc8-4cc3-a57c-e57306d094a8
+      m_inputNodeId: b390aee7-e808-418f-9330-797d461ecc0f
+      m_inputSocketId: f81a02cf-437f-4ca1-85b5-6bff896c7914
+      m_outputNodeId: 10628f1c-e685-4daf-809c-5fe0a7e7615f
+      m_outputSocketId: 733ec69d-2a55-4c81-a2fb-911f3985d046
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 1
+    m_canBeReordered: 1
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 134
+    m_id: 733ec69d-2a55-4c81-a2fb-911f3985d046
+    m_nodeId: 10628f1c-e685-4daf-809c-5fe0a7e7615f
+    m_socketName: OutputSocket_3
+    m_value: '{"ButtonCategory":"HappyRich_Agit_Furnace","ButtonName":"Device","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
   m_allowDuplicateNodeName: 0
   m_allowEmptyNodeName: 0
@@ -142,7 +175,7 @@ MonoBehaviour:
   m_useFixedUpdate: 0
   m_useLateUpdate: 0
   m_useUpdate: 0
-  m_height: 176
+  m_height: 200
   m_width: 216
   m_x: -504
   m_y: 576
@@ -155,7 +188,7 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
+    Name: Agit_BlastFurnace
   - Category: HappyRich
     InstantAction: 0
     Name: TopUIBar
@@ -164,7 +197,7 @@ MonoBehaviour:
   m_onExitHideViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
+    Name: Agit_BlastFurnace
   - Category: HappyRich
     InstantAction: 0
     Name: TopUIBar
@@ -357,7 +390,7 @@ MonoBehaviour:
   m_name: Collegue_Soso
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue_Soso
   m_onEnterHideViews:
@@ -369,7 +402,7 @@ MonoBehaviour:
     InstantAction: 0
     Name: TopUIBar
   m_onExitHideViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue_Soso
 --- !u!114 &-7940772793408619189
@@ -827,8 +860,8 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 128
   m_width: 216
-  m_x: -816
-  m_y: 396
+  m_x: -948
+  m_y: 252
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
@@ -836,7 +869,7 @@ MonoBehaviour:
   m_name: Collegue_Happy
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: HappyRich_AgitFactory
     InstantAction: 0
     Name: Collegue
   m_onEnterHideViews:
@@ -848,7 +881,7 @@ MonoBehaviour:
     InstantAction: 0
     Name: TopUIBar
   m_onExitHideViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue
 --- !u!114 &-2844612149324306054
@@ -1224,7 +1257,7 @@ MonoBehaviour:
   m_name: Collegue_Dare
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue_Dare
   m_onEnterHideViews:
@@ -1236,7 +1269,7 @@ MonoBehaviour:
     InstantAction: 0
     Name: TopUIBar
   m_onExitHideViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue_Dare
 --- !u!114 &-1184146931910914483
@@ -1326,7 +1359,7 @@ MonoBehaviour:
   m_name: Collegue_Lovely
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue_Lovely
   m_onEnterHideViews:
@@ -1338,7 +1371,7 @@ MonoBehaviour:
     InstantAction: 0
     Name: TopUIBar
   m_onExitHideViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: Collegue_Lovely
 --- !u!114 &-704157920871042059
@@ -2044,6 +2077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   m_nodes:
+  - {fileID: 7927593288252132699}
   - {fileID: 2361362128044507474}
   - {fileID: 8932515937772205453}
   - {fileID: 6366449863318502471}
@@ -2075,7 +2109,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: dd8c3998-c10b-485d-9532-d18938918aa9
-  m_lastModified: 132568975026930968
+  m_lastModified: 132569642845970783
 --- !u!114 &316735124527845498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2259,6 +2293,13 @@ MonoBehaviour:
       m_inputSocketId: beeef84b-a0c7-4127-9652-21d976018b15
       m_outputNodeId: a1006b82-7468-4501-884e-1c75b0ee1ddd
       m_outputSocketId: 38037fd0-1dfb-4127-b07a-9362a1c16d12
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 317aa9a8-c2fe-45f6-aedf-1db8683187ad
+      m_inputNodeId: a58dcfa1-0d08-4b0e-b9d5-7241ed0559c3
+      m_inputSocketId: beeef84b-a0c7-4127-9652-21d976018b15
+      m_outputNodeId: 8cd09a19-f5b8-4849-9d54-966b72041901
+      m_outputSocketId: 67cc745d-683b-4c49-ac2d-f51ec8ea8f5e
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -2356,7 +2397,14 @@ MonoBehaviour:
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - m_connectionMode: 0
-    m_connections: []
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: 724d90d7-1fcd-4c0c-abb2-727b10ca76bf
+      m_inputNodeId: 8cd09a19-f5b8-4849-9d54-966b72041901
+      m_inputSocketId: 173c4728-396f-4694-a92e-5ca07ce5c7db
+      m_outputNodeId: a58dcfa1-0d08-4b0e-b9d5-7241ed0559c3
+      m_outputSocketId: a06e56bd-37e4-4535-a70f-1f28afd47041
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -2371,7 +2419,7 @@ MonoBehaviour:
     m_id: a06e56bd-37e4-4535-a70f-1f28afd47041
     m_nodeId: a58dcfa1-0d08-4b0e-b9d5-7241ed0559c3
     m_socketName: OutputSocket_3
-    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"HappyRich_Agit_Factory","ButtonName":"Device","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -2395,7 +2443,7 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
+    Name: Agit_Factory
   - Category: HappyRich
     InstantAction: 0
     Name: TopUIBar
@@ -2404,7 +2452,7 @@ MonoBehaviour:
   m_onExitHideViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
+    Name: Agit_Factory
   - Category: HappyRich
     InstantAction: 0
     Name: TopUIBar
@@ -2776,13 +2824,13 @@ MonoBehaviour:
   m_inputSockets:
   - m_connectionMode: 1
     m_connections:
-    - m_inputConnectionPoint: {x: -2, y: 4}
-      m_outputConnectionPoint: {x: 106, y: 4}
-      m_id: bdd2de87-f173-4cd3-9702-b13487cfd6d1
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: 724d90d7-1fcd-4c0c-abb2-727b10ca76bf
       m_inputNodeId: 8cd09a19-f5b8-4849-9d54-966b72041901
       m_inputSocketId: 173c4728-396f-4694-a92e-5ca07ce5c7db
-      m_outputNodeId: a9e8e33b-fb23-4a0a-9301-1a9d8d269d1e
-      m_outputSocketId: 2f9ddf9d-c124-4d09-acaf-3ad271249be0
+      m_outputNodeId: a58dcfa1-0d08-4b0e-b9d5-7241ed0559c3
+      m_outputSocketId: a06e56bd-37e4-4535-a70f-1f28afd47041
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -2802,7 +2850,14 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_outputSockets:
   - m_connectionMode: 0
-    m_connections: []
+    m_connections:
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: 317aa9a8-c2fe-45f6-aedf-1db8683187ad
+      m_inputNodeId: a58dcfa1-0d08-4b0e-b9d5-7241ed0559c3
+      m_inputSocketId: beeef84b-a0c7-4127-9652-21d976018b15
+      m_outputNodeId: 8cd09a19-f5b8-4849-9d54-966b72041901
+      m_outputSocketId: 67cc745d-683b-4c49-ac2d-f51ec8ea8f5e
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -2817,7 +2872,7 @@ MonoBehaviour:
     m_id: 67cc745d-683b-4c49-ac2d-f51ec8ea8f5e
     m_nodeId: 8cd09a19-f5b8-4849-9d54-966b72041901
     m_socketName: OutputSocket_0
-    m_value: '{"ButtonCategory":"General","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_value: '{"ButtonCategory":"CollegueDevice","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
     m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_nodeType: 4
@@ -2830,21 +2885,30 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 128
   m_width: 216
-  m_x: 60
-  m_y: -60
+  m_x: -948
+  m_y: 396
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
   m_id: 8cd09a19-f5b8-4849-9d54-966b72041901
-  m_name: Device(Test)
+  m_name: Device(Happy)
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: HappyRich_AgitFactory
     InstantAction: 0
-    Name: CollegueDevice
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
-  m_onExitHideViews: []
+    Name: Device
+  m_onEnterHideViews:
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
+  m_onExitShowViews:
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
+  m_onExitHideViews:
+  - Category: HappyRich_AgitFactory
+    InstantAction: 0
+    Name: Device
 --- !u!114 &2169467104528852794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2865,9 +2929,9 @@ MonoBehaviour:
     m_connections:
     - m_inputConnectionPoint: {x: -2, y: 4}
       m_outputConnectionPoint: {x: 106, y: 4}
-      m_id: bdd2de87-f173-4cd3-9702-b13487cfd6d1
-      m_inputNodeId: 8cd09a19-f5b8-4849-9d54-966b72041901
-      m_inputSocketId: 173c4728-396f-4694-a92e-5ca07ce5c7db
+      m_id: a7fd6e0e-ff3f-4aa7-a879-07f85266d944
+      m_inputNodeId: f598201a-2a9b-42af-8930-68a3daf31a48
+      m_inputSocketId: 2a759fbc-e081-4efb-b2f7-08497226126c
       m_outputNodeId: a9e8e33b-fb23-4a0a-9301-1a9d8d269d1e
       m_outputSocketId: 2f9ddf9d-c124-4d09-acaf-3ad271249be0
     m_connectionPoints:
@@ -3092,7 +3156,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -504
-  m_y: 984
+  m_y: 1044
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
@@ -3102,19 +3166,13 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
-  - Category: HappyRich
-    InstantAction: 0
-    Name: TopUIBar
+    Name: Agit_Lab
   m_onEnterHideViews: []
   m_onExitShowViews: []
   m_onExitHideViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
-  - Category: HappyRich
-    InstantAction: 0
-    Name: TopUIBar
+    Name: Agit_Lab
 --- !u!114 &2472113120381816695
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3193,8 +3251,8 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 128
   m_width: 216
-  m_x: -1668
-  m_y: 120
+  m_x: -1680
+  m_y: 144
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
@@ -3202,7 +3260,7 @@ MonoBehaviour:
   m_name: CollegueItem
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: CollegueItem
   m_onEnterHideViews:
@@ -3214,7 +3272,7 @@ MonoBehaviour:
     InstantAction: 0
     Name: TopUIBar
   m_onExitHideViews:
-  - Category: HappyRich_Agit
+  - Category: Custom
     InstantAction: 0
     Name: CollegueItem
 --- !u!114 &3628768304233761464
@@ -3297,6 +3355,13 @@ MonoBehaviour:
       m_inputSocketId: 2a759fbc-e081-4efb-b2f7-08497226126c
       m_outputNodeId: 4809e571-9894-4759-94e6-e72a7beede79
       m_outputSocketId: 4e9a0318-da75-45e2-b499-1ea4385eb436
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 106, y: 4}
+      m_id: a7fd6e0e-ff3f-4aa7-a879-07f85266d944
+      m_inputNodeId: f598201a-2a9b-42af-8930-68a3daf31a48
+      m_inputSocketId: 2a759fbc-e081-4efb-b2f7-08497226126c
+      m_outputNodeId: a9e8e33b-fb23-4a0a-9301-1a9d8d269d1e
+      m_outputSocketId: 2f9ddf9d-c124-4d09-acaf-3ad271249be0
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -3826,8 +3891,8 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 532.6667
   m_width: 216
-  m_x: -1296
-  m_y: 108
+  m_x: -1332
+  m_y: -108
   m_minimumInputSocketsCount: 2
   m_minimumOutputSocketsCount: 2
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
@@ -4548,8 +4613,8 @@ MonoBehaviour:
   m_useUpdate: 0
   m_height: 128
   m_width: 216
-  m_x: -804
-  m_y: 600
+  m_x: -948
+  m_y: 540
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
@@ -4557,7 +4622,7 @@ MonoBehaviour:
   m_name: Collegue_Sad
   m_notes: 
   m_onEnterShowViews:
-  - Category: HappyRich_Agit
+  - Category: HappyRich_AgitFurnace
     InstantAction: 0
     Name: Collegue
   m_onEnterHideViews:
@@ -4569,9 +4634,111 @@ MonoBehaviour:
     InstantAction: 0
     Name: TopUIBar
   m_onExitHideViews:
-  - Category: HappyRich_Agit
+  - Category: HappyRich_AgitFurnace
     InstantAction: 0
     Name: Collegue
+--- !u!114 &7927593288252132699
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840a439e06374673a9115ed02deb5a54, type: 3}
+  m_Name: UINode
+  m_EditorClassIdentifier: 
+  ErrorNodeNameIsEmpty: 0
+  ErrorDuplicateNameFoundInGraph: 0
+  m_inputSockets:
+  - m_connectionMode: 1
+    m_connections:
+    - m_inputConnectionPoint: {x: 202, y: 4}
+      m_outputConnectionPoint: {x: -2, y: 4}
+      m_id: c52e51b5-bcc8-4cc3-a57c-e57306d094a8
+      m_inputNodeId: b390aee7-e808-418f-9330-797d461ecc0f
+      m_inputSocketId: f81a02cf-437f-4ca1-85b5-6bff896c7914
+      m_outputNodeId: 10628f1c-e685-4daf-809c-5fe0a7e7615f
+      m_outputSocketId: 733ec69d-2a55-4c81-a2fb-911f3985d046
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 0
+    m_canBeDeleted: 0
+    m_canBeReordered: 0
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 38
+    m_id: f81a02cf-437f-4ca1-85b5-6bff896c7914
+    m_nodeId: b390aee7-e808-418f-9330-797d461ecc0f
+    m_socketName: InputSocket_0
+    m_value: '{"ButtonCategory":"General","ButtonName":"Unnamed","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_outputSockets:
+  - m_connectionMode: 0
+    m_connections:
+    - m_inputConnectionPoint: {x: -2, y: 4}
+      m_outputConnectionPoint: {x: 202, y: 4}
+      m_id: fededd5e-5eac-4905-8b4e-6e75885013a1
+      m_inputNodeId: 10628f1c-e685-4daf-809c-5fe0a7e7615f
+      m_inputSocketId: d87d5b09-8993-4915-8bd4-c0123b2e4fdd
+      m_outputNodeId: b390aee7-e808-418f-9330-797d461ecc0f
+      m_outputSocketId: f78a3de1-6452-49c0-8ffa-622af4218ba8
+    m_connectionPoints:
+    - {x: -2, y: 4}
+    - {x: 202, y: 4}
+    m_direction: 1
+    m_canBeDeleted: 1
+    m_canBeReordered: 1
+    m_curveModifier: 0
+    m_height: 24
+    m_width: 216
+    m_x: 0
+    m_y: 62
+    m_id: f78a3de1-6452-49c0-8ffa-622af4218ba8
+    m_nodeId: b390aee7-e808-418f-9330-797d461ecc0f
+    m_socketName: OutputSocket_0
+    m_value: '{"ButtonCategory":"CollegueDevice","ButtonName":"Back","GameEvent":"","TimeDelay":3.0,"Trigger":0}'
+    m_valueTypeQualifiedName: Doozy.Engine.UI.Connections.UIConnection, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_nodeType: 4
+  m_allowDuplicateNodeName: 0
+  m_allowEmptyNodeName: 0
+  m_canBeDeleted: 1
+  m_debugMode: 0
+  m_useFixedUpdate: 0
+  m_useLateUpdate: 0
+  m_useUpdate: 0
+  m_height: 128
+  m_width: 216
+  m_x: -948
+  m_y: 684
+  m_minimumInputSocketsCount: 1
+  m_minimumOutputSocketsCount: 1
+  m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
+  m_id: b390aee7-e808-418f-9330-797d461ecc0f
+  m_name: Device(Sad)
+  m_notes: 
+  m_onEnterShowViews:
+  - Category: HappyRich_AgitFurnace
+    InstantAction: 0
+    Name: Device
+  m_onEnterHideViews:
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
+  m_onExitShowViews:
+  - Category: HappyRich
+    InstantAction: 0
+    Name: TopUIBar
+  m_onExitHideViews:
+  - Category: HappyRich_AgitFurnace
+    InstantAction: 0
+    Name: Device
 --- !u!114 &8415917884562229259
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4746,7 +4913,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: -504
-  m_y: 816
+  m_y: 876
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: dd8c3998-c10b-485d-9532-d18938918aa9
@@ -4756,16 +4923,10 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
-  - Category: HappyRich
-    InstantAction: 0
-    Name: TopUIBar
+    Name: Agit_SpaceAirField
   m_onEnterHideViews: []
   m_onExitShowViews: []
   m_onExitHideViews:
   - Category: HappyRich
     InstantAction: 0
-    Name: Agit_Office
-  - Category: HappyRich
-    InstantAction: 0
-    Name: TopUIBar
+    Name: Agit_Factory

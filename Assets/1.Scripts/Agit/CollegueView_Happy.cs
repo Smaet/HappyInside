@@ -9,6 +9,7 @@ public class CollegueView_Happy : CollegueView
         base.Init();
         print(gameObject.name + " Init!!!");
         HomeManager.Instance.agitManager.OnClickCollegueButton_Happy += OpenCollegueView;
+        SetName("해피");
     }
 
 

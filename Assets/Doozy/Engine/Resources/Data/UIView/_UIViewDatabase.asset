@@ -18,9 +18,11 @@ MonoBehaviour:
   - Example
   - General
   - HappyRich
-  - HappyRich_Flex_Department
-  - HappyRich_Agit
+  - HappyRich_AgitOffice
   - HappyRich_Agit_Collegue
+  - HappyRich_Flex_Department
+  - HappyRich_AgitFactory
+  - HappyRich_AgitFurnace
   Categories:
   - {fileID: 11400000, guid: b01e98f4801f7124ba39e1dac4debf90, type: 2}
   - {fileID: 11400000, guid: cc327216825479e47bedab42bc5552de, type: 2}
@@ -28,3 +30,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d48ec01492fff6b4aa95c99b0bf1052e, type: 2}
   - {fileID: 11400000, guid: 52c742d2982d95a49ace3c2b1c22c75c, type: 2}
   - {fileID: 11400000, guid: ddac9c83ac49b674ab3cd86a99a3951f, type: 2}
+  - {fileID: 11400000, guid: 2860f96d0b6ac174da8ea6ac936738e8, type: 2}
+  - {fileID: 11400000, guid: a8116a7f04087ff43956d6227146ec17, type: 2}

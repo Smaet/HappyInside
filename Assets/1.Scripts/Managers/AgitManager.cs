@@ -38,15 +38,19 @@ public class AgitManager : MonoBehaviour
 
     public CollegueView[] collegueViews;
     public CollegueItemView collegueItemView;
-    public CollegueDeviceView collegueDeviceView;
+    public CollegueDeviceView[] collegueDeviceView;
 
     //아지트에 있는 모든 이벤트들 관리
     public event Action<CollegueIndex> OnClickCollegueButton_Dare;      //아지트에서 동료 버튼을 누를때
     public event Action<CollegueIndex> OnClickCollegueButton_Lovely;   
     public event Action<CollegueIndex> OnClickCollegueButton_Soso;     
     public event Action<CollegueIndex> OnClickCollegueButton_Happy;    
-    public event Action<CollegueIndex> OnClickCollegueButton_Sad;      
+    public event Action<CollegueIndex> OnClickCollegueButton_Sad;
 
+    public event Action OnClickCollegueItemButton;
+
+    public event Action<CollegueIndex> OnClickCollegueDevice_Happy;
+    public event Action<CollegueIndex> OnClickCollegueDevice_Sad;
 
     public void Init()
     {
@@ -62,7 +66,6 @@ public class AgitManager : MonoBehaviour
 
     public void ClickCollegueButton(CollegueIndex _collegueIndex)
     {
-
         switch(_collegueIndex)
         {
             case CollegueIndex.Dare:
@@ -96,7 +99,14 @@ public class AgitManager : MonoBehaviour
                 }
                 break;
         }
-        
+    }
+
+    public void ClickCollegueItemButton()
+    {
+        if (OnClickCollegueItemButton != null)
+        {
+            OnClickCollegueItemButton();
+        }
     }
 
 }

@@ -16,6 +16,8 @@ public class CollegueView_Sad : CollegueView
     {
         base.OpenCollegueView(_index);
         print(_index + "View 활성화!!");
+
+        SetName("쌔드");
     }
     protected override void SetSkillContext(CollegueBasicSkill _skill)
     {

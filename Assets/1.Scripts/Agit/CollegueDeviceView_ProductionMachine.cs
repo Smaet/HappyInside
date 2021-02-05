@@ -74,18 +74,31 @@ public class CollegueDeviceView_ProductionMachine : CollegueDeviceView
 
     public void StartItemProduction()
     {
-        StartCoroutine(ItemProuct(3));
+        StartCoroutine(ItemProuct(1));
     }
 
     IEnumerator ItemProuct(int _time)
     {
+        float timeMagnification = 5;  //시간 배율
         int totalTime = _time;
         float time = 0;
-        float timeChecker = 0;
-        float finTIme = 5f * totalTime;
+        int timeChecker = 1;
+        float finTIme = timeMagnification * totalTime;
         slider_RemainTime.maxValue = finTIme;
     
         time = finTIme / 240f;
+
+        if(finTIme < 24 * timeMagnification)
+        {
+            tmp_RemainTime.text = string.Format("남은 시간 : {0}시간", totalTime);
+        }
+        else
+        {
+            int day = totalTime / 24;
+            int hour = totalTime % 24;
+
+            tmp_RemainTime.text = string.Format("남은 시간 : {0}시간 {1}일", hour, day);
+        }
 
         while (true)
         {
@@ -104,19 +117,59 @@ public class CollegueDeviceView_ProductionMachine : CollegueDeviceView
                         if(inProductionItems.Count == 0)
                         {
                             Debug.Log("생산 끝");
+                         
+                            tmp_RemainTime.text = "생산 완료!";
                         }
                         else
                         {
-                        
+                            timeChecker = 1;
+
+                            if (finTIme < 24 * timeMagnification)
+                            {
+                                tmp_RemainTime.text = string.Format("남은 시간 : {0}시간", totalTime);
+                            }
+                            else
+                            {
+                                int day = totalTime / 24;
+                                int hour = totalTime % 24;
+
+                                tmp_RemainTime.text = string.Format("남은 시간 : {0}시간 {1}일", hour, day);
+                            }
+
+
                             Debug.Log("다음 아이템 생산 시작");
                         }
 
                         isMaking = false;
+                    }
+                    //남은 시간 텍스트 갱신
+                    else
+                    {
+                        
+                        if(slider_RemainTime.value >= timeChecker * timeMagnification)
+                        {
+                           
+                            int remainTime = totalTime - (timeChecker);
 
+                            if (remainTime < 24)
+                            {
+                                tmp_RemainTime.text = string.Format("남은 시간 : {0}시간", remainTime);
+                            }
+                            else
+                            {
+                                int day = remainTime / 24;
+                                int hour = remainTime % 24;
+
+                                tmp_RemainTime.text = string.Format("남은 시간 : {0}시간 {1}일", hour, day);
+                            }
+
+                            timeChecker++;
+
+                        }
                     }
 
                     slider_RemainTime.value += time;
-                    print(slider_RemainTime.value);
+                    //print(slider_RemainTime.value);
                     yield return new WaitForSeconds(time);
                 }
                
@@ -135,6 +188,8 @@ public class CollegueDeviceView_ProductionMachine : CollegueDeviceView
         {
             completeProductionItems[i].GetComponent<PooledObject>().pool.ReturnObject(completeProductionItems[i].gameObject);
         }
+        completeProductionItems.Clear();
+        print("인벤토리에 추가!");
     }
 
  
