@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
-    totalSpriteSurfaceArea: 56815924
+    totalSpriteSurfaceArea: 60460244
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -74,7 +74,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2e4411923df8d2d429935a79613395bf, type: 3}
   - {fileID: 21300000, guid: e65ff9b226d1acf46b8a3d55d503cd5a, type: 3}
   - {fileID: 21300000, guid: 1ee740d25a5343d4abfd21399e7e6e75, type: 3}
+  - {fileID: 21300000, guid: 9839b4d27c48c224a8e893663633b1f2, type: 3}
   - {fileID: 21300000, guid: f7f556d25f73295479b8ee1db9df73e8, type: 3}
+  - {fileID: 21300000, guid: 1c2545e2ac111ef46bf4c29808030d5d, type: 3}
   - {fileID: 21300000, guid: 8fededf273a9eac4ebb1bd7d11078a23, type: 3}
   - {fileID: 21300000, guid: 9aae71234365f9e42b36385ade16a1b4, type: 3}
   - {fileID: 21300000, guid: f2ff7033f9ba38546a2b64c9a79998f7, type: 3}
@@ -92,6 +94,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 121def948fa5edf468041e25da198537, type: 3}
   - {fileID: 21300000, guid: 195bc0b414cd44f44829406eb549bf99, type: 3}
   - {fileID: 21300000, guid: a2e283c414df00f4683d7b969b3d3d82, type: 3}
+  - {fileID: 21300000, guid: 80196dc49f991aa449934ae990ce81d6, type: 3}
   - {fileID: 21300000, guid: 9cc642e4a734e8a46901a95b48029e69, type: 3}
   - {fileID: 21300000, guid: 6c2904e48e3d41246be4b53e7f012582, type: 3}
   - {fileID: 21300000, guid: 883f85e4487393a4097ff703bc884347, type: 3}
@@ -153,6 +156,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 93773fe88f7ed9444b64a0d326a78c3a, type: 3}
   - {fileID: 21300000, guid: d1d037f8f856a3d4e96a8112222049fb, type: 3}
   - {fileID: 21300000, guid: 587998f8d0d0e11468360486a5b88240, type: 3}
+  - {fileID: 21300000, guid: 4f5171198a4f80b4bbea962b8e2436a2, type: 3}
   - {fileID: 21300000, guid: 3334e239bf0fe5a4fab041e7cff4b7f8, type: 3}
   - {fileID: 21300000, guid: 00af6c499fa55be4da829b7ae29a6149, type: 3}
   - {fileID: 21300000, guid: 1b883b89ecadc5f41b875e4af94a7915, type: 3}
@@ -177,6 +181,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6217221b07c6b27498497007a5633b57, type: 3}
   - {fileID: 21300000, guid: 1434b82baeeb9b24db25fa87b8a78e7b, type: 3}
   - {fileID: 21300000, guid: a244053b816bd2144a9cee1d84c8898b, type: 3}
+  - {fileID: 21300000, guid: d36def8b8fa62d14699a47e6bf1c70af, type: 3}
   - {fileID: 21300000, guid: 09a2cbab2196039478116e245fe06379, type: 3}
   - {fileID: 21300000, guid: 2f6f23cb740cf7542bcb25b40341a5dd, type: 3}
   - {fileID: 21300000, guid: a1f9c10c2d95e634b8d39c549ede0c82, type: 3}
@@ -187,7 +192,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9250f76c4ac6c2840b717f2c68f02c64, type: 3}
   - {fileID: 21300000, guid: 5b333e7c3a12d8046a531fa5f6a15bc2, type: 3}
   - {fileID: 21300000, guid: 760c02ac16391b24695e08b2e1b5868b, type: 3}
+  - {fileID: 21300000, guid: 07f0f4dc8adcdd74391c1cf25f955dc6, type: 3}
   - {fileID: 21300000, guid: d432bfdc805ba8f4a92711771af2bb68, type: 3}
+  - {fileID: 21300000, guid: c8c1e40db51fd304d92ee731aae91241, type: 3}
   - {fileID: 21300000, guid: cacaec0d042e70e41a232bcc64d2d204, type: 3}
   - {fileID: 21300000, guid: c4a4f32dfbd39734d93a7058e64f0cba, type: 3}
   - {fileID: 21300000, guid: 8bfbdb5d1dfedfa45a3110ccffe6d43e, type: 3}
@@ -203,6 +210,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fb78fd0ea5393204dad9a2f95c29c5cc, type: 3}
   - {fileID: 21300000, guid: e8a5c72eedc82d142b315828d9a0049b, type: 3}
   - {fileID: 21300000, guid: bb99fa3e3d3f13e43994e0f32f9c3636, type: 3}
+  - {fileID: 21300000, guid: 77bcd44e8de6ddf44b47a57c688cb261, type: 3}
   - {fileID: 21300000, guid: 3117636ec7ab2504fbabc42262fa3bf6, type: 3}
   - {fileID: 21300000, guid: 73a7a46ebdd2a1d4088ce0c967b79e65, type: 3}
   - {fileID: 21300000, guid: 02a5447e312547a49ae5d5636a98ecd4, type: 3}
@@ -246,7 +254,9 @@ SpriteAtlas:
   - agitA_spoon_lv03
   - Store_5_ShopList_robot
   - Im_H_Background
+  - Story_Azit_icon2
   - Azit_3_Character_ability_2_Act
+  - Story_Azit_icon1
   - Im_H_Background
   - Im_H_MoveAzit_Background
   - m_door_R
@@ -264,6 +274,7 @@ SpriteAtlas:
   - minigame_background
   - flex1_004
   - Im_H_MoveAzit_Flex_Background_Cheak
+  - Story_Azit_Say_Back2
   - Azit_4_Character_money
   - Im_H_Azit_B
   - Azit_3_Character_Level
@@ -325,6 +336,7 @@ SpriteAtlas:
   - Azit_3_Character_ability_1
   - Store_1_Home_button
   - Im_H_Background_sunset
+  - Story_Azit_Background
   - Im_H_MoveAzit_azitB
   - Im_H_I_TopBar
   - Im_H_I_HambergerBar_Popup5
@@ -349,6 +361,7 @@ SpriteAtlas:
   - Im_H_MoveFlex_Spacelab
   - Azit_3_Character_Pinkcoin
   - flex_grandpa_temp
+  - Azit_Me_icon
   - Azit_6_haker_character_Levelup
   - Im_H_I_ConciousGage_Grandfather
   - Store_4_Pass_button2
@@ -359,7 +372,9 @@ SpriteAtlas:
   - Im_H_MoveFlex_Store2
   - Store_4_Price_back
   - Im_H_MoveFlex_Store
+  - Azit_DARE_H_icon
   - Im_H_I_HambergerBar_Popup6
+  - Story_Azit_Say_Back3_Arrow
   - Im_H_I_HambergerBar_Popup4
   - Im_H_MoveFlex_Airport
   - Im_H_MoveFlex_Button
@@ -375,6 +390,7 @@ SpriteAtlas:
   - Im_H_I_Concious_Arrow
   - Im_H_Spacelab
   - Transparency
+  - Story_Azit_Say_Back
   - Im_H_MoveFlex_Home2
   - Azit_3_Character_Vovely
   - Im_H_Background

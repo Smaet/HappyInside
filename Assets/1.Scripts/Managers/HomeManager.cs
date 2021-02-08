@@ -110,15 +110,17 @@ public class HomeManager : SimpleSingleton<HomeManager>
     protected override void Awake()
     {
         base.Awake();
+
+       
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            happyRichDialogueManager.StartDialogue();
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Q))
+    //    {
+           
+    //    }
+    //}
 
     public void Init()
     {
@@ -129,13 +131,15 @@ public class HomeManager : SimpleSingleton<HomeManager>
 
         ////////////////////////////////
         topUIManager.Init();
-        comprehensivePanel.Init();
+        //comprehensivePanel.Init();
 
         //오른쪽 아래 버튼 패널 초기화
         for(int i=0; i < baseSlideButtonPanels.Length; i++)
         {
             baseSlideButtonPanels[i].SetButton();
         }
+        //Test
+        //happyRichDialogueManager.StartDialogue();
 
 
         //dController.displaySettings

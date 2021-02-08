@@ -20,27 +20,29 @@ public class TopUIManager : MonoBehaviour
 
     public Tablet tablet;
 
+    #region Tablet Tap Event
     //Event
-    public event Action OnClickTabletTab_01;
-    public event Action OnClickTabletTab_02;
+    public event Action OnClickTabletTab_MyInfo;
+    public event Action OnClickTabletTab_Achievement;
     public event Action OnClickTabletTab_03;
     public event Action OnClickTabletTab_04;
     public event Action OnClickTabletTab_05;
     public event Action OnClickTabletTab_06;
 
+  
 
-    public void ClickTabletTab_01()
+    public void ClickTabletTab_MyInfo()
     {
-        if (OnClickTabletTab_01 != null)
+        if (OnClickTabletTab_MyInfo != null)
         {
-            OnClickTabletTab_01();
+            OnClickTabletTab_MyInfo();
         }
     }
-    public void ClickTabletTab_02()
+    public void ClickTabletTab_Achievement()
     {
-        if (OnClickTabletTab_02 != null)
+        if (OnClickTabletTab_Achievement != null)
         {
-            OnClickTabletTab_02();
+            OnClickTabletTab_Achievement();
         }
     }
 
@@ -77,15 +79,22 @@ public class TopUIManager : MonoBehaviour
         }
     }
 
-
-
-
+    #endregion
 
     public void Init()
     {
         hour_TMP.text = "00:00";
         days_TMP.text = "1Days";
+        
+        //태블릿 관련
+        tablet.Init();
     }
+
+    public void ShowTablet()
+    {
+        tablet.ShowTablet();
+    }
+
     public void SetHour(int _hour)
     {
         hour_TMP.text = string.Format("{0:00}:00 ", _hour);

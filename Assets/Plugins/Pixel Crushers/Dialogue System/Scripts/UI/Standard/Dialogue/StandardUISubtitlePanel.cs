@@ -294,7 +294,6 @@ namespace PixelCrushers.DialogueSystem
             if (clearTextOnClose) ClearText();
             hasFocus = false;
         }
-
         /// <summary>
         /// Focuses the panel.
         /// </summary>

@@ -56,8 +56,8 @@ MonoBehaviour:
       value: User
       type: 0
       typeString: CustomFieldType_Text
-    portrait: {fileID: 0}
-    spritePortrait: {fileID: 21300000, guid: deeae33315027e045bf104c3f198179d, type: 3}
+    portrait: {fileID: 2800000, guid: 9839b4d27c48c224a8e893663633b1f2, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 9839b4d27c48c224a8e893663633b1f2, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 2
@@ -78,14 +78,14 @@ MonoBehaviour:
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 2800000, guid: 5b272bd99aff59c4ca4246bb317467cf, type: 3}
-    spritePortrait: {fileID: 21300000, guid: 8901a79ef817b2649b877d6b3bb5370f, type: 3}
+    portrait: {fileID: 2800000, guid: 07f0f4dc8adcdd74391c1cf25f955dc6, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 07f0f4dc8adcdd74391c1cf25f955dc6, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 3
     fields:
     - title: Name
-      value: New
+      value: GrandFather
       type: 0
       typeString: CustomFieldType_Text
     - title: Pictures
@@ -93,15 +93,37 @@ MonoBehaviour:
       type: 3
       typeString: CustomFieldType_Files
     - title: Description
-      value: New
+      value: GrandFather
       type: 0
       typeString: CustomFieldType_Text
     - title: IsPlayer
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 2800000, guid: 8901a79ef817b2649b877d6b3bb5370f, type: 3}
-    spritePortrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 1c2545e2ac111ef46bf4c29808030d5d, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 1c2545e2ac111ef46bf4c29808030d5d, type: 3}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 4
+    fields:
+    - title: Name
+      value: NoImage
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: IsPlayer
+      value: True
+      type: 2
+      typeString: CustomFieldType_Boolean
+    portrait: {fileID: 2800000, guid: 925987cee7ceb6944bc905eb0e753585, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 925987cee7ceb6944bc905eb0e753585, type: 3}
     alternatePortraits: []
     spritePortraits: []
   items:
@@ -321,21 +343,21 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 1
+        value: 3
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: aaaaaa
+        value: "\uD560\uC544\uBC84\uC9C0\uC758 \uAC15\uC694"
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Hello
-
-          NOOOOOOOO!!!!'
+        value: "\uD50C\uC5D1\uC2A4\uC57C \uC5B4\uC11C \uB108\uB3C4 \uBE68\uB9AC \uB3C8\uC744
+          \uBC8C\uC5B4\uC640\uC57C\uC9C0\n\uC5B8\uC81C \uAE4C\uC9C0 \uC774\uB807\uAC8C
+          \uB180\uACE0 \uBA39\uACE0\uB9CC \uC788\uC744\uAED8\uC57C!"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -395,7 +417,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 304.0347
-        y: 207.2942
+        y: 204.4641
         width: 160
         height: 30
     - id: 4
@@ -409,23 +431,23 @@ MonoBehaviour:
         type: 3
         typeString: CustomFieldType_Files
       - title: Description
-        value: 
+        value: "\t\t\t"
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 2
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
         value: 1
         type: 5
         typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: 
+        value: "\uB300\uB2F5"
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: GoodBy
+        value: "\uB124\uC5D0 ~ \uB124\uC5D0 \n\uC54C\uACA0\uB2E4\uACE0\uC694 ~"
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -465,8 +487,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 305.80914
-        y: 318.55933
+        x: 303.92233
+        y: 288.37064
         width: 160
         height: 30
     - id: 5
@@ -480,7 +502,7 @@ MonoBehaviour:
         type: 3
         typeString: CustomFieldType_Files
       - title: Description
-        value: 
+        value: "\uD560\uC544\uBC84\uC9C0"
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
@@ -492,11 +514,11 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: 
+        value: "\uD560\uC544\uBC84\uC9C0"
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Why
+        value: "\uCBE7\uCBE7...\n\uC5B8\uC81C \uCCA0\uC774 \uB4E4\uB7F0\uC9C0...."
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -526,6 +548,222 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 5
+        destinationConversationID: 1
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 301.27524
+        y: 381.39252
+        width: 160
+        height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: "\uB3C4\uB9DD"
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: "\uC548\uB418\uACA0\uB2E4 \uB2F9\uBD84\uAC04 \uB2E4\uB978\uACF3\uC5D0\uC11C
+          \uC880 \uC228\uC5B4\uC11C \uC9C0\uB0B4\uC57C\uC9C0\n\uC774 \uC9D1\uC5D0
+          \uB354 \uC774\uC0C1\uC788\uB2E4\uAC00\uB294 \uB0B4\uAC00 \uB2F5\uB2F5\uD574\uC11C
+          \uC8FD\uACA0\uB124."
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 6
+        destinationConversationID: 1
+        destinationDialogueID: 7
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 299.38846
+        y: 479.50568
+        width: 160
+        height: 30
+    - id: 7
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: "\uC7A1\uD798"
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: "\uC5B4\uB51C \uAC08\uB824\uB294\uAC8C\uB0D0  \u314E\u314E\u314E\u314E"
+        type: 0
+        typeString: 
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: 
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 7
+        destinationConversationID: 1
+        destinationDialogueID: 8
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 296.55826
+        y: 545.54333
+        width: 160
+        height: 30
+    - id: 8
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: "\uC9D1\uC73C\uB85C \uB3CC\uC544\uC634"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: "\uC9D1\uC73C\uB85C \uC7A1\uD600\uC634"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
       userScript: 
@@ -534,12 +772,12 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 306.93564
-        y: 437.05286
+        x: 297.50168
+        y: 637.05286
         width: 160
         height: 30
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1.0000001
+    canvasScrollPosition: {x: 0, y: 231.01888}
+    canvasZoom: 1.0600001
   - id: 2
     fields:
     - title: Title

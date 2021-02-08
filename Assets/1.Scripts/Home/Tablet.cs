@@ -23,27 +23,39 @@ using Doozy.Engine.UI;
 public class Tablet : MonoBehaviour
 {
     [SerializeField]
+    private UIView uiView;
+
+    [SerializeField]
     private TabletTap[] tabletTaps;
     [SerializeField]
     private UIButton[] uiButton_TabletTaps;
 
-    [SerializeField]
-    private Slider CurrentAssetStatus_Slider;
-    [SerializeField]
-    private Slider CurrentDoubtStatus_Slider;
-    [SerializeField]
-    private TextMeshProUGUI grandFatherAsset_TMP;
+    
+    public void ShowTablet()
+    {
+        uiView.Show();
+
+        HomeManager.Instance.topUIManager.ClickTabletTab_MyInfo();
+
+        OpenTabletTap(0);
+
+    }
+
+    public void CloseTablet()
+    {
+        uiView.Hide();
+    }
 
     public void Init()
     {
-        CurrentAssetStatus_Slider.value = 0;
-        CurrentDoubtStatus_Slider.value = 0;
-        grandFatherAsset_TMP.text = "";
 
-        for(int i=0; i < uiButton_TabletTaps.Length; i++)
+        for (int i=0; i < tabletTaps.Length; i++)
         {
-            uiButton_TabletTaps[i].Button.onClick.AddListener(() => OpenTabletTap(i));
+            tabletTaps[i].Init();
         }
+        //내 정보
+        uiButton_TabletTaps[0].Button.onClick.AddListener(() => ShowTap(0));
+        uiButton_TabletTaps[1].Button.onClick.AddListener(() => ShowTap(1));
     }
 
     public void OpenTabletTap(int _index)
@@ -59,11 +71,11 @@ public class Tablet : MonoBehaviour
         {
             if(i == _index)
             {
-                tabletTaps[_index].ShowTabletTap();
+                tabletTaps[_index].ShowTap();
             }
             else
             {
-                tabletTaps[_index].HideTabletTap();
+                tabletTaps[_index].HideTap();
             }
         }
     }
@@ -75,29 +87,7 @@ public class Tablet : MonoBehaviour
         //CurrentAssetStatus_Slider.value =(float) manipulatePercent;
     }
 
-    public void SetCurrentDoubtStatus_Slider(long _consumption, long  _manipulateMoney)
-    {
-        double doubt = (double)_consumption / (double)_manipulateMoney;
-        CurrentDoubtStatus_Slider.value = (float)doubt;
-        Debug.Log("현재 의심도 : " + doubt * 100 + "%");
-        //GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, (float)doubt);
-    }
-
-    public void SetCurrentDoubtStatus_Slider(float _doubt)
-    {
-
-        CurrentDoubtStatus_Slider.value += _doubt * 0.01f;
-        Debug.Log("현재 의심도 : " + _doubt + "%");
-       // GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, _doubt);
-    }
-
-    public void SetCurrentDoubtStatus_Slider(double _doubt)
-    {
-
-        CurrentDoubtStatus_Slider.value = (float)_doubt * 0.01f;
-        Debug.Log("현재 의심도 : " + _doubt + "%");
-        // GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DOUBT, _doubt);
-    }
+   
 
     public void SetGarndFaterAssetInfo(long _startMoney, long _manipulatedMoney)
     {
@@ -118,14 +108,7 @@ public class Tablet : MonoBehaviour
             TenThousand_str = string.Format("{0}만원", (Billion % 100000000) / 10000);
         }
 
-        if(Thou != 0)
-        {
-            grandFatherAsset_TMP.text = "총 할아버지 재산 : " + Billion_str;
-        }
-        else
-        {
-            grandFatherAsset_TMP.text = "총 할아버지 재산 : " + Billion_str + " " + TenThousand_str;
-        }
+    
         
     }
 }

@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 2470482464999156676}
   - component: {fileID: 7711686082909531590}
   - component: {fileID: 3665121741374978138}
+  - component: {fileID: 3239190181672092567}
   - component: {fileID: 6755199500153276171}
   - component: {fileID: 8793516472876636695}
   - component: {fileID: 8904194572767309231}
   m_Layer: 0
-  m_Name: UIView - TabletTab - 01 (4)
+  m_Name: UIView - TabletTab - 05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,6 +92,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3239190181672092567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364901210885462633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51eceb13c90da429eddd75d6468615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiView: {fileID: 6755199500153276171}
+  scrollRect: {fileID: 0}
 --- !u!114 &6755199500153276171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,11 +596,12 @@ GameObject:
   - component: {fileID: 7247364157581368461}
   - component: {fileID: 4867881866574033617}
   - component: {fileID: 4874789311471008384}
+  - component: {fileID: 7821199448138950085}
   - component: {fileID: 2568072646383562152}
   - component: {fileID: 4872409723737942429}
   - component: {fileID: 2418875017051263028}
   m_Layer: 0
-  m_Name: UIView - TabletTab - 01 (3)
+  m_Name: UIView - TabletTab - 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,6 +676,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7821199448138950085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327562349684159337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51eceb13c90da429eddd75d6468615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiView: {fileID: 2568072646383562152}
+  scrollRect: {fileID: 0}
 --- !u!114 &2568072646383562152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,11 +1180,12 @@ GameObject:
   - component: {fileID: 8852630691912760515}
   - component: {fileID: 3239171590626053183}
   - component: {fileID: 8457431193818769040}
+  - component: {fileID: 6129711895843203220}
   - component: {fileID: 3560912867860625669}
   - component: {fileID: 506924834586789796}
   - component: {fileID: 7163319987959959530}
   m_Layer: 0
-  m_Name: UIView - TabletTab - 01 (5)
+  m_Name: UIView - TabletTab - 06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,6 +1260,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6129711895843203220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643766825463785032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51eceb13c90da429eddd75d6468615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiView: {fileID: 3560912867860625669}
+  scrollRect: {fileID: 0}
 --- !u!114 &3560912867860625669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4042,7 +4087,7 @@ GameObject:
   - component: {fileID: 2821688307065452994}
   - component: {fileID: 2821688307065452995}
   m_Layer: 0
-  m_Name: ComprehensivePanel - UIView
+  m_Name: UIView - Tablet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8304,6 +8349,7 @@ GameObject:
   - component: {fileID: 3145676565345216287}
   - component: {fileID: 7886969156700343938}
   - component: {fileID: 3289535600289155399}
+  - component: {fileID: 112233865877609267}
   - component: {fileID: 8043904908745265549}
   - component: {fileID: 9172879682872104295}
   - component: {fileID: 6501504637577431798}
@@ -8383,6 +8429,24 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &112233865877609267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640547090643498397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf8422cd85ac1d4fb4a869c11052c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  scrollRect: {fileID: 0}
+  button_MyInfo: {fileID: 0}
+  button_TargetInfo: {fileID: 0}
+  scrollRect_MyInfo: {fileID: 0}
+  scrollRect_TargetInfo: {fileID: 0}
 --- !u!114 &8043904908745265549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8873,11 +8937,12 @@ GameObject:
   - component: {fileID: 7635266669927448247}
   - component: {fileID: 8535802396002212898}
   - component: {fileID: 3513970035801568136}
+  - component: {fileID: 1583602279319536609}
   - component: {fileID: 7773480430280007894}
   - component: {fileID: 1339403863536547998}
   - component: {fileID: 4933416405391085725}
   m_Layer: 0
-  m_Name: UIView - TabletTab - 01 (1)
+  m_Name: UIView - TabletTab - 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8952,6 +9017,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1583602279319536609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826326908080076932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725b2331b55519a4eac886cecc3d20ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiView: {fileID: 0}
+  scrollRect: {fileID: 0}
 --- !u!114 &7773480430280007894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9442,11 +9521,12 @@ GameObject:
   - component: {fileID: 4165419163354637633}
   - component: {fileID: 7279812838126090755}
   - component: {fileID: 757505904010325543}
+  - component: {fileID: 270513516052033121}
   - component: {fileID: 7973871481757211497}
   - component: {fileID: 1282821390266466697}
   - component: {fileID: 6058663106865820358}
   m_Layer: 0
-  m_Name: UIView - TabletTab - 01 (2)
+  m_Name: UIView - TabletTab - 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9521,6 +9601,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &270513516052033121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787095724481441824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee51eceb13c90da429eddd75d6468615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiView: {fileID: 7973871481757211497}
+  scrollRect: {fileID: 0}
 --- !u!114 &7973871481757211497
 MonoBehaviour:
   m_ObjectHideFlags: 0

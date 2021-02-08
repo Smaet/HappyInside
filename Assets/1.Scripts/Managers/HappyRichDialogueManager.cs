@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class HappyRichDialogueManager : MonoBehaviour
 {
+
     public UIView uiView;
+    public UIView uiView_Result;
     public DialogueDatabase dialogueDatabase;
     public DialogueSystemController dialogueSystemController;
     public DialogueSystemTrigger dialogueSystemTrigger;
@@ -32,8 +34,7 @@ public class HappyRichDialogueManager : MonoBehaviour
     public void EndConversatiionEvent(Transform _transform)
     {
         Debug.Log("End Coversation!!!");
-
-        EndDialogue();
+        ShowResult();
     }
 
     IEnumerator DelayDialogue()
@@ -42,20 +43,26 @@ public class HappyRichDialogueManager : MonoBehaviour
 
         //DialogueManager.instance.StartConversation("MiniGame", dialogueSystemTrigger.conversationActor);
         DialogueManager.instance.StartConversation("New Conversation 1", dialogueSystemTrigger.conversationActor);
-
+       
 
         //dialogueSystemTrigger.TryStart(dialogueSystemTrigger.conversationActor);
+    }
+
+    public void ShowResult()
+    {
+        uiView_Result.Show();
+    }
+
+    public void CloseResult()
+    {
+        uiView_Result.Hide();
+
+        EndDialogue();
     }
 
     public void EndDialogue()
     {
         uiView.Hide();
-
-       
-        //어느 대화로 할지 추가
-        //dialogueSystemTrigger.conversation = "???";
-
-        //dialogueSystemTrigger.TryStart(dialogueSystemTrigger.conversationActor);
     }
 
     public void OnIncrement()
