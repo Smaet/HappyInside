@@ -99,7 +99,6 @@ public class HomeManager : SimpleSingleton<HomeManager>
     public TimeManager timeManager;
 
     public TopUIManager topUIManager ;
-    public Tablet comprehensivePanel;
     public GrandFatherHouseManager grandFatherHouseManager;
 
     public HappyRichDialogueManager happyRichDialogueManager;

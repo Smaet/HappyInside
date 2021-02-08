@@ -17,8 +17,6 @@ public class TabletTap_MyInfo : TabletTap
     public override void Init()
     {
         base.Init();
-
-        HomeManager.Instance.topUIManager.OnClickTabletTab_MyInfo += ShowTap;
     }
 
     public override void ShowTap()
