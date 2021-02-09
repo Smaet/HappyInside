@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class CollegueView_Dare : CollegueView
 {
+    private void OnEnable()
+    {
+        levelUp_button.onClick.AddListener(OnButtonLevelUpClick); 
+    }
+
+    private void OnDisable()
+    {
+        levelUp_button.onClick.RemoveListener(OnButtonLevelUpClick);
+    }
+
     public override void Init()
     {
         base.Init();

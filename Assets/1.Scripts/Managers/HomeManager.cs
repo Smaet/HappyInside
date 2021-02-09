@@ -113,14 +113,6 @@ public class HomeManager : SimpleSingleton<HomeManager>
        
     }
 
-    //private void Update()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.Q))
-    //    {
-           
-    //    }
-    //}
-
     public void Init()
     {
         //플렉스 매니저 초기화
@@ -138,7 +130,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
             baseSlideButtonPanels[i].SetButton();
         }
         //Test
-        //happyRichDialogueManager.StartDialogue();
+        happyRichDialogueManager.StartDialogue();
 
 
         //dController.displaySettings

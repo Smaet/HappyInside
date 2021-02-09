@@ -54,8 +54,13 @@ public class Tablet : MonoBehaviour
             tabletTaps[i].Init();
         }
         //내 정보
-        uiButton_TabletTaps[0].Button.onClick.AddListener(() => OpenTabletTap(0));
-        uiButton_TabletTaps[1].Button.onClick.AddListener(() => OpenTabletTap(1));
+
+        for (int i = 0; i < uiButton_TabletTaps.Length; i++)
+        {
+            int index = i;
+            uiButton_TabletTaps[index].Button.onClick.AddListener(() => OpenTabletTap(index));
+        }
+      
     }
 
     public void OpenTabletTap(int _index)
@@ -71,12 +76,12 @@ public class Tablet : MonoBehaviour
         {
             if(i == _index)
             {
-                tabletTaps[_index].ShowTap();
+                tabletTaps[i].ShowTap();
 
             }
             else
             {
-                tabletTaps[_index].HideTap();
+                tabletTaps[i].HideTap();
             }
         }
     }
