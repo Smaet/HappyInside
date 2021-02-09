@@ -56,8 +56,12 @@ public class GameManager : SimpleSingleton<GameManager>
         ClearUserData();
 
         SetUserInfo();
+#if UNITY_IPHONE
+        iPhoneSpeaker.ForceToSpeaker();
+#endif
 
-     }
+
+    }
 
     private void Start()
     {
