@@ -47,7 +47,7 @@ public class AgitManager : MonoBehaviour
     public event Action<CollegueIndex> OnClickCollegueButton_Happy;    
     public event Action<CollegueIndex> OnClickCollegueButton_Sad;
 
-    public event Action OnClickCollegueItemButton;
+    public event Action<CollegueIndex> OnClickCollegueItemButton;
 
     public event Action<CollegueIndex> OnClickCollegueDevice_Happy;
     public event Action<CollegueIndex> OnClickCollegueDevice_Sad;
@@ -60,8 +60,7 @@ public class AgitManager : MonoBehaviour
             collegueViews[i].Init();
         }
 
-        //collegueView.Init();
-        //collegueItemView.Init();
+        collegueItemView.Init();
     }
 
     public void ClickCollegueButton(CollegueIndex _collegueIndex)
@@ -101,11 +100,11 @@ public class AgitManager : MonoBehaviour
         }
     }
 
-    public void ClickCollegueItemButton()
+    public void ClickCollegueItemButton(CollegueIndex _collegueIndex)
     {
         if (OnClickCollegueItemButton != null)
         {
-            OnClickCollegueItemButton();
+            OnClickCollegueItemButton(_collegueIndex);
         }
     }
 

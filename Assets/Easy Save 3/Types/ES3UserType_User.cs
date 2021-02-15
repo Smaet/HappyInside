@@ -4,24 +4,23 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("isFirst", "userBaseProperties", "enabled", "name")]
-	public class ES3UserType_User : ES3ComponentType
+	[ES3PropertiesAttribute("isFirst", "userBaseProperties")]
+	public class ES3UserType_User : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
 
-		public ES3UserType_User() : base(typeof(User)){ Instance = this; priority = 1;}
+		public ES3UserType_User() : base(typeof(User)){ Instance = this; priority = 1; }
 
 
-		protected override void WriteComponent(object obj, ES3Writer writer)
+		protected override void WriteObject(object obj, ES3Writer writer)
 		{
 			var instance = (User)obj;
 			
 			writer.WriteProperty("isFirst", instance.isFirst, ES3Type_bool.Instance);
 			writer.WriteProperty("userBaseProperties", instance.userBaseProperties);
-			writer.WriteProperty("enabled", instance.enabled, ES3Type_bool.Instance);
 		}
 
-		protected override void ReadComponent<T>(ES3Reader reader, object obj)
+		protected override void ReadObject<T>(ES3Reader reader, object obj)
 		{
 			var instance = (User)obj;
 			foreach(string propertyName in reader.Properties)
@@ -35,14 +34,18 @@ namespace ES3Types
 					case "userBaseProperties":
 						instance.userBaseProperties = reader.Read<UserBaseProperties>();
 						break;
-					case "enabled":
-						instance.enabled = reader.Read<System.Boolean>(ES3Type_bool.Instance);
-						break;
 					default:
 						reader.Skip();
 						break;
 				}
 			}
+		}
+
+		protected override object ReadObject<T>(ES3Reader reader)
+		{
+			var instance = new User();
+			ReadObject<T>(reader, instance);
+			return instance;
 		}
 	}
 

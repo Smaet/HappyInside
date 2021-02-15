@@ -39,7 +39,7 @@ public class HappyRichDialogueManager : MonoBehaviour
 
     IEnumerator DelayDialogue()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
 
         //DialogueManager.instance.StartConversation("MiniGame", dialogueSystemTrigger.conversationActor);
         DialogueManager.instance.StartConversation("New Conversation 1", dialogueSystemTrigger.conversationActor);

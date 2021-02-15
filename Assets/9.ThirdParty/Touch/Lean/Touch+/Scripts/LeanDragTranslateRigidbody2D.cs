@@ -31,6 +31,7 @@ namespace Lean.Touch
 
 		private bool targetSet;
 
+		[SerializeField]
 		private Vector3 targetScreenPoint;
 
 		/// <summary>If you've set Use to ManuallyAddedFingers, then you can call this method to manually add a finger.</summary>
@@ -101,7 +102,7 @@ namespace Lean.Touch
 					if (targetSet == false)
 					{
 						targetSet         = true;
-						targetScreenPoint = cachedCamera.WorldToScreenPoint(transform.position);
+						targetScreenPoint = cachedCamera.WorldToScreenPoint(fingers[0].GetWorldPosition(0));
 					}
 
 					// Shift target point based on finger deltas

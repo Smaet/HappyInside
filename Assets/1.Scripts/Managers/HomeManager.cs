@@ -110,7 +110,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
     {
         base.Awake();
 
-       
+        Init();
     }
 
     public void Init()
@@ -129,8 +129,6 @@ public class HomeManager : SimpleSingleton<HomeManager>
         {
             baseSlideButtonPanels[i].SetButton();
         }
-        //Test
-        happyRichDialogueManager.StartDialogue();
 
 
         //dController.displaySettings
@@ -138,6 +136,43 @@ public class HomeManager : SimpleSingleton<HomeManager>
         //dst.TryStart(actor);
         //dst.start
 
+        User user = GameManager.Instance.user;
+
+
+        //상단 패널 셋팅
+        topUIManager.SetNick(user.userBaseProperties.nickName);
+        topUIManager.SetCrystal(user.userBaseProperties.crystal);
+        topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
+        topUIManager.SetPinkChip(user.userBaseProperties.blackChip);
+        topUIManager.SetHour(user.userBaseProperties.gameHour);
+        topUIManager.SetDays(user.userBaseProperties.daysElapsed);
+
+        //게임 시간 시작
+        timeManager.StartGameTime(user.userBaseProperties.gameHour, user.userBaseProperties.daysElapsed);
+
+        //게임 시간에 따른 배경 설정
+        if (user.userBaseProperties.gameHour < 9)
+        {
+            SetBackground(0);
+        }
+        else if (user.userBaseProperties.gameHour < 17)
+        {
+            SetBackground(1);
+        }
+        else if (user.userBaseProperties.gameHour < 24)
+        {
+            SetBackground(2);
+        }
+
+
+        PoloSFX.Instance.PlayHomeBGM();
+
+    }
+
+    private void Start()
+    {
+        //Test
+        happyRichDialogueManager.StartDialogue();
     }
 
     public void ResetAgitAndFlexSlide()

@@ -30,7 +30,9 @@ public class CollegueView : MonoBehaviour
     protected Sprite[] abilityEnableSprites;
     [SerializeField]
     protected Button levelUp_button;
-    
+    [SerializeField]
+    protected Button levelUpItem_button;
+
 
     public virtual void Init()
     {
@@ -104,18 +106,21 @@ public class CollegueView : MonoBehaviour
         CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         levelUpCost_TMP.text = "x" +info.Level;
 
-        if (GameManager.Instance.user.userBaseProperties.xCoin >= info.Level)
+        if (GameManager.Instance.user.userBaseProperties.blackChip >= info.Level)
         {
             levelUp_button.interactable = true;
+            levelUpItem_button.interactable = true;
 
-            if(info.Level >= 30)
+            if (info.Level >= 30)
             {
                 levelUp_button.interactable = false;
+                levelUpItem_button.interactable = false;
             }
         }
         else
         {
             levelUp_button.interactable = false;
+            levelUpItem_button.interactable = false; 
         }
     }
 
@@ -124,7 +129,10 @@ public class CollegueView : MonoBehaviour
        
     }
 
+    protected virtual void OnButtonItemLevelUpClick()
+    {
 
+    }
 
     public void SetManipulateMoney()
     {

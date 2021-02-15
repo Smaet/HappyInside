@@ -43,12 +43,13 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f3a4eb7440376d24f8f7219d8b1a3e9d, type: 3}
-    totalSpriteSurfaceArea: 60460244
+    totalSpriteSurfaceArea: 63438282
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 0470bb10327ed1945ba888d66ee19dff, type: 3}
   - {fileID: 21300000, guid: 0fb11d307325ec645b461b4a947a1725, type: 3}
+  - {fileID: 21300000, guid: 9480174016fb435418cd35574fe9282d, type: 3}
   - {fileID: 21300000, guid: 17b0b840ffa10b646813243d297bbbb2, type: 3}
   - {fileID: 21300000, guid: 48bf2d40562d89044bca9755b8080023, type: 3}
   - {fileID: 21300000, guid: 2331fe500cfe91b48a86bc53348b93a9, type: 3}
@@ -58,6 +59,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 020bb5b05b5ea28459bee7b2d1086177, type: 3}
   - {fileID: 21300000, guid: 523be851e2d7acd4691c22409a0507de, type: 3}
   - {fileID: 21300000, guid: 96f05161d53f9ad438115ebfc5cb4b93, type: 3}
+  - {fileID: 21300000, guid: 60cb917107d029448bc7b980a76e7f57, type: 3}
   - {fileID: 21300000, guid: bba670a1b06971e458eb4ca93ccbbaf5, type: 3}
   - {fileID: 21300000, guid: 02f75cb1be72bb348a636956d7de89fe, type: 3}
   - {fileID: 21300000, guid: 773990c1b0679fb43a51e9244c872fa0, type: 3}
@@ -79,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1c2545e2ac111ef46bf4c29808030d5d, type: 3}
   - {fileID: 21300000, guid: 8fededf273a9eac4ebb1bd7d11078a23, type: 3}
   - {fileID: 21300000, guid: 9aae71234365f9e42b36385ade16a1b4, type: 3}
+  - {fileID: 21300000, guid: b330572338f5a544687ec133b91f8b49, type: 3}
   - {fileID: 21300000, guid: f2ff7033f9ba38546a2b64c9a79998f7, type: 3}
   - {fileID: 21300000, guid: 8776334354b182746a0021efb75043ef, type: 3}
   - {fileID: 21300000, guid: ccb55563553ce9d46a779635fa6faaf3, type: 3}
@@ -124,6 +127,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3f3aaf7676cc7594a9ef7ce15e653e8e, type: 3}
   - {fileID: 21300000, guid: 337157866ecd6024c96ee1c2af60563d, type: 3}
   - {fileID: 21300000, guid: 490dc786f85bdac4eb5d6cf272d14b89, type: 3}
+  - {fileID: 21300000, guid: 56298b9635484174290a34852cb0c2aa, type: 3}
   - {fileID: 21300000, guid: f5ec0ea69ef713a4da92ebc876a9c64e, type: 3}
   - {fileID: 21300000, guid: 766d67c6d5708824895209d063050ac9, type: 3}
   - {fileID: 21300000, guid: 4b33d9e66521828489737179f4e7a390, type: 3}
@@ -163,6 +167,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0cd662a908c4de04ba4271811a9edf0e, type: 3}
   - {fileID: 21300000, guid: 7ac8aeb96e268b14ab3bf579d924204a, type: 3}
   - {fileID: 21300000, guid: 926549c95ecb72e498628809ffafb3ef, type: 3}
+  - {fileID: 21300000, guid: 02c0fae9d167ceb42a6c66008a1ae257, type: 3}
   - {fileID: 1137511854707800260, guid: 2b0a7fe99771b2d47be36da799e5daee, type: 3}
   - {fileID: 21300000, guid: f05f05f9a500d52418d0eea24180853e, type: 3}
   - {fileID: 21300000, guid: 306ec80a18a613646b1e5e5070e3be3d, type: 3}
@@ -182,6 +187,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1434b82baeeb9b24db25fa87b8a78e7b, type: 3}
   - {fileID: 21300000, guid: a244053b816bd2144a9cee1d84c8898b, type: 3}
   - {fileID: 21300000, guid: d36def8b8fa62d14699a47e6bf1c70af, type: 3}
+  - {fileID: 21300000, guid: a70df99b518411b46abe717239514a17, type: 3}
   - {fileID: 21300000, guid: 09a2cbab2196039478116e245fe06379, type: 3}
   - {fileID: 21300000, guid: 2f6f23cb740cf7542bcb25b40341a5dd, type: 3}
   - {fileID: 21300000, guid: a1f9c10c2d95e634b8d39c549ede0c82, type: 3}
@@ -195,6 +201,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 07f0f4dc8adcdd74391c1cf25f955dc6, type: 3}
   - {fileID: 21300000, guid: d432bfdc805ba8f4a92711771af2bb68, type: 3}
   - {fileID: 21300000, guid: c8c1e40db51fd304d92ee731aae91241, type: 3}
+  - {fileID: 21300000, guid: 3cc9570d0b32722449324bb2adb30b2c, type: 3}
   - {fileID: 21300000, guid: cacaec0d042e70e41a232bcc64d2d204, type: 3}
   - {fileID: 21300000, guid: c4a4f32dfbd39734d93a7058e64f0cba, type: 3}
   - {fileID: 21300000, guid: 8bfbdb5d1dfedfa45a3110ccffe6d43e, type: 3}
@@ -214,6 +221,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3117636ec7ab2504fbabc42262fa3bf6, type: 3}
   - {fileID: 21300000, guid: 73a7a46ebdd2a1d4088ce0c967b79e65, type: 3}
   - {fileID: 21300000, guid: 02a5447e312547a49ae5d5636a98ecd4, type: 3}
+  - {fileID: 21300000, guid: a3dab4aef87610747970209ba3a553bf, type: 3}
   - {fileID: 21300000, guid: 349f3deeeecd46941b25eb383af5347e, type: 3}
   - {fileID: 21300000, guid: c5c2cffe75cbf6f4b9a58c336b51657f, type: 3}
   - {fileID: 21300000, guid: 6edc6e0f5841fcb419a7a3b5e9dbd8e1, type: 3}
@@ -229,6 +237,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - Store4_card
   - Mansion_Chair_button
+  - Im_T_P_character
   - flex_samgye_temp
   - Azit_A2_Speech_White
   - Im_H_Azit_A
@@ -238,6 +247,7 @@ SpriteAtlas:
   - Im_H_MoveFlex_Casino2
   - Mansion_MenuList_Cri
   - Mansion_Ok_button
+  - Im_T_Background_1
   - ttt
   - Im_H_I_HambergerBar_Button
   - Azit_6_haker_character_gauge_back2
@@ -259,6 +269,7 @@ SpriteAtlas:
   - Story_Azit_icon1
   - Im_H_Background
   - Im_H_MoveAzit_Background
+  - Im_T_P_Background_Text
   - m_door_R
   - Azit_3_Character_Levelup
   - flex_cake_temp
@@ -304,6 +315,7 @@ SpriteAtlas:
   - Azit_3_Character_Pinkcoin_Act
   - Azit_6_haker_character_Levelup_Coin
   - Im_H_MoveAzit_azitB2
+  - Im_T_P_OKButton_Text
   - Mansion_Arrow
   - Azit_A2_Speech_Black_Bigsize
   - Mansion_Res_button
@@ -343,6 +355,7 @@ SpriteAtlas:
   - Azit_6_haker_character_gauge_2_2
   - flex_space_temp
   - Azit_A_home_button
+  - Im_T_FacebookButton_Text
   - Azit_6_haker_character_gauge_1_1_0
   - Im_H_MoveAzit_azitA2
   - Im_H_I_Concious_Background
@@ -362,6 +375,7 @@ SpriteAtlas:
   - Azit_3_Character_Pinkcoin
   - flex_grandpa_temp
   - Azit_Me_icon
+  - Im_T_P_InputBack
   - Azit_6_haker_character_Levelup
   - Im_H_I_ConciousGage_Grandfather
   - Store_4_Pass_button2
@@ -375,6 +389,7 @@ SpriteAtlas:
   - Azit_DARE_H_icon
   - Im_H_I_HambergerBar_Popup6
   - Story_Azit_Say_Back3_Arrow
+  - Im_T_Touchscreen_Text
   - Im_H_I_HambergerBar_Popup4
   - Im_H_MoveFlex_Airport
   - Im_H_MoveFlex_Button
@@ -394,6 +409,7 @@ SpriteAtlas:
   - Im_H_MoveFlex_Home2
   - Azit_3_Character_Vovely
   - Im_H_Background
+  - Im_T_GoogleButton_Text
   - Im_H_MoveFlex_Background
   - Azit_4_Character_Dare
   - Mansion_Speach_White

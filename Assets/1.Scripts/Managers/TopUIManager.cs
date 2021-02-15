@@ -8,6 +8,8 @@ using TMPro;
 public class TopUIManager : MonoBehaviour
 {
     [SerializeField]
+    private TextMeshProUGUI nick_TMP;
+    [SerializeField]
     private TextMeshProUGUI hour_TMP;
     [SerializeField]
     private TextMeshProUGUI days_TMP;
@@ -95,6 +97,11 @@ public class TopUIManager : MonoBehaviour
         tablet.ShowTablet();
     }
 
+    public void SetNick(string _nick)
+    {
+        nick_TMP.text = _nick;
+    }
+
     public void SetHour(int _hour)
     {
         hour_TMP.text = string.Format("{0:00}:00 ", _hour);
@@ -105,7 +112,7 @@ public class TopUIManager : MonoBehaviour
         days_TMP.text = string.Format("{0}일 ", _days);
     }
 
-    public void SetPinkChip(float _pinkChip)
+    public void SetPinkChip(double _pinkChip)
     {
         pinkChip_TMP.text = string.Format("{0} ", _pinkChip);
     }

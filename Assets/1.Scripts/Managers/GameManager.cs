@@ -25,7 +25,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : SimpleSingleton<GameManager>
 {
-
+    public bool isTest = false;
 
     [Header("User"), SerializeField] 
     public User user;
@@ -49,60 +49,71 @@ public class GameManager : SimpleSingleton<GameManager>
 
     protected override void Awake()
     {
+        DontDestroyOnLoad(this);
+
         base.Awake();
 
-        Init();
 
+        Init();
+        if (isTest)
+        {
+            TestUser();
+        }
+        else
+        {
+            ClearUserData();
+
+            user.isFirst = true;
+        }
+    }
+
+    void TestUser()
+    {
         ClearUserData();
 
-        SetUserInfo();
-#if UNITY_IPHONE
-        iPhoneSpeaker.ForceToSpeaker();
-#endif
-
-
+        SetUserInfo("플엑스");
     }
 
     private void Start()
     {
 
         //각종 초기화
-        HomeManager.Instance.Init();
+        //HomeManager.Instance.Init();
 
-        UserBaseProperties userProperties = user.userBaseProperties;
+        //UserBaseProperties userProperties = user.userBaseProperties;
 
-        //각종 셋팅
-        //할아버지 의심도및  재산 셋팅
-        //HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userProperties.manipulatedMoney);
-        //HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userProperties.ConsumptionMoney, userProperties.manipulatedMoney);
-        //HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userProperties.startMoney, userProperties.manipulatedMoney);
+        ////각종 셋팅
+        ////할아버지 의심도및  재산 셋팅
+        ////HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userProperties.manipulatedMoney);
+        ////HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userProperties.ConsumptionMoney, userProperties.manipulatedMoney);
+        ////HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userProperties.startMoney, userProperties.manipulatedMoney);
 
-        //상단 패널 셋팅
-        HomeManager.Instance.topUIManager.SetCrystal(userProperties.crystal);
-        HomeManager.Instance.topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
-        HomeManager.Instance.topUIManager.SetPinkChip(userProperties.xCoin);
-        HomeManager.Instance.topUIManager.SetHour(userProperties.gameHour);
-        HomeManager.Instance.topUIManager.SetDays(userProperties.daysElapsed);
+        ////상단 패널 셋팅
+        //HomeManager.Instance.topUIManager.SetCrystal(userProperties.crystal);
+        //HomeManager.Instance.topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
+        //HomeManager.Instance.topUIManager.SetPinkChip(userProperties.xCoin);
+        //HomeManager.Instance.topUIManager.SetHour(userProperties.gameHour);
+        //HomeManager.Instance.topUIManager.SetDays(userProperties.daysElapsed);
 
-        //게임 시간 시작
-        HomeManager.Instance.timeManager.StartGameTime(user.userBaseProperties.gameHour, user.userBaseProperties.daysElapsed);
+        ////게임 시간 시작
+        //HomeManager.Instance.timeManager.StartGameTime(user.userBaseProperties.gameHour, user.userBaseProperties.daysElapsed);
 
-        //게임 시간에 따른 배경 설정
-        if(user.userBaseProperties.gameHour < 9)
-        {
-            HomeManager.Instance.SetBackground(0);
-        }
-        else if(user.userBaseProperties.gameHour < 17)
-        {
-            HomeManager.Instance.SetBackground(1);
-        }
-        else if(user.userBaseProperties.gameHour < 24)
-        {
-            HomeManager.Instance.SetBackground(2);
-        }
+        ////게임 시간에 따른 배경 설정
+        //if(user.userBaseProperties.gameHour < 9)
+        //{
+        //    HomeManager.Instance.SetBackground(0);
+        //}
+        //else if(user.userBaseProperties.gameHour < 17)
+        //{
+        //    HomeManager.Instance.SetBackground(1);
+        //}
+        //else if(user.userBaseProperties.gameHour < 24)
+        //{
+        //    HomeManager.Instance.SetBackground(2);
+        //}
 
 
-        PoloSFX.Instance.PlayHomeBGM();
+        //PoloSFX.Instance.PlayHomeBGM();
     }
 
     void Init()
@@ -120,20 +131,18 @@ public class GameManager : SimpleSingleton<GameManager>
     #endregion
 
     #region UserData
-    public void SetUserInfo()
+    public void SetUserInfo(string _nick)
     {
-        
-
         if(LoadUserData() == false)
         {
-            Debug.Log("저장된 데이터 호출!!");
+            print("초기 데이터로 시작!");
             User tempUserData = new User();
             //user.SetNick("HappyRiccc22222");
 
             tempUserData.isFirst = true;
 
             tempUserData.userBaseProperties = new UserBaseProperties();
-            tempUserData.userBaseProperties.nickName = "플렉스";
+            tempUserData.userBaseProperties.nickName = _nick;
             tempUserData.userBaseProperties.crystal = 99;
             //tempUserData.userBaseProperties.startMoney = 50000000000;
             tempUserData.userBaseProperties.currentAmount = HappyRichReadOnly.StartGrandFatherMoney;
@@ -148,7 +157,7 @@ public class GameManager : SimpleSingleton<GameManager>
             tempUserData.userBaseProperties.grandFatherAnger.curAnger = 0;
             tempUserData.userBaseProperties.grandFatherAnger.specificEventAngerValue01 = 0;
 
-            tempUserData.userBaseProperties.xCoin = 1000;
+            tempUserData.userBaseProperties.blackChip = 1000;
 
             tempUserData.userBaseProperties.collegueInfos = new CollegueInfo[5];
 
@@ -184,7 +193,8 @@ public class GameManager : SimpleSingleton<GameManager>
 
                     tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new CollegueItem();
                     tempUserData.userBaseProperties.collegueInfos[i].collegueItem.isActive = true;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 10;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 0.5;
+                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.hour = -1;
 
                 }
                 else

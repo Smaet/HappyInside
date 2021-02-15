@@ -23,6 +23,9 @@ public class ColleguePanel : MonoBehaviour
     {
         button_Collegeue.onClick.AddListener(() =>
                  HomeManager.Instance.agitManager.ClickCollegueButton(curIndex));
+
+        button_CollegeueItem.onClick.AddListener(() =>
+                HomeManager.Instance.agitManager.ClickCollegueItemButton(curIndex));
     }
 
     public void OnDisable()

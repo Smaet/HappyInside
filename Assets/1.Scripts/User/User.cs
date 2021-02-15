@@ -48,13 +48,14 @@ public enum ChangeableUserProperties
 {
     NONE = 0,
     CRYSTAL = 1,
-    XCOIN,
+    BLACKCHIP,
+    DESSERT,
     CURRENTAMOUNT,
     GRANDFATHERANGER,
     TERROR,
     GAMEHOUR,
     DAYSELASPSE,
- 
+    
     HACKER,
     BUFF,
 }
@@ -65,9 +66,10 @@ public class UserBaseProperties
 {
     public string nickName;                             //닉네임
     public int crystal;                                 //크리스탈
-    public long xCoin;                                  // 엑스코인    
+    public double blackChip;                            // 블랙칩    
                                                         // - 공장에서 생산품을 생산화는 화폐    
                                                         // - 단위 : 1개 ~ 1억개 
+    public int dessert;                                 // 디저트 - 동료들이 섭취를 해야 돌아감.
 
 
     public long currentAmount;                          //재산은 두가지로
@@ -174,7 +176,6 @@ public class Buff
 [Serializable]
 public class CollegueInfo
 {
-   
     public bool isActive;
 
     public CollegueIndex collegueIndex; //동료의 인덱스
@@ -193,28 +194,32 @@ public class CollegueInfo
 [Serializable]
 public class CollegueBasicSkill
 {
-    public float hour;
+    public int hour;
     public int day;
     public long money;
-    public float chance;
+    public double chance;
+    public int count;
 }
 
 
 [Serializable]
 public class ColleguePassiveSkill
 {
-    public bool isActive;
-    public float hour;
+    public bool isActive;       //활성화가 됬는지? UI 갱신
+    public bool isApply;        //적용이 됬는지?  효과적용 떄문에
+    public int hour;
     public int day;
     public long money;
-    public float chance;
+    public double chance;
 }
 
 [Serializable]
 public class CollegueItem
 {
     public bool isActive;
-    public float chance;
+    public double chance;
+    public int hour;
+    public int count;
 }
 
 
@@ -236,8 +241,8 @@ public class HappyRichItem
 
 
 
-
-public class User : MonoBehaviour
+[Serializable]
+public class User
 {
     public bool isFirst;
 
@@ -259,7 +264,7 @@ public class User : MonoBehaviour
 
         userBaseProperties.nickName = _userInfo.userBaseProperties.nickName;
         userBaseProperties.crystal = _userInfo.userBaseProperties.crystal;
-        userBaseProperties.xCoin = _userInfo.userBaseProperties.xCoin;
+        userBaseProperties.blackChip = _userInfo.userBaseProperties.blackChip;
         userBaseProperties.currentAmount = _userInfo.userBaseProperties.currentAmount;
 
         userBaseProperties.terror = _userInfo.userBaseProperties.terror;
@@ -342,8 +347,15 @@ public class User : MonoBehaviour
                 userBaseProperties.daysElapsed += _value;
                 HomeManager.Instance.topUIManager.SetDays(userBaseProperties.daysElapsed);
                 Debug.Log("현재 경과된 날짜  : " + userBaseProperties.daysElapsed);
+                break;
 
-      
+            case ChangeableUserProperties.DESSERT:
+                userBaseProperties.dessert += _value;
+                //UI 갱신 예정
+
+                Debug.Log("현재 디저트 갯수 : " + userBaseProperties.dessert);
+
+
                 break;
 
         }
@@ -356,11 +368,17 @@ public class User : MonoBehaviour
 
         switch (_changeableIndex)
         {
-            case ChangeableUserProperties.XCOIN:
-                userBaseProperties.xCoin += _value;
+            case ChangeableUserProperties.BLACKCHIP:
+                userBaseProperties.blackChip += _value;
 
-                HomeManager.Instance.topUIManager.SetPinkChip(userBaseProperties.xCoin);
-                Debug.Log("현재 X코인 개수 : " + userBaseProperties.xCoin);
+                HomeManager.Instance.topUIManager.SetPinkChip(userBaseProperties.blackChip);
+                Debug.Log("현재 X코인 개수 : " + userBaseProperties.blackChip);
+                break;
+            case ChangeableUserProperties.CURRENTAMOUNT:
+                userBaseProperties.currentAmount += _value;
+
+                HomeManager.Instance.topUIManager.SetPinkChip(userBaseProperties.blackChip);
+                Debug.Log("현재 X코인 개수 : " + userBaseProperties.blackChip);
                 break;
         }
 

@@ -25,31 +25,36 @@ public class CollegueItemView : MonoBehaviour
 
     public void Init()
     {
-        OnClickOpenCollegueItemView += OpenCollegueItemView;
+        HomeManager.Instance.agitManager.OnClickCollegueItemButton += OpenCollegueItemView;
     }
 
-    public void OpenCollegueItemView(CollegueInfo _info)
+    public void OpenCollegueItemView(CollegueIndex _index)
     {
-        CollegueIndex index = _info.collegueIndex;
-        curCollegue = index;
+        curCollegue = _index;
+        CollegueInfo collegueInfo = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
 
-        switch (index)
+        switch (curCollegue)
         {
             case CollegueIndex.Dare:
                 SetName("X-다레");
-                SetLevel(_info.itemLevel);
-                SetSkillContext();
-                SetLevelCost();
                 break;
             case CollegueIndex.Lovely:
+                SetName("X-럽삐");
                 break;
             case CollegueIndex.Soso:
+                SetName("X-쏘쏘");
                 break;
             case CollegueIndex.Happy:
+                SetName("X-햅삐");
                 break;
             case CollegueIndex.Sad:
+                SetName("X-쌔드");
                 break;
         }
+        SetLevel(collegueInfo.itemLevel);
+        SetSkillContext();
+        SetLevelCost();
+
     }
 
 
@@ -91,10 +96,10 @@ public class CollegueItemView : MonoBehaviour
     {
         CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         //스킬업 가능 조건 레벨보다 핑크칩의 갯수가 크거나 같으면
-        if (GameManager.Instance.user.userBaseProperties.xCoin >= info.itemLevel)
+        if (GameManager.Instance.user.userBaseProperties.blackChip >= info.itemLevel)
         {
             //핑크칩 갯수 다운
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.XCOIN, -info.itemLevel);
+            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.BLACKCHIP, -info.itemLevel);
 
             //동료의 아이템 레벨 업
             info.itemLevel++;
