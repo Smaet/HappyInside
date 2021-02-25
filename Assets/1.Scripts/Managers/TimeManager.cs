@@ -120,18 +120,22 @@ public class TimeManager : MonoBehaviour
 
                 //시간에 따른 해커의 능력 설정
                 hackerSkillTime++;
-                CheckHacker(hacker);
+                //CheckHacker(hacker);
 
                 //트레이더
                 TraderSkillTime++;
-                CheckTrader(trader);
+                //CheckTrader(trader);
 
                 //요리사
                 CookSkillTime++;
-                CheckCook(lovely);
+                //CheckCook(lovely);
 
                 //화학자
                 ChemistSkillTime++;
+                //CheckChemist();
+
+                //각각 동료들의 배고픔 체크
+                
 
                 //버프관련 해커의 버프는 켜지는 순간에 이미 적용이 되어있음
                 if (GameManager.Instance.user.userBaseProperties.buffs.Count > 0)
@@ -284,18 +288,13 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    //쏘쏘
+    //럽삐
     public void CheckCook(CollegueInfo _cook)
     {
         if (_cook.isActive && CookSkillTime > _cook.collegueBasicSkill.hour - 1)
         {
             CookSkillTime = 0;
-
-
             //??시간 마다 디저트를 ??개 만들어서 동료들의 허기를 채워준다.
-
-
-
             //패시브 3 -> 디저트 생산량 50% 증가
             if (_cook.colleguePassiveSkills[2].isActive)
             {
@@ -303,7 +302,6 @@ public class TimeManager : MonoBehaviour
                 //소수점은 짜름
                 _cook.collegueBasicSkill.count = (int)(makeCount + (makeCount * 0.5));
             }
-
 
             //아이템에 따른 확률
             int itemChance = UnityEngine.Random.Range(0, 100);
@@ -317,9 +315,6 @@ public class TimeManager : MonoBehaviour
             {
                 GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.DESSERT, _cook.collegueBasicSkill.count);
             }
-
-
-   
         }
     }
 
@@ -331,8 +326,6 @@ public class TimeManager : MonoBehaviour
             ChemistSkillTime = 0;
 
 
-            //??시간 마다 디저트를 ??개 만들어서 동료들의 허기를 채워준다.
-
 
 
             //패시브 2 -> 재산 소멸량 50% 증가
@@ -343,6 +336,7 @@ public class TimeManager : MonoBehaviour
                 _chemist.collegueBasicSkill.money += (long)money;
             }
 
+            //패시브 3 -> 재산 소멸량 3배 적용 (10%의 확률로)
             //아이템에 따른 확률
             int itemChance = UnityEngine.Random.Range(0, 100);
 

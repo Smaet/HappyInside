@@ -113,4 +113,27 @@ public class CollegueView_Happy : CollegueView
         }
 
     }
+
+
+    //아이템 레벨업 버튼
+    protected override void OnButtonItemLevelUpClick()
+    {
+        base.OnButtonItemLevelUpClick();
+        CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
+
+        //스킬업 가능 조건 레벨보다 블랙칩의 갯수가 크거나 같으면
+        if (GameManager.Instance.user.userBaseProperties.blackChip >= info.Level)
+        {
+            if (info.itemLevel >= 30)
+            {
+                levelUpItem_button.interactable = false;
+            }
+            else
+            {
+                //생상속도 n% 상승
+                //??% 씩 레벨이 오를 때 마다 상승 
+                info.collegueItem.chance++;
+            }
+        }
+    }
 }

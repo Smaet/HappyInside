@@ -6,7 +6,7 @@
   2. 타이틀 관련 UI
 */
 
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +15,9 @@ using Lean.Touch;
 using Doozy.Engine.UI;
 using TMPro;
 
-public class TitleManager : MonoBehaviour
+
+
+public class TitleManager : SimpleSingleton<TitleManager>
 {
     public TMP_InputField inputField_Nick;
 
@@ -32,6 +34,15 @@ public class TitleManager : MonoBehaviour
 
     bool isLoadScene = false;
 
+    public event Action GPGS_LoginClick;
+    public event Action GPGS_LoginOutClick;
+
+    protected override  void Awake()
+    {
+        base.Awake();
+
+
+    }
 
     private void Start()
     {
@@ -40,8 +51,8 @@ public class TitleManager : MonoBehaviour
         button_Google.onClick.RemoveAllListeners();
         button_LoginConfirm.onClick.RemoveAllListeners();
 
-        button_FaceBook.onClick.AddListener(ShowUIView_Login);
-        button_Google.onClick.AddListener(ShowUIView_Login);
+        button_FaceBook.onClick.AddListener(ClickGPGSLogOut);
+        button_Google.onClick.AddListener(ClickGPGSLogin);
         button_LoginConfirm.onClick.AddListener(ShowUIView_FingerPrint);
 
         //바로 터치 스크린
@@ -57,6 +68,21 @@ public class TitleManager : MonoBehaviour
             button_FaceBook.gameObject.SetActive(true);
         }
         
+    }
+
+    public void ClickGPGSLogin()
+    {
+        if(GPGS_LoginClick != null)
+        {
+            GPGS_LoginClick();
+        }
+    }
+    public void ClickGPGSLogOut()
+    {
+        if (GPGS_LoginOutClick != null)
+        {
+            GPGS_LoginOutClick();
+        }
     }
 
     public void LoadScene()

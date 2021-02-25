@@ -52,13 +52,13 @@ public class CollegueView_Soso : CollegueView
                     HomeManager.Instance.agitManager.agitOffice.colleguePanels[0].SetUI(info);
 
 
-                    //패시브 1 -> 트레이딩 시간 1시간 감소
+                    //패시브 1 -> 작동시간 3시간 감소
                     if (info.colleguePassiveSkills[0].isApply == false)
                     {
                         info.collegueBasicSkill.hour -= info.colleguePassiveSkills[0].hour;
                         info.colleguePassiveSkills[0].isApply = true;
 
-                        print("쏘쏘 패시브 1 활성화!!");
+                        print("세드 패시브 1 활성화!!");
                     }
 
 
@@ -118,6 +118,7 @@ public class CollegueView_Soso : CollegueView
         }
     }
 
+    //아이템 레벨업 버튼
     protected override void OnButtonItemLevelUpClick()
     {
         base.OnButtonItemLevelUpClick();
@@ -128,11 +129,15 @@ public class CollegueView_Soso : CollegueView
         {
             if (info.itemLevel >= 30)
             {
-
                 levelUpItem_button.interactable = false;
+            }
+            else
+            {
+                //최대 사용 칩 수 n개 증가
+                //??% 씩 레벨이 오를 때 마다 상승 
+                info.collegueItem.count++;
             }
         }
     }
-    
 }
 

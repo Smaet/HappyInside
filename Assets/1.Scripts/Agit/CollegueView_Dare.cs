@@ -77,13 +77,12 @@ public class CollegueView_Dare : CollegueView
                     HomeManager.Instance.agitManager.agitOffice.colleguePanels[0].SetUI(info);
 
                     //패시브 1 -> 해킹시간 1시간 감소
+                    //저장이 이루어 져야함
                     if (info.colleguePassiveSkills[0].isApply == false)
                     {
                         info.collegueBasicSkill.hour -= info.colleguePassiveSkills[0].hour;
                         info.colleguePassiveSkills[0].isApply = true;
                     }
-
-
                 }
                 else if (info.Level == 20)
                 {
@@ -93,13 +92,6 @@ public class CollegueView_Dare : CollegueView
                     //아지트 마다 레벨에 따른 UI 갱신
                     HomeManager.Instance.agitManager.agitOffice.colleguePanels[0].SetUI(info);
 
-                    //패시브 2 -> 재산 소멸량 20% 증가
-                    //if (info.colleguePassiveSkills[1].isApply == false)
-                    //{
-                    //    double money = info.collegueBasicSkill.money * info.colleguePassiveSkills[1].chance;
-                    //    info.collegueBasicSkill.money += (long)money;
-                    //    info.colleguePassiveSkills[1].isApply = true;
-                    //}
                 }
                 else if (info.Level == 30)
                 {
@@ -109,22 +101,13 @@ public class CollegueView_Dare : CollegueView
                     //아지트 마다 레벨에 따른 UI 갱신
                     HomeManager.Instance.agitManager.agitOffice.colleguePanels[0].SetUI(info);
 
-                    //패시브 3 -> 어나니머스 -> 해킹시간 50% 감소
-                    //if (info.colleguePassiveSkills[2].isApply == false)
-                    //{
-                    //    double hour = info.collegueBasicSkill.hour * info.colleguePassiveSkills[2].chance;
-                    //    info.collegueBasicSkill.hour = (int)hour;
-                    //    info.colleguePassiveSkills[2].isApply = true;
-                    //}
-
-
                     levelUp_button.interactable = false;
                 }
 
                 //유저 정보에 반영
                 GameManager.Instance.user.SetUserInfo(curCollegue, info);
 
-                Debug.Log("현재 해커의 능력으로 추가되는 돈의 증가량 : " + info.collegueBasicSkill.money);
+                Debug.Log("현재 해커의 능력으로 소멸되는 돈의 양 : " + info.collegueBasicSkill.money);
 
                 //UI 반영
                 SetLevel(info.Level);
@@ -135,7 +118,7 @@ public class CollegueView_Dare : CollegueView
         else
         {
             levelUp_button.interactable = false;
-            Debug.Log("엑스코인의 개수가 부족합니다.");
+            Debug.Log("블랙칩의 개수가 부족합니다.");
         }
 
     }
@@ -152,6 +135,12 @@ public class CollegueView_Dare : CollegueView
             if (info.itemLevel >= 30)
             {
                 levelUpItem_button.interactable = false;
+            }
+            else
+            {
+                //n%의 확률로 재산 소멸량 2배 적용
+                //??% 씩 레벨이 오를 때 마다 상승
+                info.collegueItem.chance++;
             }
         }
     }

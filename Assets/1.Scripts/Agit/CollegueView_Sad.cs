@@ -94,4 +94,26 @@ public class CollegueView_Sad : CollegueView
             Debug.Log("엑스코인의 개수가 부족합니다.");
         }
     }
+
+    //아이템 레벨업 버튼
+    protected override void OnButtonItemLevelUpClick()
+    {
+        base.OnButtonItemLevelUpClick();
+        CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
+
+        //스킬업 가능 조건 레벨보다 블랙칩의 갯수가 크거나 같으면
+        if (GameManager.Instance.user.userBaseProperties.blackChip >= info.Level)
+        {
+            if (info.itemLevel >= 30)
+            {
+                levelUpItem_button.interactable = false;
+            }
+            else
+            {
+                //작동시간 ??시간 감소
+                //??% 씩 레벨이 오를 때 마다 상승 
+                info.collegueItem.hour++;
+            }
+        }
+    }
 }

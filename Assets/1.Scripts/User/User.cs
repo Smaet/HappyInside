@@ -184,11 +184,13 @@ public class CollegueInfo
     public int itemLevel;           //아이템 레벨
     public int deviceLevel;         //디바이스 레벨
     public int levelUpTime;         
-    public int leftLevelUpTime;     
+    public int leftLevelUpTime;
+    public int hungry;              //배고픔
 
     public CollegueBasicSkill collegueBasicSkill;
     public ColleguePassiveSkill[] colleguePassiveSkills;
     public CollegueItem collegueItem;
+    public CollegueDevice collegueDevice;
 }
 
 [Serializable]
