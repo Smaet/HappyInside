@@ -33,7 +33,9 @@ public class GoogleManager : MonoBehaviour
   
     public void GPGSLogin()
     {
+#if UNITY_ANDROID
         print("GPGS Login Button Clicked!!");
+
 
         // 이미 로그인 된 경우
         if (Social.localUser.authenticated == true)
@@ -48,6 +50,9 @@ public class GoogleManager : MonoBehaviour
                     // 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입요청
                     Debug.Log("Login success!! " + Social.localUser.id + " / " + Social.localUser.userName );
                     text.text += Social.localUser.userName;
+
+                    TitleManager.Instance.ShowUIView_Login();
+
                 }
                 else
                 {
@@ -56,6 +61,7 @@ public class GoogleManager : MonoBehaviour
                 }
             });
         }
+#endif
     }
 
     public void LogOut()

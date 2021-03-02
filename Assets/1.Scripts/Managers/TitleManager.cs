@@ -22,6 +22,11 @@ public class TitleManager : SimpleSingleton<TitleManager>
     public TMP_InputField inputField_Nick;
 
     public Slider slider_FingerPrintProgress;
+    public TextMeshProUGUI tmp_FingerPrintProgress_TextAnim;
+    public TextMeshProUGUI tmp_FingerPrintProgress_Percent;
+    private int fingerPrintProgressAnimateCount = 0;
+    private int fingerPrintProgress = 0;
+    public bool isFingerPrintProgressTextAnimating;
 
     public Button button_FaceBook;
     public Button button_Google;
@@ -40,8 +45,6 @@ public class TitleManager : SimpleSingleton<TitleManager>
     protected override  void Awake()
     {
         base.Awake();
-
-
     }
 
     private void Start()
@@ -67,14 +70,24 @@ public class TitleManager : SimpleSingleton<TitleManager>
             button_Google.gameObject.SetActive(true);
             button_FaceBook.gameObject.SetActive(true);
         }
-        
+        tmp_FingerPrintProgress_TextAnim.text = "지문 인식중.";
+        tmp_FingerPrintProgress_Percent.text = "0%";
+        isFingerPrintProgressTextAnimating = false;
     }
 
     public void ClickGPGSLogin()
     {
         if(GPGS_LoginClick != null)
         {
+
+#if UNITY_ANDROID
             GPGS_LoginClick();
+#endif
+
+#if UNITY_EDITOR
+            ShowUIView_Login();
+#endif
+
         }
     }
     public void ClickGPGSLogOut()
@@ -91,13 +104,49 @@ public class TitleManager : SimpleSingleton<TitleManager>
         MySceneLoader.Instance.LoadScene("1.GameScene_DoozyUI");
     }
 
+    IEnumerator TextAnim()
+    {
+        print("Start TextAnim!!");
+
+        while(isFingerPrintProgressTextAnimating)
+        {
+            if (fingerPrintProgressAnimateCount == 0)
+            {
+                tmp_FingerPrintProgress_TextAnim.text = "지문 인식중. ";
+                fingerPrintProgressAnimateCount++;
+            }
+            else if (fingerPrintProgressAnimateCount == 1)
+            {
+                tmp_FingerPrintProgress_TextAnim.text = "지문 인식중.. ";
+                fingerPrintProgressAnimateCount++;
+            }
+            else if (fingerPrintProgressAnimateCount == 2)
+            {
+                tmp_FingerPrintProgress_TextAnim.text = "지문 인식중... ";
+                fingerPrintProgressAnimateCount = 0;
+            }
+
+            
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     public void PressFingerUpdate(LeanFinger _finger)
     {
         print("Press Finger!!");
 
+        if(isFingerPrintProgressTextAnimating == false)
+        {
+            isFingerPrintProgressTextAnimating = true;
+            StartCoroutine(TextAnim());
+        }
+
         if (slider_FingerPrintProgress.value < 1f)
         {
             slider_FingerPrintProgress.value += Time.deltaTime / 3f;
+            fingerPrintProgress = (int)(slider_FingerPrintProgress.value * 100);
+            tmp_FingerPrintProgress_Percent.text = fingerPrintProgress + "%";
         }
         else
         {
@@ -115,14 +164,22 @@ public class TitleManager : SimpleSingleton<TitleManager>
 
     public void PressFingerDeSelect()
     {
+        if(isFingerPrintProgressTextAnimating)
+        {
+            isFingerPrintProgressTextAnimating = false;
+        }
+
         print("DeSelected!!");
         if(slider_FingerPrintProgress.value < 1f)
         {
             slider_FingerPrintProgress.value = 0;
+            tmp_FingerPrintProgress_TextAnim.text = "지문 인식중.";
+            tmp_FingerPrintProgress_Percent.text = "0%";
+            fingerPrintProgressAnimateCount = 0;
         }
     }
 
-    void ShowUIView_Login()
+    public void ShowUIView_Login()
     {
         uiView_Login.Show();
     }
