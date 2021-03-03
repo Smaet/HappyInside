@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using BackEnd;
 
 
 public class GameManager : SimpleSingleton<GameManager>
@@ -52,6 +53,22 @@ public class GameManager : SimpleSingleton<GameManager>
         DontDestroyOnLoad(this);
 
         base.Awake();
+
+        //뒤끝 SDK 초기화
+
+
+        Backend.Initialize(callback => {
+            if (callback.IsSuccess())
+            {
+                // 초기화 성공 시 로직
+                print("BackEnd SDK Initialize Success!!");
+            }
+            else
+            {
+                // 초기화 실패 시 로직
+                print("BackEnd SDK Initialize fail!!");
+            }
+        });
 
 
         Init();
