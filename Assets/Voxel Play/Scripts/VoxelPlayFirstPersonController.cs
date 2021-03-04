@@ -553,9 +553,12 @@ namespace VoxelPlay {
             float speed;
             GetInput(out speed);
 
+         
             Vector3 pos = transform.position;
             if (isFlying || isInWater) {
                 m_MoveDir = m_Camera.transform.forward * m_Input.y + m_Camera.transform.right * m_Input.x + m_Camera.transform.up * m_Input.z;
+
+
                 m_MoveDir *= speed;
                 if (!isFlying) {
                     if (m_MoveDir.y < 0) {
@@ -579,6 +582,8 @@ namespace VoxelPlay {
             } else {
                 // always move along the camera forward as it is the direction that it being aimed at
                 Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
+
+         
 
                 // get a normal for the surface that is being touched to move along it
                 RaycastHit hitInfo;
@@ -738,6 +743,9 @@ namespace VoxelPlay {
                 up = -1f;
             }
 
+      
+
+
             bool leftShiftPressed = input.GetButton(InputButtonNames.LeftShift);
             isMoving = isGrounded && !isInWater && !isFlying && !leftShiftPressed;
             isRunning = false;
@@ -755,7 +763,12 @@ namespace VoxelPlay {
                 speed = runSpeed;
                 isRunning = true;
             }
+
+
+          
+
             m_Input = new Vector3(input.horizontalAxis, input.verticalAxis, up);
+
 
             // normalize input if it exceeds 1 in combined length:
             if (m_Input.sqrMagnitude > 1) {

@@ -30,8 +30,37 @@ public class GoogleManager : MonoBehaviour
 
         TitleManager.Instance.GPGS_LoginClick += GPGSLogin;
         TitleManager.Instance.GPGS_LoginOutClick += LogOut;
+        TitleManager.Instance.GPGS_GetLoginInfo += GetGPGSLoginInfo;
     }
 
+    public void GetGPGSLoginInfo()
+    {
+
+        Social.localUser.Authenticate((bool success) =>
+        {
+            if (success)
+            {
+                BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
+
+                //유저 정보 가져오기 및 적용 후 지문 인식으로 넘어가기.
+                print("BRO Status : " + BRO.GetStatusCode());
+
+                if(BRO.IsSuccess())
+                {
+
+                    BackendReturnObject bro = Backend.BMember.GetUserInfo();
+                 
+
+                    string nickname = bro.GetReturnValuetoJSON()["row"]["nickname"].ToString();
+
+                    print("저장된 닉네임 : " + nickname);
+
+                    TitleManager.Instance.uiView_FingerPrint.Show();
+                }
+                
+            }
+        }); 
+    }
   
     public void GPGSLogin()
     {
@@ -42,8 +71,10 @@ public class GoogleManager : MonoBehaviour
         // 이미 로그인 된 경우
         if (Social.localUser.authenticated == true)
         {
-            BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
+            
         }
+
+      
         else
         {
             Social.localUser.Authenticate((bool success) => {
@@ -58,20 +89,7 @@ public class GoogleManager : MonoBehaviour
 
                     print("Google Hash : " + Backend.Utils.GetGoogleHash());
 
-                    //string nickname = BRO.GetReturnValuetoJSON()["row"]["nickname"].ToString();
-                    //string countryCode = BRO.GetReturnValuetoJSON()["row"]["countryCode"].ToString();
-                    //string inDate = BRO.GetReturnValuetoJSON()["row"]["inDate"].ToString();
-                    //string emailForFindPassword = BRO.GetReturnValuetoJSON()["row"]["emailForFindPassword"].ToString();
-                    //string subscriptionType = BRO.GetReturnValuetoJSON()["row"]["subscriptionType"].ToString();
-                    //string federationId = BRO.GetReturnValuetoJSON()["row"]["federationId"].ToString();
-                    //print("User NickName : " + nickname);
-                    //print("User countryCode : " + countryCode);
-                    //print("User inDate : " + inDate);
-                    //print("User emailForFindPassword : " + emailForFindPassword);
-                    //print("User subscriptionType : " + subscriptionType);
-                    //print("User federationId : " + federationId);
-
-                    //Backend.BMember.AuthorizeFederation(federationId, FederationType.Google, "GPGS로 가입함");
+                    GameManager.Instance.SetLoginType(LoginType.GOOGLE);
                 }
                 else
                 {
@@ -80,33 +98,6 @@ public class GoogleManager : MonoBehaviour
                 }
             });
         }
-
-
-
-        //// 이미 로그인 된 경우
-        //if (Social.localUser.authenticated == true)
-        //{
-           
-        //}
-        //else
-        //{
-        //    Social.localUser.Authenticate((bool success) => {
-        //        if (success)
-        //        {
-        //            // 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입요청
-        //            Debug.Log("Login success!! " + Social.localUser.id + " / " + Social.localUser.userName );
-        //            text.text += Social.localUser.userName;
-
-        //            TitleManager.Instance.ShowUIView_Login();
-
-        //        }
-        //        else
-        //        {
-        //            // 로그인 실패
-        //            Debug.Log("Login failed for some reason");
-        //        }
-        //    });
-        //}
 #endif
     }
 

@@ -17,6 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Doozy.Engine.UI;
 using UniRx;
 using Doozy;
 
@@ -102,9 +103,27 @@ public class HomeManager : SimpleSingleton<HomeManager>
     public GrandFatherHouseManager grandFatherHouseManager;
 
     public HappyRichDialogueManager happyRichDialogueManager;
-    #endregion
 
+    [Header("Gov Sample")]
+    public UIView uiView_Gov01;
+    public UIView uiView_Gov02;
    
+    #endregion
+    public void HideGov01Sample()
+    {
+        uiView_Gov01.Hide();
+    }
+
+ 
+    public void ShowGov02Sample()
+    {
+        uiView_Gov02.Show();
+    }
+
+    public void HideGov02Sample()
+    {
+        uiView_Gov02.Hide();
+    }
 
     protected override void Awake()
     {

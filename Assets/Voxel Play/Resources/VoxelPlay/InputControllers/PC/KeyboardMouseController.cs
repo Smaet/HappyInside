@@ -20,8 +20,11 @@ namespace VoxelPlay
 			mouseX =  Input.GetAxis ("Mouse X");
 			mouseY =  Input.GetAxis ("Mouse Y");
 			mouseScrollWheel = Input.GetAxis ("Mouse ScrollWheel");
-			horizontalAxis = Input.GetAxis ("Horizontal");
-			verticalAxis = Input.GetAxis ("Vertical");
+			//horizontalAxis = Input.GetAxis("Horizontal");
+			//verticalAxis = Input.GetAxis("Vertical");
+
+
+
 
 			// Left mouse button
 			if (Input.GetMouseButtonDown (0)) {
@@ -52,6 +55,11 @@ namespace VoxelPlay
 			}
 			// Jump key
 			ReadButtonState(InputButtonNames.Jump, "Jump");
+
+			//ReadButtonState(InputButtonNames., "Horizontal");
+			//ReadButtonState(InputButtonNames.MoveFoward, "Vertical");
+
+
 			ReadKeyState (InputButtonNames.Up, KeyCode.E);
 			ReadKeyState (InputButtonNames.Down, KeyCode.Q);
 			ReadKeyState (InputButtonNames.LeftControl, KeyCode.LeftControl);
@@ -69,7 +77,11 @@ namespace VoxelPlay
             ReadKeyState (InputButtonNames.Escape, KeyCode.Escape);
             ReadKeyState (InputButtonNames.Console, KeyCode.F1);
             ReadKeyState (InputButtonNames.DebugWindow, KeyCode.F2);
-        }
+			ReadKeyState(InputButtonNames.MoveFoward, KeyCode.W);
+			ReadKeyState(InputButtonNames.MoveFoward, KeyCode.S);
+			ReadKeyState(InputButtonNames.MoveFoward, KeyCode.A);
+			ReadKeyState(InputButtonNames.MoveFoward, KeyCode.D);
+		}
 
 	
 	}

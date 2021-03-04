@@ -30,7 +30,11 @@ namespace VoxelPlay {
 		SeeThroughDown,
         Escape,
         DebugWindow,
-        Console
+        Console,
+		MoveFoward,
+		MoveBackward,
+		MoveRight,
+		MoveLeft,
     }
 
 	public enum InputButtonPressState {
@@ -103,6 +107,7 @@ namespace VoxelPlay {
 		[NonSerialized]
 		public bool initialized;
 
+		[SerializeField]
 		protected InputButtonState[] buttons;
 
 		protected virtual bool Initialize () {
@@ -120,6 +125,7 @@ namespace VoxelPlay {
 		}
 
 		public bool GetButtonUp (InputButtonNames button) {
+			//print("Button : " + button);
 			return initialized && buttons [(int)button].pressState == InputButtonPressState.Up;
 		}
 
@@ -154,7 +160,9 @@ namespace VoxelPlay {
 			} else {
 				UpdateInputState();
 			}
-			if (!anyKey) {
+			if (!anyKey)
+			{
+			
 				for (int k = 0; k < buttons.Length; k++) {
 					if (buttons [k].pressState != InputButtonPressState.Idle) {
 						anyKey = true;
@@ -166,11 +174,16 @@ namespace VoxelPlay {
 
 
 		protected void ReadButtonState (InputButtonNames button, string buttonName) {
+			
 			if (Input.GetButtonDown (buttonName)) {
 				buttons [(int)button].pressStartTime = Time.time;
 				buttons [(int)button].pressState = InputButtonPressState.Down;
+
+
 			} else if (Input.GetButtonUp (buttonName)) {
 				buttons [(int)button].pressState = InputButtonPressState.Up;
+
+			
 			} else if (Input.GetButton (buttonName)) {
 				buttons [(int)button].pressState = InputButtonPressState.Pressed;
 			}
@@ -178,13 +191,41 @@ namespace VoxelPlay {
 
 
 		protected void ReadKeyState (InputButtonNames button, KeyCode keyCode) {
+		
 			if (Input.GetKeyDown (keyCode)) {
 				buttons [(int)button].pressStartTime = Time.time;
 				buttons [(int)button].pressState = InputButtonPressState.Down;
+
+
+			
+
 			} else if (Input.GetKeyUp (keyCode)) {
 				buttons [(int)button].pressState = InputButtonPressState.Up;
+
+				
+
+				if (keyCode == KeyCode.W || keyCode == KeyCode.S)
+                {
+					verticalAxis = 0;
+				}
+				if (keyCode == KeyCode.A || keyCode == KeyCode.D)
+                {
+					horizontalAxis = 0;
+				}
+
+
 			} else if (Input.GetKey (keyCode)) {
 				buttons [(int)button].pressState = InputButtonPressState.Pressed;
+
+
+				if (keyCode == KeyCode.W || keyCode == KeyCode.S)
+				{
+					verticalAxis = Input.GetAxis("Vertical");
+				}
+				if (keyCode == KeyCode.A || keyCode == KeyCode.D)
+				{
+					horizontalAxis = Input.GetAxis("Horizontal");
+				}
 			}
 		}
 	

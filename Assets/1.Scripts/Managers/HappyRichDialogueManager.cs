@@ -15,7 +15,12 @@ public class HappyRichDialogueManager : MonoBehaviour
     public DialogueSystemTrigger dialogueSystemTrigger;
 
     public Image image_Background;
+    public Sprite spr_01;
 
+    public void ChangeBackground()
+    {
+        image_Background.sprite = spr_01;
+    }
 
     public void StartDialogue()
     {
@@ -58,6 +63,15 @@ public class HappyRichDialogueManager : MonoBehaviour
         uiView_Result.Hide();
 
         EndDialogue();
+
+        StartCoroutine(StartGovSampleEvent());
+
+    }
+
+    IEnumerator StartGovSampleEvent()
+    {
+        yield return new WaitForSeconds(1.0f);
+        HomeManager.Instance.uiView_Gov01.Show();
     }
 
     public void EndDialogue()

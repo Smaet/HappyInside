@@ -24,6 +24,15 @@ using UnityEngine.InputSystem;
 using BackEnd;
 
 
+public enum LoginType
+{
+    NONE = 0,
+    GOOGLE,
+    FACEBOOK,
+    GUEST,
+}
+
+
 public class GameManager : SimpleSingleton<GameManager>
 {
     public bool isTest = false;
@@ -55,8 +64,6 @@ public class GameManager : SimpleSingleton<GameManager>
         base.Awake();
 
         //뒤끝 SDK 초기화
-
-
         Backend.Initialize(callback => {
             if (callback.IsSuccess())
             {
@@ -70,8 +77,8 @@ public class GameManager : SimpleSingleton<GameManager>
             }
         });
 
+     
 
-        Init();
         if (isTest)
         {
             TestUser();
@@ -94,48 +101,25 @@ public class GameManager : SimpleSingleton<GameManager>
     private void Start()
     {
 
-        //각종 초기화
-        //HomeManager.Instance.Init();
+        //이전에 로그인을 했는지 아닌지 체크하기
+        //PlayerPrefs Int 
+        //0 : 로그인 안함
+        //1 : 구글 로그인
+        //2 : 페이스북 로그인
+        //3 : 게스트 로그인
 
-        //UserBaseProperties userProperties = user.userBaseProperties;
+        //로그인이 한번이라도 되었는지 확인
+        //로그인이 한번이라도 했으면 바로 Touch Screen을 보여주고
+        if (PlayerPrefs.HasKey("Login"))
+        {
+            TitleManager.Instance.HideLoginButtons();
+        }
+        //아니라면 SNS 와 게스트 로그인 버튼을 띄워 준다.
+        else
+        {
+            TitleManager.Instance.ShowLoginButtons();
+        }
 
-        ////각종 셋팅
-        ////할아버지 의심도및  재산 셋팅
-        ////HomeManager.Instance.comprehensivePanel.SetCurrentAssetStatus_Slider(userProperties.manipulatedMoney);
-        ////HomeManager.Instance.comprehensivePanel.SetCurrentDoubtStatus_Slider(userProperties.ConsumptionMoney, userProperties.manipulatedMoney);
-        ////HomeManager.Instance.comprehensivePanel.SetGarndFaterAssetInfo(userProperties.startMoney, userProperties.manipulatedMoney);
-
-        ////상단 패널 셋팅
-        //HomeManager.Instance.topUIManager.SetCrystal(userProperties.crystal);
-        //HomeManager.Instance.topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
-        //HomeManager.Instance.topUIManager.SetPinkChip(userProperties.xCoin);
-        //HomeManager.Instance.topUIManager.SetHour(userProperties.gameHour);
-        //HomeManager.Instance.topUIManager.SetDays(userProperties.daysElapsed);
-
-        ////게임 시간 시작
-        //HomeManager.Instance.timeManager.StartGameTime(user.userBaseProperties.gameHour, user.userBaseProperties.daysElapsed);
-
-        ////게임 시간에 따른 배경 설정
-        //if(user.userBaseProperties.gameHour < 9)
-        //{
-        //    HomeManager.Instance.SetBackground(0);
-        //}
-        //else if(user.userBaseProperties.gameHour < 17)
-        //{
-        //    HomeManager.Instance.SetBackground(1);
-        //}
-        //else if(user.userBaseProperties.gameHour < 24)
-        //{
-        //    HomeManager.Instance.SetBackground(2);
-        //}
-
-
-        //PoloSFX.Instance.PlayHomeBGM();
-    }
-
-    void Init()
-    {
-        //유저 정보 초기화
     }
 
     #region GameControl
@@ -352,8 +336,19 @@ public class GameManager : SimpleSingleton<GameManager>
     #endregion
 
 
+
     #region LocalSave
 
+   
+
+    //0 : 로그인 안함
+    //1 : 구글 로그인
+    //2 : 페이스북 로그인
+    //3 : 게스트 로그인
+    public void SetLoginType(LoginType _type)
+    {
+        PlayerPrefs.SetInt("Login", (int)_type);
+    }
     public void SaveUserData()
     {
         ES3.Save("localUser",user);

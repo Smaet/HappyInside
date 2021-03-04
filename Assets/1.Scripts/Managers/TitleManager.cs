@@ -31,6 +31,7 @@ public class TitleManager : SimpleSingleton<TitleManager>
 
     public Button button_FaceBook;
     public Button button_Google;
+    public Button button_TouchToLogin;
 
 
     public UIView uiView_Login;
@@ -43,6 +44,7 @@ public class TitleManager : SimpleSingleton<TitleManager>
     public TextMeshProUGUI TMP_LogText;
 
     public event Action GPGS_LoginClick;
+    public event Action GPGS_GetLoginInfo;
     public event Action GPGS_LoginOutClick;
 
 
@@ -60,23 +62,14 @@ public class TitleManager : SimpleSingleton<TitleManager>
         button_FaceBook.onClick.RemoveAllListeners();
         button_Google.onClick.RemoveAllListeners();
         button_LoginConfirm.onClick.RemoveAllListeners();
+        button_TouchToLogin.onClick.RemoveAllListeners();
 
         button_FaceBook.onClick.AddListener(ClickGPGSLogOut);
         button_Google.onClick.AddListener(ClickGPGSLogin);
+        button_TouchToLogin.onClick.AddListener(OnClickLoginByType);
         button_LoginConfirm.onClick.AddListener(ShowUIView_FingerPrint);
 
-        //바로 터치 스크린
-        if (GameManager.Instance.user.isFirst == false)
-        {
-            button_Google.gameObject.SetActive(false);
-            button_FaceBook.gameObject.SetActive(false);
-        }
-        //로그인 버튼 생성
-        else
-        {
-            button_Google.gameObject.SetActive(true);
-            button_FaceBook.gameObject.SetActive(true);
-        }
+       
         tmp_FingerPrintProgress_TextAnim.text = "지문 인식중.";
         tmp_FingerPrintProgress_Percent.text = "0%";
         isFingerPrintProgressTextAnimating = false;
@@ -84,17 +77,56 @@ public class TitleManager : SimpleSingleton<TitleManager>
 
     }
 
+
+    public void OnClickLoginByType()
+    {
+        LoginType ltype = (LoginType)PlayerPrefs.GetInt("Login");
+
+        switch(ltype)
+        {
+            case LoginType.NONE:
+                break;
+            case LoginType.GOOGLE:
+                ClickGetGPGSLoginInfo();
+                break;
+            case LoginType.FACEBOOK:
+                break;
+            case LoginType.GUEST:
+                break;
+        }
+    }
+
+    public void ShowLoginButtons()
+    {
+        button_Google.gameObject.SetActive(true);
+        button_FaceBook.gameObject.SetActive(true);
+        button_TouchToLogin.gameObject.SetActive(false);
+    }
+
+    public void HideLoginButtons()
+    {
+        button_Google.gameObject.SetActive(false);
+        button_FaceBook.gameObject.SetActive(false);
+        button_TouchToLogin.gameObject.SetActive(true);
+    }
+
+
+    public void ClickGetGPGSLoginInfo()
+    {
+        if (GPGS_GetLoginInfo != null)
+        {
+            GPGS_GetLoginInfo();
+        }
+    }
     public void ClickGPGSLogin()
     {
         if(GPGS_LoginClick != null)
         {
-
-#if UNITY_ANDROID
-            GPGS_LoginClick();
-#endif
-
 #if UNITY_EDITOR
             ShowUIView_Login();
+
+#elif UNITY_ANDROID
+            GPGS_LoginClick();
 #endif
 
         }
@@ -112,13 +144,14 @@ public class TitleManager : SimpleSingleton<TitleManager>
         if (Facebook_LoginClick != null)
         {
 
-#if UNITY_ANDROID
+#if UNITY_EDITOR
+            ShowUIView_Login();
+
+#elif UNITY_ANDROID
             Facebook_LoginClick();
 #endif
 
-#if UNITY_EDITOR
-            ShowUIView_Login();
-#endif
+
 
         }
     }
@@ -219,8 +252,16 @@ public class TitleManager : SimpleSingleton<TitleManager>
 
     void ShowUIView_FingerPrint()
     {
-        BackendReturnObject bro =  Backend.BMember.CreateNickname(inputField_Nick.text);
 
+#if UNITY_EDITOR
+        uiView_Login.Hide();
+        uiView_FingerPrint.Show();
+        GameManager.Instance.SetUserInfo(inputField_Nick.text);
+        inputField_Nick.text = "";
+
+#elif UNITY_ANDROID
+
+        BackendReturnObject bro =  Backend.BMember.CreateNickname(inputField_Nick.text);
         inputField_Nick.text = "";
 
         // 이후 처리
@@ -258,6 +299,9 @@ public class TitleManager : SimpleSingleton<TitleManager>
 
         }
 
+#endif
 
     }
+
+
 }
