@@ -36,30 +36,25 @@ public class GoogleManager : MonoBehaviour
     public void GetGPGSLoginInfo()
     {
 
-        Social.localUser.Authenticate((bool success) =>
+        BackendReturnObject BRO = Backend.BMember.LoginWithTheBackendToken();
+
+        //유저 정보 가져오기 및 적용 후 지문 인식으로 넘어가기.
+        print("BRO Status : " + BRO.GetStatusCode());
+
+        if (BRO.IsSuccess())
         {
-            if (success)
-            {
-                BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
 
-                //유저 정보 가져오기 및 적용 후 지문 인식으로 넘어가기.
-                print("BRO Status : " + BRO.GetStatusCode());
+            BackendReturnObject bro = Backend.BMember.GetUserInfo();
 
-                if(BRO.IsSuccess())
-                {
 
-                    BackendReturnObject bro = Backend.BMember.GetUserInfo();
-                 
+            string nickname = bro.GetReturnValuetoJSON()["row"]["nickname"].ToString();
 
-                    string nickname = bro.GetReturnValuetoJSON()["row"]["nickname"].ToString();
+            print("저장된 닉네임 : " + nickname);
 
-                    print("저장된 닉네임 : " + nickname);
+            TitleManager.Instance.uiView_FingerPrint.Show();
 
-                    TitleManager.Instance.uiView_FingerPrint.Show();
-                }
-                
-            }
-        }); 
+
+        }
     }
   
     public void GPGSLogin()
@@ -73,23 +68,40 @@ public class GoogleManager : MonoBehaviour
         {
             
         }
-
-      
         else
         {
             Social.localUser.Authenticate((bool success) => {
                 if (success)
-                {
+                {  
                     // 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입요청
                     BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
-                   
-                    TitleManager.Instance.ShowUIView_Login();
 
-                    print("BRO Status : " + BRO.GetStatusCode());
 
-                    print("Google Hash : " + Backend.Utils.GetGoogleHash());
+                    if(BRO.IsSuccess())
+                    {
+                        string statusCode = BRO.GetStatusCode();
 
-                    GameManager.Instance.SetLoginType(LoginType.GOOGLE);
+                        print("BackEnd Login Success : " + statusCode);
+
+                        //기존 회원 로그인
+                        if(statusCode == "200")
+                        {
+                            print("기존 회원으로 로그인 성공!!");
+
+                            GetGPGSLoginInfo();
+
+                            GameManager.Instance.SetLoginType(LoginType.GOOGLE);
+                        }
+                        else
+                        {
+                            print("신규 회원으로 로그인 성공!!");
+
+                            TitleManager.Instance.ShowUIView_NickName();
+
+                            GameManager.Instance.SetLoginType(LoginType.GOOGLE);
+                        }
+                    }
+
                 }
                 else
                 {

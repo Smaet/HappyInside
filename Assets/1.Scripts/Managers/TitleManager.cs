@@ -20,8 +20,33 @@ using BackEnd;
 
 public class TitleManager : SimpleSingleton<TitleManager>
 {
-    public TMP_InputField inputField_Nick;
 
+
+  
+   
+    [Header("Common")]
+    public Image image_TouchToScreen;
+    public Button button_TouchToLogin;
+
+
+    [Header("UIView")]
+    public UIView uiView_CustomLogin;
+
+
+
+    public Button button_NickNameConfirm;
+
+    bool isLoadScene = false;
+
+    public TextMeshProUGUI TMP_LogText;
+
+    [Header("NickName")]
+    public TMP_InputField inputField_Nick;
+    public UIView uiView_NickName;
+
+
+    [Header("FingerPrint")]
+    public UIView uiView_FingerPrint;
     public Slider slider_FingerPrintProgress;
     public TextMeshProUGUI tmp_FingerPrintProgress_TextAnim;
     public TextMeshProUGUI tmp_FingerPrintProgress_Percent;
@@ -29,27 +54,29 @@ public class TitleManager : SimpleSingleton<TitleManager>
     private int fingerPrintProgress = 0;
     public bool isFingerPrintProgressTextAnimating;
 
-    public Button button_FaceBook;
+    [Header("GPGSLogin")]
     public Button button_Google;
-    public Button button_TouchToLogin;
-
-
-    public UIView uiView_Login;
-    public Button button_LoginConfirm;
-
-    public UIView uiView_FingerPrint;
-
-    bool isLoadScene = false;
-
-    public TextMeshProUGUI TMP_LogText;
-
     public event Action GPGS_LoginClick;
     public event Action GPGS_GetLoginInfo;
     public event Action GPGS_LoginOutClick;
 
-
+    [Header("FacebookLogin")]
+    public Button button_FaceBook;
     public event Action Facebook_LoginClick;
     public event Action Facebook_LoginOutClick;
+    public event Action Facebook_GetLoginInfo;
+
+    [Header("CustomLogin")]
+    public Button button_CustomLogin;
+    public Button button_CustomLoginConfirm;
+    public Button button_CustomLoginCancel;
+
+    public TMP_InputField tmpIF_ID;
+    public TMP_InputField tmpIF_PW;
+
+    public event Action<string, string> Custom_LoginClick;
+    public event Action Custom_LoginOutClick;
+    public event Action Custom_GetLoginInfo;
 
     protected override  void Awake()
     {
@@ -59,21 +86,32 @@ public class TitleManager : SimpleSingleton<TitleManager>
     private void Start()
     {
         isLoadScene = false;
+
+        //Button Init
         button_FaceBook.onClick.RemoveAllListeners();
         button_Google.onClick.RemoveAllListeners();
-        button_LoginConfirm.onClick.RemoveAllListeners();
+        button_NickNameConfirm.onClick.RemoveAllListeners();
         button_TouchToLogin.onClick.RemoveAllListeners();
+        button_CustomLogin.onClick.RemoveAllListeners();
 
-        button_FaceBook.onClick.AddListener(ClickGPGSLogOut);
+
+        button_FaceBook.onClick.AddListener(ClickFacebookLogin);
         button_Google.onClick.AddListener(ClickGPGSLogin);
         button_TouchToLogin.onClick.AddListener(OnClickLoginByType);
-        button_LoginConfirm.onClick.AddListener(ShowUIView_FingerPrint);
+        button_NickNameConfirm.onClick.AddListener(ShowUIView_FingerPrint);
 
        
         tmp_FingerPrintProgress_TextAnim.text = "지문 인식중.";
         tmp_FingerPrintProgress_Percent.text = "0%";
         isFingerPrintProgressTextAnimating = false;
         TMP_LogText.text = "";
+
+
+        //CustomLogin
+        button_CustomLogin.onClick.AddListener(ShowCustomLogin);
+        button_CustomLoginCancel.onClick.AddListener(HideCustomLogin);
+        button_CustomLoginConfirm.onClick.AddListener(()=> ClickCustomLogin(tmpIF_ID.text, tmpIF_PW.text));
+
 
     }
 
@@ -90,26 +128,42 @@ public class TitleManager : SimpleSingleton<TitleManager>
                 ClickGetGPGSLoginInfo();
                 break;
             case LoginType.FACEBOOK:
+                ClickGetFacebookInfo();
                 break;
-            case LoginType.GUEST:
+            case LoginType.CUSTOM:
+                ClickGetCustomInfo();
                 break;
         }
     }
+
+    public void SetTouchScreen(bool isOpen)
+    {
+        button_TouchToLogin.gameObject.SetActive(isOpen);
+        image_TouchToScreen.gameObject.SetActive(isOpen);
+    }
+
 
     public void ShowLoginButtons()
     {
         button_Google.gameObject.SetActive(true);
         button_FaceBook.gameObject.SetActive(true);
-        button_TouchToLogin.gameObject.SetActive(false);
+        button_CustomLogin.gameObject.SetActive(true);
     }
 
     public void HideLoginButtons()
     {
         button_Google.gameObject.SetActive(false);
         button_FaceBook.gameObject.SetActive(false);
-        button_TouchToLogin.gameObject.SetActive(true);
+        button_CustomLogin.gameObject.SetActive(false);
     }
 
+    public void ClickGetFacebookInfo()
+    {
+        if(Facebook_GetLoginInfo != null)
+        {
+            Facebook_GetLoginInfo();
+        }
+    }
 
     public void ClickGetGPGSLoginInfo()
     {
@@ -123,7 +177,7 @@ public class TitleManager : SimpleSingleton<TitleManager>
         if(GPGS_LoginClick != null)
         {
 #if UNITY_EDITOR
-            ShowUIView_Login();
+            ShowUIView_NickName();
 
 #elif UNITY_ANDROID
             GPGS_LoginClick();
@@ -145,14 +199,11 @@ public class TitleManager : SimpleSingleton<TitleManager>
         {
 
 #if UNITY_EDITOR
-            ShowUIView_Login();
+            ShowUIView_NickName();
 
 #elif UNITY_ANDROID
             Facebook_LoginClick();
 #endif
-
-
-
         }
     }
     public void ClickFacebookLogOut()
@@ -162,6 +213,26 @@ public class TitleManager : SimpleSingleton<TitleManager>
             Facebook_LoginOutClick();
         }
     }
+
+    public void ClickCustomLogin(string _id, string _pw)
+    {
+        if(Custom_LoginClick != null)
+        {
+            Custom_LoginClick(_id, _pw);
+        }
+    }
+
+    public void ClickGetCustomInfo()
+    {
+        if (Custom_GetLoginInfo != null)
+        {
+            Custom_GetLoginInfo();
+        }
+    }
+
+
+
+
 
     public void LoadScene()
     {
@@ -245,33 +316,25 @@ public class TitleManager : SimpleSingleton<TitleManager>
         }
     }
 
-    public void ShowUIView_Login()
+    public void ShowUIView_NickName()
     {
-        uiView_Login.Show();
+        uiView_NickName.Show();
     }
 
-    void ShowUIView_FingerPrint()
+    public void ShowUIView_FingerPrint()
     {
 
 #if UNITY_EDITOR
-        uiView_Login.Hide();
+        uiView_NickName.Hide();
         uiView_FingerPrint.Show();
-        GameManager.Instance.SetUserInfo(inputField_Nick.text);
-        inputField_Nick.text = "";
 
-#elif UNITY_ANDROID
-
-        BackendReturnObject bro =  Backend.BMember.CreateNickname(inputField_Nick.text);
-        inputField_Nick.text = "";
-
+        BackendReturnObject bro = Backend.BMember.CreateNickname(inputField_Nick.text);
         // 이후 처리
         string statusCode = bro.GetStatusCode();
 
-        print(statusCode);
-
         if (bro.IsSuccess())
         {
-            uiView_Login.Hide();
+            uiView_NickName.Hide();
             uiView_FingerPrint.Show();
             GameManager.Instance.SetUserInfo(inputField_Nick.text);
             inputField_Nick.text = "";
@@ -299,9 +362,77 @@ public class TitleManager : SimpleSingleton<TitleManager>
 
         }
 
+        inputField_Nick.text = "";
+
+#elif UNITY_ANDROID
+
+        BackendReturnObject bro =  Backend.BMember.CreateNickname(inputField_Nick.text);
+     
+
+        // 이후 처리
+        string statusCode = bro.GetStatusCode();
+
+        print(statusCode);
+
+        if (bro.IsSuccess())
+        {
+            uiView_NickName.Hide();
+            uiView_FingerPrint.Show();
+            GameManager.Instance.SetUserInfo(inputField_Nick.text);
+            inputField_Nick.text = "";
+
+            TMP_LogText.text = "Nick Input Success!!";
+        }
+        else
+        {
+            //빈 닉네임 혹은 string.empty로 닉네임 생성&수정을 시도 한 경우
+            //20자 이상의 닉네임인 경우
+            //닉네임에 앞/뒤 공백이 있는 경우
+            if (statusCode == "400")
+            {
+                TMP_LogText.text = "";
+                print(bro.GetMessage());
+                TMP_LogText.text = bro.GetMessage();
+            }
+            //이미 중복된 닉네임이 있는 경우
+            else if (statusCode == "409")
+            {
+                TMP_LogText.text = "";
+                print(bro.GetMessage());
+                TMP_LogText.text = bro.GetMessage();
+            }
+
+        }
+
+        inputField_Nick.text = "";
+
 #endif
 
     }
+
+
+    #region Login
+
+
+    #region CustomLogin
+    public void ShowCustomLogin()
+    {
+        uiView_CustomLogin.Show();
+    }
+
+    public void HideCustomLogin()
+    {
+        uiView_CustomLogin.Hide();
+    }
+
+    public void ConfirmCustomLogin()
+    {
+
+    }
+
+    #endregion
+
+    #endregion
 
 
 }

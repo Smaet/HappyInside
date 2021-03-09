@@ -29,7 +29,7 @@ public enum LoginType
     NONE = 0,
     GOOGLE,
     FACEBOOK,
-    GUEST,
+    CUSTOM,
 }
 
 
@@ -55,6 +55,10 @@ public class GameManager : SimpleSingleton<GameManager>
     }
 
     public GameState CurrentGameState;
+
+    //서버에서 받아온 인게임 저장 정보
+    //동료 레벨당 정보
+    //public List<>
 
 
     protected override void Awake()
@@ -100,6 +104,9 @@ public class GameManager : SimpleSingleton<GameManager>
 
     private void Start()
     {
+      
+
+        //PlayerPrefs.DeleteKey("Login");
 
         //이전에 로그인을 했는지 아닌지 체크하기
         //PlayerPrefs Int 
@@ -110,15 +117,38 @@ public class GameManager : SimpleSingleton<GameManager>
 
         //로그인이 한번이라도 되었는지 확인
         //로그인이 한번이라도 했으면 바로 Touch Screen을 보여주고
-        if (PlayerPrefs.HasKey("Login"))
+#if UNITY_EDITOR
+            if (PlayerPrefs.HasKey("Login"))
         {
-            TitleManager.Instance.HideLoginButtons();
+            if(PlayerPrefs.GetInt("Login") == (int)LoginType.CUSTOM)
+            {
+                TitleManager.Instance.HideLoginButtons();
+                TitleManager.Instance.SetTouchScreen(true);
+            }
         }
         //아니라면 SNS 와 게스트 로그인 버튼을 띄워 준다.
         else
         {
             TitleManager.Instance.ShowLoginButtons();
+            TitleManager.Instance.SetTouchScreen(false);
         }
+
+
+#elif UNITY_ANDROID
+
+        if (PlayerPrefs.HasKey("Login"))
+        {
+            TitleManager.Instance.HideLoginButtons();
+            TitleManager.Instance.SetTouchScreen(true);
+        }
+        //아니라면 SNS 와 게스트 로그인 버튼을 띄워 준다.
+        else
+        {
+            TitleManager.Instance.ShowLoginButtons();
+            TitleManager.Instance.SetTouchScreen(false);
+        }
+
+#endif
 
     }
 
@@ -147,18 +177,9 @@ public class GameManager : SimpleSingleton<GameManager>
             tempUserData.userBaseProperties.crystal = 99;
             //tempUserData.userBaseProperties.startMoney = 50000000000;
             tempUserData.userBaseProperties.currentAmount = HappyRichReadOnly.StartGrandFatherMoney;
-            tempUserData.userBaseProperties.terror = new Terror();
-            tempUserData.userBaseProperties.terror.damageAmount = 0;
-            tempUserData.userBaseProperties.terror.terrorRanking = 1;
+          
 
-            tempUserData.userBaseProperties.gameHour = 0;
-            tempUserData.userBaseProperties.daysElapsed = 1;
-
-            tempUserData.userBaseProperties.grandFatherAnger  = new GrandFatherAnger();
-            tempUserData.userBaseProperties.grandFatherAnger.curAnger = 0;
-            tempUserData.userBaseProperties.grandFatherAnger.specificEventAngerValue01 = 0;
-
-            tempUserData.userBaseProperties.blackChip = 1000;
+            tempUserData.userBaseProperties.xCoin = 1000;
 
             tempUserData.userBaseProperties.collegueInfos = new CollegueInfo[5];
 
@@ -173,29 +194,26 @@ public class GameManager : SimpleSingleton<GameManager>
                     tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
 
                     tempUserData.userBaseProperties.collegueInfos[i].Level = 1;
-                    tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 1;
+                    //tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 1;
                     tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 1;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new CollegueBasicSkill();
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new CollegueBasicSkill();
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
 
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new ColleguePassiveSkill[3];
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new ColleguePassiveSkill[3];
 
                     for (int j = 0; j < 3; j++)
                     {
-                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new ColleguePassiveSkill();
+                       // tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new ColleguePassiveSkill();
                     }
 
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
 
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem = new CollegueItem();
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.isActive = true;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.chance = 0.5;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueItem.hour = -1;
+           
 
                 }
                 else
@@ -203,27 +221,40 @@ public class GameManager : SimpleSingleton<GameManager>
                     tempUserData.userBaseProperties.collegueInfos[i].isActive = true;
 
                     tempUserData.userBaseProperties.collegueInfos[i].Level = 0;
-                    tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 0;
+                    //tempUserData.userBaseProperties.collegueInfos[i].itemLevel = 0;
                     tempUserData.userBaseProperties.collegueInfos[i].deviceLevel = 0;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new CollegueBasicSkill();
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
-                    tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill = new CollegueBasicSkill();
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.hour = 6;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.money = 10000000;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.day = -1;
+                    //tempUserData.userBaseProperties.collegueInfos[i].collegueBasicSkill.chance = -1;
 
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new ColleguePassiveSkill[3];
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills = new ColleguePassiveSkill[3];
 
                     for (int j = 0; j < 3; j++)
                     {
-                        tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new ColleguePassiveSkill();
+                       // tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[j] = new ColleguePassiveSkill();
                     }
 
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
-                    tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[0].chance = 10;
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[1].chance = 20;
+                    //tempUserData.userBaseProperties.collegueInfos[i].colleguePassiveSkills[2].chance = 30;
                 }
             }
             user.SetUserInfo(tempUserData);
+
+
+            Param param = new Param();
+            param.Add("crystal", user.userBaseProperties.crystal);
+            param.Add("xCoin", user.userBaseProperties.xCoin);
+            param.Add("dessert", user.userBaseProperties.dessert);
+            param.Add("currentAmount", user.userBaseProperties.currentAmount);
+            param.Add("Inventory", user.userBaseProperties.happyRichItems);
+            param.Add("CollegueInfos", user.userBaseProperties.collegueInfos);
+            param.Add("Buffs", user.userBaseProperties.buffs);
+
+            Backend.GameInfo.Insert("happyRich_Character", param);
+
         }
         else
         {
@@ -256,15 +287,7 @@ public class GameManager : SimpleSingleton<GameManager>
 
         user.userBaseProperties.buffs.Add(buff);
 
-        //버프 추가 후 유저의 의심도 증가 또는 하락
-        if(_isGood)
-        {
-            user.SetUserInfo(GrandFatherAngerIndex.VALUE01, buff.effect_Doubt_Plus);
-        }
-        else
-        {
-            user.SetUserInfo(GrandFatherAngerIndex.VALUE01, buff.effect_Doubt_Minus);
-        }
+       
     }
     #endregion
 
@@ -348,6 +371,8 @@ public class GameManager : SimpleSingleton<GameManager>
     public void SetLoginType(LoginType _type)
     {
         PlayerPrefs.SetInt("Login", (int)_type);
+
+        
     }
     public void SaveUserData()
     {

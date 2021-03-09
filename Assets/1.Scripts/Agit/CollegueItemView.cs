@@ -51,7 +51,7 @@ public class CollegueItemView : MonoBehaviour
                 SetName("X-쌔드");
                 break;
         }
-        SetLevel(collegueInfo.itemLevel);
+        //SetLevel(collegueInfo.itemLevel);
         SetSkillContext();
         SetLevelCost();
 
@@ -73,7 +73,7 @@ public class CollegueItemView : MonoBehaviour
         switch (curCollegue)
         {
             case CollegueIndex.Dare:
-                SkillContext_TMP.text = "해커의 조작된 재산 생성량 " + info.collegueItem.chance + "% 증가";
+               // SkillContext_TMP.text = "해커의 조작된 재산 생성량 " + info.collegueItem.chance + "% 증가";
                 break;
             case CollegueIndex.Lovely:
                 break;
@@ -89,40 +89,40 @@ public class CollegueItemView : MonoBehaviour
     public void SetLevelCost()
     {
         CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
-        levelUpCost_TMP.text = info.itemLevel + "개 필요";
+        //levelUpCost_TMP.text = info.itemLevel + "개 필요";
     }
 
     public void OnButtonLevelUpClick()
     {
         CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         //스킬업 가능 조건 레벨보다 핑크칩의 갯수가 크거나 같으면
-        if (GameManager.Instance.user.userBaseProperties.blackChip >= info.itemLevel)
-        {
-            //핑크칩 갯수 다운
-            GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.BLACKCHIP, -info.itemLevel);
+        //if (GameManager.Instance.user.userBaseProperties.xCoin >= info.itemLevel)
+        //{
+        //    //핑크칩 갯수 다운
+        //    GameManager.Instance.user.SetUserInfo(ChangeableUserProperties.BLACKCHIP, -info.itemLevel);
 
-            //동료의 아이템 레벨 업
-            info.itemLevel++;
+        //    //동료의 아이템 레벨 업
+        //    info.itemLevel++;
 
-            //아이템 레벨업에 따른 해커의 조작된 재산 생성량 증가
-            info.collegueItem.chance += 1;
+        //    //아이템 레벨업에 따른 해커의 조작된 재산 생성량 증가
+        //    info.collegueItem.chance += 1;
 
 
 
-            //유저 정보에 반영
-            GameManager.Instance.user.SetUserInfo(curCollegue, info);
+        //    //유저 정보에 반영
+        //    GameManager.Instance.user.SetUserInfo(curCollegue, info);
 
-            Debug.Log("현재 해커의 조작된 재산 생성량 추가 증가량 : " + info.collegueItem.chance);
+        //    Debug.Log("현재 해커의 조작된 재산 생성량 추가 증가량 : " + info.collegueItem.chance);
 
-            //UI 반영
-            SetLevel(info.Level);
-            SetSkillContext();
-            SetLevelCost();
-        }
-        else
-        {
-            Debug.Log("핑크칩의 개수가 부족합니다.");
-        }
+        //    //UI 반영
+        //    SetLevel(info.Level);
+        //    SetSkillContext();
+        //    SetLevelCost();
+        //}
+        //else
+        //{
+        //    Debug.Log("핑크칩의 개수가 부족합니다.");
+        //}
 
     }
 }

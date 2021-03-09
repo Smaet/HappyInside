@@ -68,7 +68,7 @@ public class ColleguePanel : MonoBehaviour
         GameObject moneyObject = simpleObjectPool.GetObject();
         BaseCombo combo = moneyObject.GetComponent<BaseCombo>();
 
-        combo.SetInfo("+" + GameManager.Instance.user.userBaseProperties.collegueInfos[0].collegueBasicSkill.money, simpleObjectPool.transform, sampleEffect_location.transform);
+      //  combo.SetInfo("+" + GameManager.Instance.user.userBaseProperties.collegueInfos[0].collegueBasicSkill.money, simpleObjectPool.transform, sampleEffect_location.transform);
 
         moneyObject.SetActive(true);
 

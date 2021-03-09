@@ -1,4 +1,4 @@
-﻿//#define USES_TINTING
+﻿#define USES_TINTING
 using System.Collections.Generic;
 using UnityEngine;
 

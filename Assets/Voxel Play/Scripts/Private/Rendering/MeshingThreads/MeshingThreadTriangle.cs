@@ -1,4 +1,4 @@
-﻿//#define USES_TINTING
+﻿#define USES_TINTING
 //#define USES_BEVEL
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;

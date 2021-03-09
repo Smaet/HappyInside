@@ -106,7 +106,7 @@ public class CollegueView : MonoBehaviour
         CollegueInfo info = GameManager.Instance.user.userBaseProperties.collegueInfos[(int)curCollegue];
         levelUpCost_TMP.text = "x" +info.Level;
 
-        if (GameManager.Instance.user.userBaseProperties.blackChip >= info.Level)
+        if (GameManager.Instance.user.userBaseProperties.xCoin >= info.Level)
         {
             levelUp_button.interactable = true;
             levelUpItem_button.interactable = true;
