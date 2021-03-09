@@ -85,8 +85,8 @@ public class TopUIManager : MonoBehaviour
 
     public void Init()
     {
-        hour_TMP.text = "00:00";
-        days_TMP.text = "1Days";
+        hour_TMP.text = "03:00";
+        days_TMP.text = "1일";
         
         //태블릿 관련
         tablet.Init();

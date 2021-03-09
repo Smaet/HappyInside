@@ -99,7 +99,7 @@ public class GameManager : SimpleSingleton<GameManager>
     {
         ClearUserData();
 
-        SetUserInfo("플엑스");
+        SetUserInfo("로빈후드");
     }
 
     private void Start()
@@ -254,7 +254,6 @@ public class GameManager : SimpleSingleton<GameManager>
             param.Add("Buffs", user.userBaseProperties.buffs);
 
             Backend.GameInfo.Insert("happyRich_Character", param);
-
         }
         else
         {

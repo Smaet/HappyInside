@@ -161,7 +161,7 @@ public class HomeManager : SimpleSingleton<HomeManager>
         //상단 패널 셋팅
         topUIManager.SetNick(user.userBaseProperties.nickName);
         topUIManager.SetCrystal(user.userBaseProperties.crystal);
-        topUIManager.SetNotice("4일 19시간후 할아버지 의심 떡상!!");
+        topUIManager.SetNotice("자나 깨나 스팸 조심");
         topUIManager.SetPinkChip(user.userBaseProperties.xCoin);
         //topUIManager.SetHour(user.userBaseProperties.gameHour);
         //topUIManager.SetDays(user.userBaseProperties.daysElapsed);
